@@ -20,6 +20,11 @@ class SemanaEpidemiologica:
 
     codigo: int
 
+    def __post_init__(self) -> None:
+        # Nem todo ano tem semana 53 (CDC usa 52 ou 53 a depender do ano);
+        # valida aqui para falhar na criação, não num __add__/inicio() distante.
+        Week(self.ano, self.semana, system=SISTEMA)
+
     @property
     def ano(self) -> int:
         return self.codigo // 100

@@ -27,7 +27,13 @@ _DS_PARA_RPA = {
 
 
 def normalizar_nome_bairro(nome: str) -> str:
-    """Remove acentos, colapsa espaços e uppercase. Chave estável para join entre fontes."""
+    """Remove acentos, colapsa espaços e uppercase. Chave estável para join entre fontes.
+
+    Mesmo padrão usado em data_sync.norm()/forecast_features._norm(); não
+    importamos de lá de propósito — shared kernel não deve depender de
+    app.services (a direção certa é o contrário). Consolidar as 3 cópias
+    nesse módulo é follow-up, não escopo desta issue.
+    """
     sem_acento = unicodedata.normalize("NFD", str(nome).strip().upper())
     sem_acento = "".join(c for c in sem_acento if unicodedata.category(c) != "Mn")
     return " ".join(sem_acento.split())

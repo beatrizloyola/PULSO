@@ -70,6 +70,12 @@ def test_semana_epidemiologica_soma_horizonte():
     assert base + 4 - 4 == base
 
 
+def test_semana_epidemiologica_rejeita_semana_inexistente_no_ano():
+    # 2026 tem 52 semanas CDC, não 53 — construir já deve falhar, não só na aritmética.
+    with pytest.raises(ValueError):
+        SemanaEpidemiologica.de_ano_semana(2026, 53)
+
+
 def test_semana_epidemiologica_ordenavel():
     a = SemanaEpidemiologica.de_ano_semana(2024, 52)
     b = SemanaEpidemiologica.de_ano_semana(2025, 1)
