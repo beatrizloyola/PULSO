@@ -46,6 +46,9 @@ jobs:
       - name: Instalar dependências
         run: pip install -r requirements.txt
 
+      - name: Regenerar e validar painel (schema, chaves, data card)
+        run: python scripts/gerar_painel.py
+
       - name: Treinar (loga run no MLflow)
         run: python scripts/train_forecast.py
 
@@ -63,6 +66,7 @@ jobs:
           path: |
             backend/app/models/pulso_forecast
             backend/app/models/forecast_meta.json
+            backend/app/data/painel/data_card.json
             backend/mlflow.db
             backend/mlruns
           if-no-files-found: ignore
