@@ -11,13 +11,17 @@ from app.shared.painel_schema import (
 
 
 @pytest.fixture(scope="module")
-def painel_bairro():
-    return ff.add_features(ff.build_panel(config.FORECAST_ANOS))
+def panel_cru():
+    return ff.build_panel(config.FORECAST_ANOS)
 
 
 @pytest.fixture(scope="module")
-def painel_ds(painel_bairro):
-    panel_cru = ff.build_panel(config.FORECAST_ANOS)
+def painel_bairro(panel_cru):
+    return ff.add_features(panel_cru)
+
+
+@pytest.fixture(scope="module")
+def painel_ds(panel_cru):
     return ff.add_features_ds(ff.build_panel_ds(panel_cru))
 
 

@@ -83,10 +83,11 @@ def build_panel(anos: List[int] = None) -> pd.DataFrame:
     return panel
 
 
-def add_features(panel: pd.DataFrame) -> pd.DataFrame:
-    """Adiciona as colunas em FEATURES ao painel. Todas usam dados <= semana t."""
-    df = panel.sort_values(["bairro", "semana"]).reset_index(drop=True)
-    g = df.groupby("bairro", group_keys=False)
+def _add_lag_roll_climate_features(df: pd.DataFrame, group_col: str) -> pd.DataFrame:
+    """Lags/rolling de casos e clima, agrupados por `group_col`. Usado tanto no
+    painel bairro x SE quanto no DS x SE (lag/rolling de uma soma por DS não é
+    igual à média dos lags por bairro, por isso cada nível recalcula aqui)."""
+    g = df.groupby(group_col, group_keys=False)
 
     df["casos_lag1"] = g["casos"].shift(1)
     df["casos_lag2"] = g["casos"].shift(2)
@@ -102,6 +103,13 @@ def add_features(panel: pd.DataFrame) -> pd.DataFrame:
     woy = df["semana"] % 100
     df["sin_woy"] = np.sin(2 * np.pi * woy / 52)
     df["cos_woy"] = np.cos(2 * np.pi * woy / 52)
+    return df
+
+
+def add_features(panel: pd.DataFrame) -> pd.DataFrame:
+    """Adiciona as colunas em FEATURES ao painel. Todas usam dados <= semana t."""
+    df = panel.sort_values(["bairro", "semana"]).reset_index(drop=True)
+    df = _add_lag_roll_climate_features(df, "bairro")
 
     # sinal espacial: média de casos dos OUTROS bairros do mesmo DS na semana t
     ds_sum = df.groupby(["ds", "semana"])["casos"].transform("sum")
@@ -126,30 +134,10 @@ def build_panel_ds(panel: pd.DataFrame) -> pd.DataFrame:
 
 
 def add_features_ds(ds_panel: pd.DataFrame) -> pd.DataFrame:
-    """Features do painel DS x SE, recalculadas na série agregada por DS.
-
-    Lag/rolling de uma soma por DS não é igual à média dos lags por bairro —
-    por isso recalcula aqui em vez de agregar as features de add_features().
-    Sem vizinhos_ds: a comparação entre DS vizinhos não se aplica neste nível.
-    """
+    """Features do painel DS x SE (mesmas de add_features(), sem vizinhos_ds:
+    a comparação entre DS vizinhos não se aplica neste nível)."""
     df = ds_panel.sort_values(["ds", "semana"]).reset_index(drop=True)
-    g = df.groupby("ds", group_keys=False)
-
-    df["casos_lag1"] = g["casos"].shift(1)
-    df["casos_lag2"] = g["casos"].shift(2)
-    df["casos_lag3"] = g["casos"].shift(3)
-    df["roll4_mean"] = g["casos"].transform(lambda s: s.shift(1).rolling(4).mean())
-    df["trend"] = df["casos"] - df["casos_lag1"]
-
-    df["chuva_lag2"] = g["chuva_mm"].shift(2)
-    df["chuva_lag4"] = g["chuva_mm"].shift(4)
-    df["chuva_roll4"] = g["chuva_mm"].transform(lambda s: s.shift(1).rolling(4).sum())
-    df["temp_roll4"] = g["temp_media"].transform(lambda s: s.shift(1).rolling(4).mean())
-
-    woy = df["semana"] % 100
-    df["sin_woy"] = np.sin(2 * np.pi * woy / 52)
-    df["cos_woy"] = np.cos(2 * np.pi * woy / 52)
-    return df
+    return _add_lag_roll_climate_features(df, "ds")
 
 
 def add_targets(df: pd.DataFrame, horizontes: List[int] = None) -> pd.DataFrame:
