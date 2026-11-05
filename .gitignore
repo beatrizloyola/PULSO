@@ -32,6 +32,7 @@ venv/
 env/
 .pytest_cache/
 backend/app/data/cache/atualizacao/
+backend/app/data/painel/
 
 # MLflow (tracking local; o modelo servido é exportado para backend/app/models)
 backend/mlflow.db
