@@ -1,0 +1,10 @@
+{
+  "mcp": {
+    "servers": {
+      "linear": {
+        "type": "remote",
+        "url": "https://mcp.noclick.app/s/6512d2a1-6dfb-489c-82cd-06e5744e582d"
+      }
+    }
+  }
+}
