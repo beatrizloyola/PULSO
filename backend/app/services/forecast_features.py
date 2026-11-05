@@ -110,6 +110,48 @@ def add_features(panel: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def build_panel_ds(panel: pd.DataFrame) -> pd.DataFrame:
+    """Agrega o painel bairro x SE (US14) para DS x SE: casos somados por DS;
+    clima e índices sociais em média — são ~constantes por semana entre os
+    bairros de um mesmo DS, a média só absorve algum NaN pontual de bairro."""
+    ds_panel = panel.groupby(["ds", "semana"]).agg(
+        casos=("casos", lambda s: s.sum(min_count=1)),
+        chuva_mm=("chuva_mm", "mean"),
+        temp_media=("temp_media", "mean"),
+        temp_max=("temp_max", "mean"),
+        vuln=("vuln", "mean"),
+        hist=("hist", "mean"),
+    ).reset_index()
+    return ds_panel.sort_values(["ds", "semana"]).reset_index(drop=True)
+
+
+def add_features_ds(ds_panel: pd.DataFrame) -> pd.DataFrame:
+    """Features do painel DS x SE, recalculadas na série agregada por DS.
+
+    Lag/rolling de uma soma por DS não é igual à média dos lags por bairro —
+    por isso recalcula aqui em vez de agregar as features de add_features().
+    Sem vizinhos_ds: a comparação entre DS vizinhos não se aplica neste nível.
+    """
+    df = ds_panel.sort_values(["ds", "semana"]).reset_index(drop=True)
+    g = df.groupby("ds", group_keys=False)
+
+    df["casos_lag1"] = g["casos"].shift(1)
+    df["casos_lag2"] = g["casos"].shift(2)
+    df["casos_lag3"] = g["casos"].shift(3)
+    df["roll4_mean"] = g["casos"].transform(lambda s: s.shift(1).rolling(4).mean())
+    df["trend"] = df["casos"] - df["casos_lag1"]
+
+    df["chuva_lag2"] = g["chuva_mm"].shift(2)
+    df["chuva_lag4"] = g["chuva_mm"].shift(4)
+    df["chuva_roll4"] = g["chuva_mm"].transform(lambda s: s.shift(1).rolling(4).sum())
+    df["temp_roll4"] = g["temp_media"].transform(lambda s: s.shift(1).rolling(4).mean())
+
+    woy = df["semana"] % 100
+    df["sin_woy"] = np.sin(2 * np.pi * woy / 52)
+    df["cos_woy"] = np.cos(2 * np.pi * woy / 52)
+    return df
+
+
 def add_targets(df: pd.DataFrame, horizontes: List[int] = None) -> pd.DataFrame:
     """Adiciona colunas y_h{h} = casos em t+h (por bairro). Só para treino."""
     horizontes = horizontes or HORIZONTES
