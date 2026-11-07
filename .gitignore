@@ -33,6 +33,9 @@ env/
 .pytest_cache/
 backend/app/data/cache/atualizacao/
 
+# Dados brutos de cache (SINAN/dengue anuais) — não versionados (regeneráveis via build_sinan_historico.py)
+backend/app/data/cache/dengue_*.csv
+
 # Env files
 .env
 .env.local

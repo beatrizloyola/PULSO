@@ -51,6 +51,34 @@ def _col(df, candidates):
     return None
 
 
+def _filtrar_municipio(df, mun_col, municip=RECIFE_MUNICIP):
+    """Mantém apenas os registros do município de residência (padroniza a série)."""
+    if mun_col is None:
+        return df
+    mask = df[mun_col].astype(str).str.contains(municip, na=False)
+    return df[mask].copy()
+
+
+def _filtrar_descartados(df, class_col):
+    """Remove notificações descartadas (classificação final = 5)."""
+    if class_col is None:
+        return df
+    return df[df[class_col].astype(str).str.strip() != "5"].copy()
+
+
+def _reagregar(out_df):
+    """Reagrega por (bairro, semana), soma casos e deriva o ano da semana (YYYYWW)."""
+    out_df = out_df.copy()
+    out_df["ano"] = out_df["semana"] // 100
+    out_df = (
+        out_df.groupby(["bairro", "semana"], as_index=False)
+        .agg({"casos": "sum", "ano": "first"})
+        .sort_values(["bairro", "semana"])
+        .reset_index(drop=True)
+    )
+    return out_df[["bairro", "semana", "casos", "ano"]]
+
+
 def _find_resource_url(pkg, year):
     for res in pkg.get("resources", []):
         name = (res.get("name") or "").lower()
@@ -112,15 +140,20 @@ def main():
         df = _read_year(year)
         n_total = len(df)
 
-        mun_col = _col(df, ["id_municip", "id_mn_resi"])
+        # Filtro por município de RESIDÊNCIA em todos os anos (padroniza a série 2016-2025).
+        mun_col = _col(df, ["id_mn_resi", "co_municipio_residencia", "id_municip", "co_municipio_notificacao"])
         if mun_col is not None:
-            mask_recife = df[mun_col].astype(str).str.contains(RECIFE_MUNICIP, na=False)
-            df = df[mask_recife].copy()
+            df = _filtrar_municipio(df, mun_col)
 
         bairro_col = _col(df, ["nm_bairro", "no_bairro_residencia", "no_bai", "nm_bai"])
         geocod_col = _col(df, ["id_bairro", "co_bairro_residencia", "co_bai"])
         semana_col = _col(df, ["sem_not", "sem_pri", "ds_semana_notificacao", "ds_semana",
                                "semana_notificacao", "semana"])
+
+        # Filtra notificações descartadas (classificação final = 5) antes de agregar casos.
+        class_col = _col(df, ["classi_fin", "tp_classificacao_final"])
+        if class_col is not None:
+            df = _filtrar_descartados(df, class_col)
 
         n_recife = len(df)
         if bairro_col is not None:
@@ -151,9 +184,12 @@ def main():
 
             distinct_raw = set(work["bairro_norm"].dropna().unique())
             unmapped = sorted(b for b in distinct_raw if b not in canon)
+            # Registros cujo bairro existe, mas não está no mapeamento canônico (contam no pct_sem_bairro).
+            n_nao_mapeado = int(bairro_norm_series.isin(set(unmapped)).sum())
         else:
             agg = pd.DataFrame(columns=["bairro", "semana", "casos"])
             unmapped = []
+            n_nao_mapeado = 0
 
         for _, r in agg.iterrows():
             rows_out.append({
@@ -171,7 +207,7 @@ def main():
             "casos_agregados": total_year,
             "bairros_distintos": int(agg["bairro"].nunique()) if len(agg) else 0,
             "semanas_distintas": int(agg["semana"].nunique()) if len(agg) else 0,
-            "pct_sem_bairro": round(100 * missing_bairro / n_recife, 2) if n_recife else 0.0,
+            "pct_sem_bairro": round(100 * (missing_bairro + n_nao_mapeado) / n_recife, 2) if n_recife else 0.0,
             "pct_sem_geocod": round(100 * missing_geocod / n_recife, 2) if n_recife else 0.0,
             "bairros_nao_mapeados": unmapped,
             "col_bairro": bairro_col,
@@ -202,7 +238,8 @@ def main():
     report["desvio_padrao"] = round(statistics.pstdev(totals), 1)
     report["totais_por_ano"] = {str(y): t for y, t in epidemic}
 
-    out_df = pd.DataFrame(rows_out, columns=["bairro", "semana", "casos", "ano"])
+    out_df = _reagregar(pd.DataFrame(rows_out, columns=["bairro", "semana", "casos", "ano"]))
+
     out_path = config.DATA_DIR / "sinan_bairro_se_2016_2025.csv"
     out_df.to_csv(out_path, index=False)
     report_path = config.DATA_DIR / "sinan_bairro_se_report.json"
