@@ -60,10 +60,14 @@ def _filtrar_municipio(df, mun_col, municip=RECIFE_MUNICIP):
 
 
 def _filtrar_descartados(df, class_col):
-    """Remove notificações descartadas (classificação final = 5)."""
+    """Remove notificações descartadas (classificação final = 5).
+
+    Compara numericamente: com valores vazios o pandas lê a coluna como float e
+    o descartado vira 5.0, que uma comparação textual com "5" deixaria passar.
+    """
     if class_col is None:
         return df
-    return df[df[class_col].astype(str).str.strip() != "5"].copy()
+    return df[pd.to_numeric(df[class_col], errors="coerce") != 5].copy()
 
 
 def _reagregar(out_df):

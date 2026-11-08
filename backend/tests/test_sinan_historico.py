@@ -47,6 +47,13 @@ def test_filtro_descarta_classificacao_5(amostra_sinan):
     assert out["classi_fin"].tolist() == ["10", "10", "3", None]
 
 
+def test_filtro_descarta_classificacao_5_em_coluna_float():
+    # Coluna com vazios é lida pelo pandas como float: o descartado chega como 5.0.
+    df = pd.DataFrame({"classi_fin": [10.0, 5.0, None, 3.0]})
+    out = _filtrar_descartados(df, "classi_fin")
+    assert out.index.tolist() == [0, 2, 3]
+
+
 def test_reagregar_grao_unico_e_ano_da_semana():
     out = pd.DataFrame({
         "bairro": ["A", "A", "A", "B"],

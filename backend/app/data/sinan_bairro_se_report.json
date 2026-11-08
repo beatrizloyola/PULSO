@@ -122,13 +122,13 @@
     },
     "2023": {
       "registros_total_ckan": 3523,
-      "registros_recife": 3523,
-      "registros_com_semana": 3523,
-      "casos_agregados": 3522,
-      "bairros_distintos": 92,
+      "registros_recife": 1514,
+      "registros_com_semana": 1514,
+      "casos_agregados": 1513,
+      "bairros_distintos": 83,
       "semanas_distintas": 52,
-      "pct_sem_bairro": 0.03,
-      "pct_sem_geocod": 0.17,
+      "pct_sem_bairro": 0.07,
+      "pct_sem_geocod": 0.26,
       "bairros_nao_mapeados": [],
       "col_bairro": "nm_bairro",
       "col_geocod": "id_bairro",
@@ -189,12 +189,12 @@
   "metodo_anos_epidemicos": "total anual >= 3º quartil (p75) da série 2016-2025",
   "threshold_casos": 5391.5,
   "quartis": {
-    "p25": 1418.5,
-    "p50": 3064.5,
+    "p25": 1393.8,
+    "p50": 2109.5,
     "p75": 5391.5
   },
-  "media_casos_anual": 4236.5,
-  "desvio_padrao": 3665.3,
+  "media_casos_anual": 4035.6,
+  "desvio_padrao": 3753.0,
   "totais_por_ano": {
     "2016": 13403,
     "2017": 966,
@@ -203,7 +203,7 @@
     "2020": 1612,
     "2021": 7398,
     "2022": 1354,
-    "2023": 3522,
+    "2023": 1513,
     "2024": 2607,
     "2025": 5639
   }
