@@ -40,7 +40,9 @@ O grão é único: não há mais de uma linha por `(bairro, semana)`.
 
 ## Relatório (`sinan_bairro_se_report.json`)
 
-Traz, por ano: total de registros no CKAN, registros de Recife após filtros, casos agregados, bairros/semanas distintas, `pct_sem_bairro`, `pct_sem_geocod`, lista de bairros não mapeados e as colunas usadas de cada arquivo.
+Traz, por arquivo anual do CKAN: total de registros, registros de Recife após filtros, casos agregados, bairros/semanas distintas, `pct_sem_bairro`, `pct_sem_geocod`, lista de bairros não mapeados e as colunas usadas de cada arquivo.
+
+`totais_por_ano`, quartis, média, desvio-padrão e anos epidêmicos são calculados a partir do CSV reagregado, somando `casos` por `ano` (derivado da semana). Por isso podem diferir de `casos_agregados`, que conta por arquivo: um arquivo anual traz notificações de semanas que pertencem a outro ano.
 
 Anos epidêmicos são definidos como anos com total anual ≥ **3º quartil (p75)** da série 2016–2025.
 

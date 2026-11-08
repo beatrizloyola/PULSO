@@ -83,6 +83,30 @@ def _reagregar(out_df):
     return out_df[["bairro", "semana", "casos", "ano"]]
 
 
+def _resumo_anual(out_df, anos=ANOS):
+    """Totais anuais e anos epidêmicos a partir do CSV reagregado (ano derivado da semana).
+
+    Anos epidêmicos: total anual >= 3º quartil (p75) da série.
+    """
+    por_ano = out_df.groupby("ano")["casos"].sum()
+    totais = {ano: int(por_ano.get(ano, 0)) for ano in anos}
+    valores = list(totais.values())
+    q3 = float(np.percentile(valores, 75))
+    return {
+        "epidemic_years": sorted(ano for ano, t in totais.items() if t >= q3),
+        "metodo_anos_epidemicos": f"total anual >= 3º quartil (p75) da série {anos[0]}-{anos[-1]}",
+        "threshold_casos": round(q3, 1),
+        "quartis": {
+            "p25": round(float(np.percentile(valores, 25)), 1),
+            "p50": round(float(np.percentile(valores, 50)), 1),
+            "p75": round(q3, 1),
+        },
+        "media_casos_anual": round(statistics.mean(valores), 1),
+        "desvio_padrao": round(statistics.pstdev(valores), 1),
+        "totais_por_ano": {str(ano): t for ano, t in totais.items()},
+    }
+
+
 def _find_resource_url(pkg, year):
     for res in pkg.get("resources", []):
         name = (res.get("name") or "").lower()
@@ -138,7 +162,6 @@ def main():
     canon = _canonical_bairros()
     rows_out = []
     report = {"anos": {}}
-    epidemic = []
 
     for year in ANOS:
         df = _read_year(year)
@@ -218,39 +241,22 @@ def main():
             "col_geocod": geocod_col,
             "col_semana": semana_col,
         }
-        epidemic.append((year, total_year))
         print(f"{year}: recife={n_recife} casos={total_year} "
               f"bairros={agg['bairro'].nunique() if len(agg) else 0} "
               f"pct_sem_bairro={report['anos'][str(year)]['pct_sem_bairro']}% "
               f"pct_sem_geocod={report['anos'][str(year)]['pct_sem_geocod']}% "
               f"nao_mapeados={len(unmapped)}")
 
-    # Anos epidêmicos: anos com total anual >= 3º quartil (top 25%) da série.
-    totals = [t for _, t in epidemic]
-    q3 = float(np.percentile(totals, 75))
-    epidemic_years = sorted(y for y, t in epidemic if t >= q3)
-
-    report["epidemic_years"] = epidemic_years
-    report["metodo_anos_epidemicos"] = "total anual >= 3º quartil (p75) da série 2016-2025"
-    report["threshold_casos"] = round(q3, 1)
-    report["quartis"] = {
-        "p25": round(float(np.percentile(totals, 25)), 1),
-        "p50": round(float(np.percentile(totals, 50)), 1),
-        "p75": round(q3, 1),
-    }
-    report["media_casos_anual"] = round(statistics.mean(totals), 1)
-    report["desvio_padrao"] = round(statistics.pstdev(totals), 1)
-    report["totais_por_ano"] = {str(y): t for y, t in epidemic}
-
     out_df = _reagregar(pd.DataFrame(rows_out, columns=["bairro", "semana", "casos", "ano"]))
+    report.update(_resumo_anual(out_df))
 
     out_path = config.DATA_DIR / "sinan_bairro_se_2016_2025.csv"
     out_df.to_csv(out_path, index=False)
     report_path = config.DATA_DIR / "sinan_bairro_se_report.json"
     report_path.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    print("\n=== ANOS EPIDÊMICOS (>= p75):", epidemic_years)
-    print("threshold (p75):", round(q3, 1), "| média:", round(statistics.mean(totals), 1))
+    print("\n=== ANOS EPIDÊMICOS (>= p75):", report["epidemic_years"])
+    print("threshold (p75):", report["threshold_casos"], "| média:", report["media_casos_anual"])
     print("salvo:", out_path, "|", len(out_df), "linhas")
     print("salvo:", report_path)
 
