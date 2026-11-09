@@ -12,6 +12,12 @@ produto responde é: *"Tenho equipes limitadas e vários territórios pedindo
 atenção — onde ajo primeiro?"* O clima é um sinal de entrada entre vários,
 não a identidade do produto. O sistema recomenda; o profissional decide.
 
+## Documentação
+
+- [Glossário](docs/glossario.md) — linguagem ubíqua (SE, DS, incidência, canal endêmico, nível de risco…).
+- [Context map](docs/context-map.md) — contextos delimitados, donos e contratos entre eles.
+- [Decisões](docs/decisoes/) — registros de decisão (ex.: [0001 — data de referência da SE](docs/decisoes/0001-semana-epidemiologica.md)).
+
 ## Stack
 
 - **Frontend:** React 19 + Vite, CSS puro. SPA com navegação entre 6 telas controlada por estado.
