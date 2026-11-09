@@ -69,7 +69,11 @@ def analise_atraso_sinan() -> tuple[pd.DataFrame, pd.DataFrame]:
     for ano in config.FORECAST_ANOS:
         raw = pd.read_csv(config.CACHE_DIR / f"dengue_{ano}.csv", sep=";",
                           encoding="utf-8", low_memory=False)
-        muni = raw["ID_MUNICIP"].astype(str).str.replace(r"\.0$", "", regex=True)
+        # Município de RESIDÊNCIA (padrão do histórico 2016+, PR #9/US04): a vigilância
+        # atribui o caso ao território onde o paciente mora. Sem ID_MN_RESI (vazio/NaN)
+        # o caso fica fora desta análise de atraso — conservador. Alinhar a produção
+        # (data_sync.normalize_sinan) é a issue US39.
+        muni = raw["ID_MN_RESI"].astype(str).str.replace(r"\.0$", "", regex=True)
         raw = raw[muni.isin(["261160", "2611606"])]
         notific = pd.to_datetime(raw["DT_NOTIFIC"], format="%d/%m/%Y", errors="coerce")
         sintomas = pd.to_datetime(raw["DT_SIN_PRI"], format="%d/%m/%Y", errors="coerce")
@@ -120,11 +124,8 @@ def perfil_e_fronteira(df: pd.DataFrame) -> tuple[pd.Series, int]:
     fronteira do ano epidêmico = mínimo da média móvel centralizada (janela 5,
     circular). Retorna (perfil, woy_fronteira)."""
     sem_tot = df.groupby("semana")["casos"].sum(min_count=1).dropna()
-    prof = pd.Series(index=range(1, 54), dtype=float)
-    for code, v in sem_tot.items():
-        woy = code % 100
-        prof[woy] = v if np.isnan(prof[woy]) else (prof[woy] + v) / 2.0
-    prof = prof.dropna()
+    woy = pd.Series([c % 100 for c in sem_tot.index], index=sem_tot.index)
+    prof = sem_tot.groupby(woy).mean().dropna()
     vals = prof.to_numpy()
     ext = np.concatenate([vals[-2:], vals, vals[:2]])
     smooth = pd.Series(ext).rolling(5, center=True).mean().to_numpy()[2:2 + len(vals)]
@@ -293,12 +294,17 @@ def demo_vazamento(df: pd.DataFrame, seq: list[int], casos_map: dict) -> pd.Data
 
         ma, mt = mae(t_ale, "pred", ycol), mae(t_tmp, "pred", ycol)
         pa, pt = precisao_k(t_ale, "pred", ycol, K), precisao_k(t_tmp, "pred", ycol, K)
+        mp_a, mp_t = mae(t_ale, "persist", ycol), mae(t_tmp, "persist", ycol)
+        # MAE bruto NÃO é comparável entre splits (test sets diferentes); a comparação
+        # válida é o skill (MAE/persistência) calculado dentro de cada split.
+        sk_a, sk_t = ma / mp_a if mp_a else np.nan, mt / mp_t if mp_t else np.nan
         linhas.append({
             "h": h, "mae_aleatorio": ma, "mae_temporal": mt,
-            "mae_persist_ale": mae(t_ale, "persist", ycol),
-            "mae_persist_temp": mae(t_tmp, "persist", ycol),
+            "mae_persist_ale": mp_a, "mae_persist_temp": mp_t,
+            "skill_aleatorio": round(sk_a, 3), "skill_temporal": round(sk_t, 3),
+            "inflacao_skill_%": round(100 * (sk_t - sk_a) / sk_t, 1)
+            if sk_t and not np.isnan(sk_t) else np.nan,
             f"p{K}_aleatorio": pa, f"p{K}_temporal": pt,
-            "mae_inflado_%": round(100 * (mt - ma) / mt, 1) if mt and not np.isnan(mt) else np.nan,
         })
     return pd.DataFrame(linhas)
 
@@ -369,7 +375,8 @@ def main():
     print(md_table(agg))
 
     # 4 — demonstrativo de vazamento
-    print("\n## 4. Inflação de métricas: KFold aleatório (70/30) vs divisão temporal\n")
+    print("\n## 4. Inflação de métricas: KFold aleatório (70/30) vs divisão temporal — "
+          "comparação pelo skill (MAE/persistência) dentro de cada split\n")
     print(md_table(demo_vazamento(df, seq, casos_map)))
 
     print(f"\n## 5. Parâmetros do esquema → insumo US26: L={L} semanas; "
