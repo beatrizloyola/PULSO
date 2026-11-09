@@ -2,10 +2,10 @@
 
 **Ticket:** PUL-10 · Squad Inteligência · Sprint 0 (Context: Análise de Risco)
 **Autor:** Pedro Bedor · **Timebox:** 1 dia · **Data:** 2026-11-05
-**Demo executável:** `backend/notebooks/sp3_rolling_origin.py` (rodar `cd backend && ./venv/bin/python notebooks/sp3_rolling_origin.py`; painel real 2024–25, seed 42, git `d535414`; ~46 modelos XGBoost com `config.FORECAST_XGB_PARAMS`)
+**Demo executável:** `backend/notebooks/sp3_rolling_origin.py` (rodar `cd backend && ./venv/bin/python notebooks/sp3_rolling_origin.py`; painel real 2024–25, seed 42, git `2ec6a76`; ~46 modelos XGBoost com `config.FORECAST_XGB_PARAMS`. Números pós-review do PR #10: análise de atraso por **município de residência** — `ID_MN_RESI`, padrão US04/PR #9)
 **Alimenta:** US26 (gate de promoção), US23 (baselines), US14 (teste canário de feature), US22 (canal endêmico)
 
-> **Conclusão em 3 linhas:** o corte único atual (`202520`) fica numa região favorável — com rolling-origin de 10 origens, o XGBoost **perde da persistência em média no h=3** (skill 1,017) e em 40% dos folds no h=2/h=3. Uma divisão aleatório infla a vantagem aparente do modelo: o MAE sai **12–22% mais otimista** que com divisão temporal. Há 4 riscos de vazamento ativos/relevantes no pipeline hoje (Tabela 2), com mitigação definida (as-of L=2 semanas + teste canário).
+> **Conclusão em 3 linhas:** o corte único atual (`202520`) fica numa região favorável — com rolling-origin de 10 origens, o XGBoost **perde da persistência em média no h=3** (skill 1,017) e em 40% dos folds no h=2/h=3. Uma divisão aleatória infla a vantagem aparente do modelo: o ganho sobre a persistência (skill = MAE/MAE_persist) sai **9–18% mais otimista** que com divisão temporal, crescendo com h. Há 4 riscos de vazamento ativos/relevantes no pipeline hoje (Tabela 2), com mitigação definida (as-of L=2 semanas + teste canário).
 
 ---
 
@@ -48,14 +48,14 @@ Agregado: skill médio h=1 0,925 (**90%** dos folds acima da persistência), h=2
 
 ### Regra as-of (atraso de notificação) — do cache SINAN real
 
-Atraso `DT_NOTIFIC − DT_SIN_PRI`: **p50 = 5 d, p75 = 8 d, p90 = 17 d** (n=18.267). Curva de revisão (fração do total FINAL de uma SE já notificada L semanas após o fechamento dela):
+Atraso `DT_NOTIFIC − DT_SIN_PRI` (município de **residência**, `ID_MN_RESI` = Recife, como no histórico da US04): **p50 = 5 d, p75 = 8 d, p90 = 17 d** (n=19.635). Curva de revisão (fração do total FINAL de uma SE já notificada L semanas após o fechamento dela):
 
 | L (semanas) | 0 | 1 | 2 | 3 | 4 | 6 |
 |---|---|---|---|---|---|---|
-| cobertura média | 0,35 | 0,80 | **0,90** | 0,94 | 0,96 | 0,99 |
-| p10 das semanas | 0,24 | 0,69 | 0,82 | 0,88 | 0,91 | 0,96 |
+| cobertura média | 0,36 | 0,81 | **0,90** | 0,94 | 0,96 | 0,99 |
+| p10 das semanas | 0,26 | 0,70 | 0,83 | 0,88 | 0,92 | 0,96 |
 
-**Regra proposta:** o modelo de produção deve ser avaliado/servido como se previsse **a partir da última SE com ≥ L=2 semanas de consolidação** — é exatamente o que a seleção de cobertura da API já faz na prática (`complete_case_weeks` + `DadosIndisponiveis`), mas a validação ainda não emulate isso: no treino, os features da semana de origem usam SINAN **assentado**, indisponível em tempo real (risco R2). Para o gate da US26, implementar "painel as-of" (reconstruir `casos` filtrando por `DT_NOTIFIC ≤ fim(t) − L` antes de calcular lags) e reportar a métrica sob as-of como a métrica oficial.
+**Regra proposta:** o modelo de produção deve ser avaliado/servido como se previsse **a partir da última SE com ≥ L=2 semanas de consolidação** — é exatamente o que a seleção de cobertura da API já faz na prática (`complete_case_weeks` + `DadosIndisponiveis`), mas a validação ainda não emula isso: no treino, os features da semana de origem usam SINAN **assentado**, indisponível em tempo real (risco R2). Para o gate da US26, implementar "painel as-of" (reconstruir `casos` filtrando por `DT_NOTIFIC ≤ fim(t) − L` antes de calcular lags) e reportar a métrica sob as-of como a métrica oficial.
 
 ## 2. Riscos de vazamento no pipeline atual
 
@@ -64,28 +64,28 @@ Severidade: 🔴 alto / 🟠 médio / 🟢 baixo. "Evidência" = arquivo no `bac
 | # | Risco | Evidência | Efeito | Sev. | Mitigação |
 |---|---|---|---|---|---|
 | R1 | **`hist`/`vuln` estáticos com conhecimento posterior**: scores atribuídos à mão por "surtos documentados 2015–**2024**" e ajuste nominal por bairro | `scripts/build_bairros_lookup.py:117–130` | em folds com origem em 2024 (nível 2: 202440/202446), `hist` codifica informação posterior à origem → infla métricas dos primeiros folds | 🔴 | registrar a janela de conhecimento por feature; no limite, regravar `hist` só com fonte pré-origem ou removê-la do treino validado (US19) |
-| R2 | **Assentamento do SINAN vs. disponibilidade em tempo real** ("ausência vira 0 dentro da cobertura publicada" usa a publicação final; treino tem casos consolidados que a produção não terá na mesma SE) | `app/services/forecast_features.py:76–79`, `data_sync.complete_case_weeks` | features `casos`/lags em t mais "completos" no treino que em serving → queda real de performance não medida (apenas 35% dos casos de uma SE estão notificados no fechamento dela; ~65% chegam depois — Tabela 1) | 🔴 | regra as-of L=2 (seção 1); painel as-of no gate da US26 |
+| R2 | **Assentamento do SINAN vs. disponibilidade em tempo real** ("ausência vira 0 dentro da cobertura publicada" usa a publicação final; treino tem casos consolidados que a produção não terá na mesma SE) | `app/services/forecast_features.py:76–79`, `data_sync.complete_case_weeks` | features `casos`/lags em t mais "completos" no treino que em serving → queda real de performance não medida (apenas 36% dos casos de uma SE estão notificados no fechamento dela; ~64% chegam depois — Tabela 1) | 🔴 | regra as-of L=2 (seção 1); painel as-of no gate da US26 |
 | R3 | **Overfitting de seleção num cutoff único**: iterações de params/gate olham sempre a janela `>202520` | `config.py` `FORECAST_BACKTEST_CUTOFF`; `scripts/export_model.py:gate` | métricas oficiais = melhor fold possível (evidência: matriz nível 2) | 🟠→🔴 com iteração contínua | rolling-origin nível 1/2 como protocolo de gate (US26) |
 | R4 | **Features contemporâneos de t exigem semana t fechada** (`casos`, `chuva_mm` em t; `vizinhos_ds` = média dos **outros bairros** do mesmo DS na semana t) | `forecast_features.py:114–117`; `forecast_serving.get_featured_panel:39–42` | em produção a semana mais recente é descartável/incompleta; o filtro `eligible` remove semanas inteiras → distribuição de serving ≠ treino (agrava R2) | 🟠 | deixar a origem do fold na "última SE elegível as-of", não na última SE do painel |
-| R5 | **Métrica não descreve o modelo servido**: final retreina com todo o histórico, incluindo o teste | `scripts/train_forecast.py:130–133` | practice aceita, mas precisa ser documentada no model card | 🟢 | texto do model card (US35); esperar métrica do último fold como "expectativa honesta" |
+| R5 | **Métrica não descreve o modelo servido**: final retreina com todo o histórico, incluindo o teste | `scripts/train_forecast.py:130–133` | prática aceita, mas precisa ser documentada no model card | 🟢 | texto do model card (US35); esperar métrica do último fold como "expectativa honesta" |
 | R6 | **Salvaguardas que já existem** (registrar para não regredir): lags/rollings com `shift(1)`, alvo só via `shift(-h)`, purge `widx+h ≤ cutoff`, clima semanal só de semanas fechadas | `forecast_features.py:86–106`; `train_forecast.py:111–112` | — | 🟢 | teste canário da US14: perturbar dados de semanas futuras não pode alterar features ≤ t |
 | R7 | **SE por `DT_SIN_PRI` (decisão da S0 pendente)** reatribui casos retroativamente a semanas passadas → painel vira série revisada (backfill) | glossário §5.3; `normalize_sinan` hoje usa `DT_NOTIFIC` | se adotada sem as-of, treino usa "passado corrigido" que a produção nunca viu; com as-of, é a base correta do canal endêmico | 🔴 (se adotada) | decisão S0 explícita + curva de revisão desta spike como insumo |
 | R8 | **Canal endêmico calculado no período inteiro** ("mediana/quartis de 5–7 anos não epidêmicos" + identificação de anos epidêmicos olhando 2016–2025) | plano §6.3; US22; US04 critério "anos epidêmicos identificados" | rótulo "alto risco" e baseline do canal vazariam o futuro para folds antigos → recall de alto risco inflado | 🔴 (futuro) | canal **walk-forward**: só temporadas anteriores à origem do fold |
-| R9 | **Saídas de análise global virarem features**: clusters de perfil (US21) e hotspots LISA (US20) calculados com o período todo | plano §6.3; E5 | mesmo padrão de R1 (estático informed-consent) | 🟠 (futuro) | LISA por temporada usando só dados ≤ origem; rótulo de cluster tratado como estático pré-2016 se derivado só de censitário |
+| R9 | **Saídas de análise global virarem features**: clusters de perfil (US21) e hotspots LISA (US20) calculados com o período todo | plano §6.3; E5 | mesmo padrão de R1: estático com conhecimento derivado do período inteiro | 🟠 (futuro) | LISA por temporada usando só dados ≤ origem; rótulo de cluster tratado como estático pré-2016 se derivado só de censitário |
 | R10 | **Ovitrampas (US12)**: ciclo de medição + processamento de laboratório → IPO/IDO de t disponível só depois de t | plano §7; pedido SMS | mesma família de R2, novo lag por fonte | 🟠 (futuro) | registrar lag por fonte no data card; regra as-of genérica `≤ t − L(fonte)` |
 
 ## 3. Por que métrica infla com CV aleatório (demonstração)
 
-Mesmo modelo/params, mesmo tamanho de teste (~30% das linhas), só muda a **forma de dividir**:
+Mesmo modelo/params, mesmo tamanho de teste (~30% das linhas), só muda a **forma de dividir**. Como os dois splits testam conjuntos de linhas diferentes (com volumes de casos distintos), o MAE bruto **não é comparável entre eles**; a métrica honesta é o **skill = MAE/MAE_persistência calculado dentro de cada split** (a persistência normaliza a dificuldade do período testado):
 
-| h | MAE "aleatório" | MAE temporal | inflação | P@10 aleatório | P@10 temporal |
-|---|---|---|---|---|---|
-| 1 | 1,147 | 1,304 | **−12,0%** | 0,680 | 0,633 |
-| 2 | 1,166 | 1,362 | **−14,4%** | 0,692 | 0,623 |
-| 3 | 1,207 | 1,422 | **−15,1%** | 0,693 | 0,600 |
-| 4 | 1,175 | 1,498 | **−21,6%** | 0,688 | 0,591 |
+| h | MAE aleatório | MAE temporal | skill aleatório | skill temporal | inflação do skill | P@10 aleatório | P@10 temporal |
+|---|---|---|---|---|---|---|---|
+| 1 | 1,147 | 1,304 | 0,856 | 0,942 | **9,1%** | 0,680 | 0,633 |
+| 2 | 1,166 | 1,362 | 0,783 | 0,914 | **14,3%** | 0,692 | 0,623 |
+| 3 | 1,207 | 1,422 | 0,797 | 0,903 | **11,8%** | 0,693 | 0,600 |
+| 4 | 1,175 | 1,498 | 0,749 | 0,915 | **18,1%** | 0,688 | 0,591 |
 
-Com CV aleatório, o treino contém a vizinhança temporal imediata de cada linha de teste (lags do próprio bairro, `vizinhos_ds` da mesma semana) — informação que a previsão real não tem. O efeito cresce com `h`. **Toda e qualquer métrica deste projeto deve vir de divisão temporal com purge.**
+Com CV aleatório, o treino contém a vizinhança temporal imediata de cada linha de teste (lags do próprio bairro, `vizinhos_ds` da mesma semana) — informação que a previsão real não tem. A inflação do ganho aparente cresce com `h` (9,1% → 18,1%). **Toda e qualquer métrica deste projeto deve vir de divisão temporal com purge.**
 
 ## 4. Proposta de gate para a US26 (a decidir com orientador)
 
@@ -101,7 +101,7 @@ Métricas oficiais = nível 1 (por temporada, ≥5 folds quando 2016+ chegar) co
 - 2 temporadas: nível 1 com 1 fold por caminho; a comparação A×B é ilustrativa, não conclusiva.
 - Baseline sazonal-ingênuo colapsa na virada 2024→2025 (2025 epidêmico sem análogo em 2024 — MAE 4,3 no fold 202506); esperado, reforça a necessidade de 2016+.
 - Params do modelo não foram ajustados para a demo (mesmos de produção, sem early stopping); o objetivo é o **esquema**, não o melhor número.
-- O cache SINAN tem registros com `DT_SIN_PRI` de erro de digitação que chegam a décadas de atraso; a demo restringe a curva às semanas de sintomas do período do painel (n=18.267, max 379 d), mas a limpeza da US04 deve tratar a origem.
+- O cache SINAN tem registros com `DT_SIN_PRI` de erro de digitação que chegam a décadas de atraso; a demo restringe a curva às semanas de sintomas do período do painel (n=19.635, max 379 d), mas a limpeza da US04 deve tratar a origem.
 - O painel usado é o da `main` (SINAN 2024–25 municipal + APAC média da cidade); quando o painel da US14 versionar (chuva por DS, população), o script roda sobre ele sem mudanças estruturais.
 
 ## 6. Próximos passos / ligações
