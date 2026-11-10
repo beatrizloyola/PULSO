@@ -1,0 +1,3 @@
+modelo,log_verossimilhanca,AIC,BIC,alpha,dispersao_pearson
+Poisson,-25007.61,50027.22,50070.051,,5.868
+Binomial negativa (NB2),-16977.078,33968.156,34018.125,1.884,
