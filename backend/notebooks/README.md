@@ -57,6 +57,11 @@ jupyter nbconvert --to notebook --execute --inplace \
 | `sp4_moran_lisa.ipynb` | Moran global + LISA | mapa LISA, GeoJSON classificado, diagrama de Moran |
 | `sp5_clusters_k.ipynb` | Ward, silhouette e escolha de k | dendrograma, silhouette, mapa de perfis, tabela de k |
 
+> **Escopo por branch:** os notebooks são entregues em branches separadas
+> (`feature/sp2-glm-contagem`, `feature/sp4-moran-lisa` e `feature/sp5-clusters-k`).
+> Se um notebook da tabela não existir na branch atual, ele pertence a outra
+> branch do mesmo conjunto.
+
 Figuras, tabelas e GeoJSON vão para `notebooks/saidas/`. Os resumos de 1 página
 ficam em [`docs/spikes/`](../../docs/spikes/).
 
