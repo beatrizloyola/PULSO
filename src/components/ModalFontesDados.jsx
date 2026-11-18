@@ -42,6 +42,20 @@ const FONTES = [
     variaveis: ["vulnerabilidade_territorial", "historico"],
   },
   {
+    nome: "Atlas Brasil - IDHM por UDH",
+    url: "https://www.atlasbrasil.org.br/consulta/planilha",
+    tipo: "Dados socioterritoriais",
+    descricao:
+      "IDHM de 2010 das 194 Unidades de Desenvolvimento Humano (UDHs) do Recife, agregado para os 94 bairros por média ponderada pela população. O IDH é contexto socioeconômico para testar associação com a incidência; não é variável do modelo de previsão.",
+    atualizacao: "Censo 2010 - base estática",
+    registros: "194 UDHs mapeadas para 94 bairros",
+    defasagem:
+      `dados de 2010 (Censo 2010). Em ${new Date().getFullYear()} a defasagem é de ` +
+      `${new Date().getFullYear() - 2010} anos: leia como contexto histórico, não como condição atual do bairro.`,
+    variaveisLabel: "Referência (não usada no modelo):",
+    variaveis: ["idh"],
+  },
+  {
     nome: "Modelos de previsão e validação temporal",
     url: "Local",
     tipo: "Dataset de treinamento",
@@ -84,8 +98,8 @@ export default function ModalFontesDados({ isOpen, onClose }) {
 
         <div className="modal-body">
           <p className="modal-intro">
-            O modelo de Machine Learning do PULSO utiliza as seguintes fontes de dados
-            para treinamento, inferência e priorização territorial:
+            O PULSO utiliza as seguintes fontes para treinamento, inferência,
+            priorização e contexto territorial:
           </p>
 
           <div className="fontes-lista">
@@ -128,8 +142,15 @@ export default function ModalFontesDados({ isOpen, onClose }) {
                           <span className="fonte-card__detalhe-valor">{fonte.registros}</span>
                         </div>
                       </div>
+                      {fonte.defasagem && (
+                        <div className="fonte-card__defasagem">
+                          <strong>Defasagem:</strong> {fonte.defasagem}
+                        </div>
+                      )}
                       <div className="fonte-card__variaveis">
-                        <span className="fonte-card__variaveis-label">Variáveis ML:</span>
+                        <span className="fonte-card__variaveis-label">
+                          {fonte.variaveisLabel || "Variáveis ML:"}
+                        </span>
                         <div className="fonte-card__variaveis-tags">
                           {fonte.variaveis.map((v) => (
                             <span key={v} className="fonte-card__variavel-tag">
