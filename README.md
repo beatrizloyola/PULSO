@@ -160,3 +160,21 @@ não retreina automaticamente os modelos; o procedimento está em
 - **CKAN Recife:** https://dados.recife.pe.gov.br — notificações de dengue (SINAN)
 - **APAC:** http://dados.apac.pe.gov.br:41120/dadosApac/ — chuva diária do Recife (temperatura de apoio: Open-Meteo archive)
 - **ESIG:** https://esigportal2.recife.pe.gov.br — polígonos dos 94 bairros e ZEIS
+- **Atlas Brasil (PNUD/Ipea/FJP):** https://www.atlasbrasil.org.br/consulta/planilha — IDHM 2010 por Unidade de Desenvolvimento Humano (UDH)
+
+## IDH por bairro (Atlas Brasil 2010)
+
+O Atlas Brasil publica o IDHM no nível de UDH, não de bairro. O arquivo
+`backend/app/data/idh_atlas_2010.json` mapeia as 194 UDHs do Recife para os 94
+bairros e agrega o índice por média ponderada pela população; quando uma UDH
+abrange mais de um bairro, sua população é dividida igualmente entre eles.
+Para regerar (a partir de `backend/`):
+
+```bash
+python -m scripts.build_idh_atlas
+```
+
+O IDH é **contexto socioterritorial**, não variável do modelo: a interface mostra
+o valor na tela de Explicação e no data card de fontes. O dado é do **Censo 2010**
+— a defasagem é exibida explicitamente e deve ser considerada em qualquer leitura
+de associação com a incidência atual.

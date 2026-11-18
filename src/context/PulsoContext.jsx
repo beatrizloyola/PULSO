@@ -28,6 +28,7 @@ export function PulsoProvider({ children }) {
   const [semanasDisponiveis, setSemanasDisponiveis] = useState([]);
   const [dadosStatus, setDadosStatus] = useState(null);
   const [validacao, setValidacao] = useState({});
+  const [idhReferencia, setIdhReferencia] = useState(null);
 
   // Busca prioridades do backend no mount e a cada mudança de semana/capacidade
   useEffect(() => {
@@ -67,6 +68,9 @@ export function PulsoProvider({ children }) {
           chuvaAcumuladaMm: t.metadados?.chuva_mm ?? 0,
           tempMedia: t.metadados?.temp_media ?? 0,
           focosAtuais: t.metadados?.focos_atuais ?? 0,
+          // Contexto socioterritorial (Atlas Brasil, 2010) — não entra no score
+          idh: t.idh ?? null,
+          idhUdhCount: t.idh_udhs ?? 0,
           // Placeholders para compatibilidade
           vulnerabilidade: t.componentes?.vulnerabilidade_territorial >= 70 ? "Alto" : t.componentes?.vulnerabilidade_territorial >= 40 ? "Médio" : "Baixo",
           historicoAgravamento: t.componentes?.historico >= 75,
@@ -76,6 +80,7 @@ export function PulsoProvider({ children }) {
         setSemanasDisponiveis(data.semanas_disponiveis || []);
         setDadosStatus(data.dados || null);
         setValidacao(data.validacao || {});
+        setIdhReferencia(data.idh_referencia || null);
         setContextoPrevisao({
           referenciaCod: data.semana_cod ?? null,
           alvoCod: data.semana_alvo_cod ?? null,
@@ -137,6 +142,7 @@ export function PulsoProvider({ children }) {
     dadosStatus,
     apiStatus,
     validacao,
+    idhReferencia,
     territorioSelecionado,
     setTerritorioSelecionado,
     decisoes,
