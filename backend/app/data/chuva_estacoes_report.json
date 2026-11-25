@@ -1,0 +1,3456 @@
+{
+  "gerado_em": "2026-11-25T18:31:51.257382+00:00",
+  "periodo": {
+    "inicio": "2016-01-03",
+    "fim": "2026-01-03",
+    "anos_epidemiologicos": [
+      2016,
+      2025
+    ]
+  },
+  "fontes": {
+    "apac": {
+      "portal": "http://dados.apac.pe.gov.br:41120/dadosApac/",
+      "consulta": "http://dados.apac.pe.gov.br:41120/boletins/historico-pluviometrico/diario.php",
+      "consultas": [
+        {
+          "inicio": "2016-01-03",
+          "fim": "2016-12-31",
+          "arquivo": "apac_diario_2016-01-03_2016-12-31.html",
+          "sha256": "172c4687a61118585525c8414dc0cc30669e719fe1e6872edaa964c6daf4ce6b",
+          "estacoes": 2
+        },
+        {
+          "inicio": "2017-01-01",
+          "fim": "2017-12-31",
+          "arquivo": "apac_diario_2017-01-01_2017-12-31.html",
+          "sha256": "9c7e660101334236c6e11e100e2c3486a0577a3a6ac9314bf018d2c6e7aaf7ad",
+          "estacoes": 3
+        },
+        {
+          "inicio": "2018-01-01",
+          "fim": "2018-12-31",
+          "arquivo": "apac_diario_2018-01-01_2018-12-31.html",
+          "sha256": "b079a9d892ff5519b436d17d4cb027da7bb735cddb2205bf086cf536e39df5a6",
+          "estacoes": 3
+        },
+        {
+          "inicio": "2019-01-01",
+          "fim": "2019-12-31",
+          "arquivo": "apac_diario_2019-01-01_2019-12-31.html",
+          "sha256": "1a69dbba4aefa2aa9748050672083a0b3f615fbd49b01fec4f4417c9df586e42",
+          "estacoes": 3
+        },
+        {
+          "inicio": "2020-01-01",
+          "fim": "2020-12-31",
+          "arquivo": "apac_diario_2020-01-01_2020-12-31.html",
+          "sha256": "e9f0751b5a83ce61590b489155e50e8b89957afe3eef6831c687cd290a5c748c",
+          "estacoes": 3
+        },
+        {
+          "inicio": "2021-01-01",
+          "fim": "2021-12-31",
+          "arquivo": "apac_diario_2021-01-01_2021-12-31.html",
+          "sha256": "aea59f89a8a1dac9144481858c3ac03a299c6539152300d7910a5858895fd0ed",
+          "estacoes": 3
+        },
+        {
+          "inicio": "2022-01-01",
+          "fim": "2022-12-31",
+          "arquivo": "apac_diario_2022-01-01_2022-12-31.html",
+          "sha256": "d378084156b1acea0b786c031a6cb25fb1cfbbc2af65c055e6d6e15b002d021a",
+          "estacoes": 2
+        },
+        {
+          "inicio": "2023-01-01",
+          "fim": "2023-12-31",
+          "arquivo": "apac_diario_2023-01-01_2023-12-31.html",
+          "sha256": "706a825bb093739acffb1b50e5e5c7623a7260e4b6700a9aa6a21a39a8a11460",
+          "estacoes": 2
+        },
+        {
+          "inicio": "2024-01-01",
+          "fim": "2024-12-31",
+          "arquivo": "apac_diario_2024-01-01_2024-12-31.html",
+          "sha256": "d49f1a8c8488d375cbd362a0a433b17fa9a30b3d2fa14d7b50a2ceeaa161b589",
+          "estacoes": 20
+        },
+        {
+          "inicio": "2025-01-01",
+          "fim": "2025-12-31",
+          "arquivo": "apac_diario_2025-01-01_2025-12-31.html",
+          "sha256": "514b01a5e2b6119e84c580a3cf8501079e8084f1a0b1f0691db0d7d8f921726b",
+          "estacoes": 17
+        },
+        {
+          "inicio": "2026-01-01",
+          "fim": "2026-01-03",
+          "arquivo": "apac_diario_2026-01-01_2026-01-03.html",
+          "sha256": "68db9dbe0395d925c8d71b29a3d1dfd7ed762f26ae48474d48d0babbed37fa48",
+          "estacoes": 10
+        }
+      ]
+    },
+    "cemaden": {
+      "download": "https://mapainterativo.cemaden.gov.br/download/download_form.php",
+      "arquivos": [
+        {
+          "arquivo": "cemaden_recife_2016_01.csv.gz",
+          "sha256": "3f71ded0d59b2d15668aac6809c16a69b1356b28cb53d9c9760c7a03a62de180",
+          "de": "2016-01-01",
+          "ate": "2016-01-31",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2016_02.csv.gz",
+          "sha256": "6094d32895b7a74a93845dc149b0b89acb3fec3b95d9a14adefdcbda71bbfbb3",
+          "de": "2016-02-01",
+          "ate": "2016-02-29",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2016_03.csv.gz",
+          "sha256": "5727fc6bdcccc9e96e599f3e797bac8c01caa6ecc56f4b8a593b3509cec8e132",
+          "de": "2016-03-01",
+          "ate": "2016-03-31",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2016_04.csv.gz",
+          "sha256": "d07d9352777660ed6f5bf88af59a032a96cdcdf9b1e64cdbc0ede394643ef2d6",
+          "de": "2016-04-01",
+          "ate": "2016-04-30",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2016_05.csv.gz",
+          "sha256": "3f07fd57d1ff6a26b3553fbc841a666ba4192280804da800b21cdc9fa54571f8",
+          "de": "2016-05-01",
+          "ate": "2016-05-31",
+          "estacoes_recife": 20
+        },
+        {
+          "arquivo": "cemaden_recife_2016_06.csv.gz",
+          "sha256": "6cc9f5861c03494c4b1e47c8a36e2c0da9f41989495240174a42022b5fa20bec",
+          "de": "2016-06-01",
+          "ate": "2016-06-30",
+          "estacoes_recife": 20
+        },
+        {
+          "arquivo": "cemaden_recife_2016_07.csv.gz",
+          "sha256": "9580ba63d45fed74a18f3572506aacc5c509b7c69d6ff9776c75bf9d9592799f",
+          "de": "2016-07-01",
+          "ate": "2016-07-31",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2016_08.csv.gz",
+          "sha256": "1e7bc457524633b4e4bc91f685d1dff775cf7c360e612a46ecf07417a6f20377",
+          "de": "2016-08-01",
+          "ate": "2016-08-31",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2016_09.csv.gz",
+          "sha256": "c129ed35f64d85d604341d24d5bea452f6e7175a4bc0f42cb491a19c06f75b66",
+          "de": "2016-09-01",
+          "ate": "2016-09-30",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2016_10.csv.gz",
+          "sha256": "65cb7ff1d8c4e03833ab6b34941fbd8c80d07e35af36e30fdf8d0bd10f2a7f05",
+          "de": "2016-10-01",
+          "ate": "2016-10-31",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2016_11.csv.gz",
+          "sha256": "ff8e05d83993d69d318a11426ac5cc567ac93507b9d9d2768d15f7cf6aaab45c",
+          "de": "2016-11-01",
+          "ate": "2016-11-30",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2016_12.csv.gz",
+          "sha256": "2c16ee57d2806e7a41699eded53601ef131cc7b2b7cf7570bb8c5446a0e371c1",
+          "de": "2016-12-01",
+          "ate": "2016-12-31",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2017_01.csv.gz",
+          "sha256": "06f55a6815dcbb95ed064e2eb5ae2ce3d06a173fc9d5703210bfa01df20604e5",
+          "de": "2017-01-01",
+          "ate": "2017-01-31",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2017_02.csv.gz",
+          "sha256": "30cb5a268cb232794fa1038678a780a742a2c79c5fa1da6833da5fd80eff9dec",
+          "de": "2017-02-01",
+          "ate": "2017-02-28",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2017_03.csv.gz",
+          "sha256": "f5f2872b93ebd3b6fcff7fd223aa9eb4ab491a21ea59900932d892ee1fdd7425",
+          "de": "2017-03-01",
+          "ate": "2017-03-31",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2017_04.csv.gz",
+          "sha256": "fd3cd478b5e4a4772af59e3a54bbe0621f609a8c5b5d70563fd688589af7d33e",
+          "de": "2017-04-01",
+          "ate": "2017-04-30",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2017_05.csv.gz",
+          "sha256": "8b636e1615f3200eaacd8dd8f34fa43388ca06f18096a2e37e288ba3200fffd6",
+          "de": "2017-05-01",
+          "ate": "2017-05-31",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2017_06.csv.gz",
+          "sha256": "0ec7dfe1288ace054d07f6b55db63836b8feacbe1762e85c7607d6b22155051c",
+          "de": "2017-06-01",
+          "ate": "2017-06-30",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2017_07.csv.gz",
+          "sha256": "a0a7425061fd35188174dd51d3de2a2f57ffa49cdce71ef563ba8ae03c9f56d9",
+          "de": "2017-07-01",
+          "ate": "2017-07-31",
+          "estacoes_recife": 20
+        },
+        {
+          "arquivo": "cemaden_recife_2017_08.csv.gz",
+          "sha256": "fcceee9ae5b7c3a6c4b5fbf6b60a6529abe49c7a096aac095df8ac302a6c3987",
+          "de": "2017-08-01",
+          "ate": "2017-08-31",
+          "estacoes_recife": 20
+        },
+        {
+          "arquivo": "cemaden_recife_2017_09.csv.gz",
+          "sha256": "447248283f72703486b3c49ecd443281bdac9a0e59f0edb2b6f5e835e7ddf15e",
+          "de": "2017-09-01",
+          "ate": "2017-09-30",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2017_10.csv.gz",
+          "sha256": "ec692a2a73015f16fad259a18a3f03c1fda247a76d7f343f33fe24e46da1b4b1",
+          "de": "2017-10-01",
+          "ate": "2017-10-31",
+          "estacoes_recife": 20
+        },
+        {
+          "arquivo": "cemaden_recife_2017_11.csv.gz",
+          "sha256": "0adb941da04d1734c2ab16656744a9b119f5ec538607ba96f6e54c3907e01d04",
+          "de": "2017-11-01",
+          "ate": "2017-11-30",
+          "estacoes_recife": 20
+        },
+        {
+          "arquivo": "cemaden_recife_2017_12.csv.gz",
+          "sha256": "bc692d8ff618a129e1e205fcd45beecd447c50e44c43eee115c7aa5f2e20aeb5",
+          "de": "2017-12-01",
+          "ate": "2017-12-31",
+          "estacoes_recife": 20
+        },
+        {
+          "arquivo": "cemaden_recife_2018_01.csv.gz",
+          "sha256": "65d96e5fe8810302f56265e7b30999802212a08feb2dc0cabe592a7402c77700",
+          "de": "2018-01-01",
+          "ate": "2018-01-31",
+          "estacoes_recife": 20
+        },
+        {
+          "arquivo": "cemaden_recife_2018_02.csv.gz",
+          "sha256": "ab5458224721a242d7405e2bc89daf6e0a18d36f7033f95198b2d549f7e93216",
+          "de": "2018-02-01",
+          "ate": "2018-02-28",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2018_03.csv.gz",
+          "sha256": "a9eb54826424ccf70edbb9228405756e5b1b064b95a42df80ab4d281cb98c5be",
+          "de": "2018-03-01",
+          "ate": "2018-03-31",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2018_04.csv.gz",
+          "sha256": "bab3fb8d6b57b540eddf746a02c627309beb5e94c0dd1b048d68b37f580cfe81",
+          "de": "2018-04-01",
+          "ate": "2018-04-30",
+          "estacoes_recife": 21
+        },
+        {
+          "arquivo": "cemaden_recife_2018_05.csv.gz",
+          "sha256": "20dbba9caadd3962886fb1a5bd36f056b00d822fc715c41de968502906928c4d",
+          "de": "2018-05-01",
+          "ate": "2018-05-31",
+          "estacoes_recife": 21
+        },
+        {
+          "arquivo": "cemaden_recife_2018_06.csv.gz",
+          "sha256": "b21759d9c04c78e54d05eb882c93a17055d3ef7d99a106896c8a0e09c4e49de8",
+          "de": "2018-06-01",
+          "ate": "2018-06-30",
+          "estacoes_recife": 20
+        },
+        {
+          "arquivo": "cemaden_recife_2018_07.csv.gz",
+          "sha256": "02474a39e268cf01a216c00c724fbbc4a08fc0c15b7ace458852e2dd208aba51",
+          "de": "2018-07-01",
+          "ate": "2018-07-31",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2018_08.csv.gz",
+          "sha256": "69e9ed6cae175bae76c3e7636d890492e66de7eaba10bf368b7ec84216e5d5f1",
+          "de": "2018-08-01",
+          "ate": "2018-08-31",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2018_09.csv.gz",
+          "sha256": "e2b745232d6d2243a75b1de2b45bb774310aa76e5299dfef5c7285f5b4d190cc",
+          "de": "2018-09-01",
+          "ate": "2018-09-30",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2018_10.csv.gz",
+          "sha256": "8d96a631786072f81eba5bed111b597f4cf0dc8801844c72f1fc8a2a0ad07063",
+          "de": "2018-10-01",
+          "ate": "2018-10-31",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2018_11.csv.gz",
+          "sha256": "c205e7c9ef8e211f048e1675cdc132ff247608dc0eb7dbcd9c7dc1bb55d1b1fa",
+          "de": "2018-11-01",
+          "ate": "2018-11-30",
+          "estacoes_recife": 17
+        },
+        {
+          "arquivo": "cemaden_recife_2018_12.csv.gz",
+          "sha256": "43bfa9f0a74928778975ce5b731d4e7116a63f49e728b41190490e27078942d1",
+          "de": "2018-12-01",
+          "ate": "2018-12-31",
+          "estacoes_recife": 17
+        },
+        {
+          "arquivo": "cemaden_recife_2019_01.csv.gz",
+          "sha256": "7d62bb78f25ebaec3a999ca776affa60ce407d92f96d8ca8e38c24d4029ae69a",
+          "de": "2019-01-01",
+          "ate": "2019-01-31",
+          "estacoes_recife": 17
+        },
+        {
+          "arquivo": "cemaden_recife_2019_02.csv.gz",
+          "sha256": "2d4df6fb6110cfba41c5b78625f6e7844d11cf299d226769e5bfb46a4beb316c",
+          "de": "2019-02-01",
+          "ate": "2019-02-28",
+          "estacoes_recife": 17
+        },
+        {
+          "arquivo": "cemaden_recife_2019_03.csv.gz",
+          "sha256": "7689691a0d106ad1a4745c0b63ed914e3c184229bc7f02d0fa771946457a20fb",
+          "de": "2019-03-01",
+          "ate": "2019-03-31",
+          "estacoes_recife": 16
+        },
+        {
+          "arquivo": "cemaden_recife_2019_04.csv.gz",
+          "sha256": "c04d39dc7652797e17449eb18ae6db1f5bf803775268674cb1c484800c22c8a4",
+          "de": "2019-04-01",
+          "ate": "2019-04-30",
+          "estacoes_recife": 16
+        },
+        {
+          "arquivo": "cemaden_recife_2019_05.csv.gz",
+          "sha256": "1c3ba2e65bc901d3467e50ae20da32663989528c150df16a62510e3e9af317b3",
+          "de": "2019-05-01",
+          "ate": "2019-05-31",
+          "estacoes_recife": 16
+        },
+        {
+          "arquivo": "cemaden_recife_2019_06.csv.gz",
+          "sha256": "d8167139760abe09d5cf4e0f71961891351fd0345983e758d7683275b3279ae2",
+          "de": "2019-06-01",
+          "ate": "2019-06-30",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2019_07.csv.gz",
+          "sha256": "b09753da1dfc4958f0f28a0b9069dbf1df719bf16cadb40cbf6df941366c2624",
+          "de": "2019-07-01",
+          "ate": "2019-07-31",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2019_08.csv.gz",
+          "sha256": "43bba1f2b8a5cda3afd4e45af1980e1cc6f071fe6de6900a09a47b3a3e7f3b89",
+          "de": "2019-08-01",
+          "ate": "2019-08-31",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2019_09.csv.gz",
+          "sha256": "7ccbe6034db69dcab23603d8e7f4dbfe803d245aa913fa4266ca59e4973a1e53",
+          "de": "2019-09-01",
+          "ate": "2019-09-30",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2019_10.csv.gz",
+          "sha256": "0b639199ec67ceb9abc6275ae4f854646bcf2691e81a8f76f6b6cc7b808bcb6d",
+          "de": "2019-10-01",
+          "ate": "2019-10-31",
+          "estacoes_recife": 26
+        },
+        {
+          "arquivo": "cemaden_recife_2019_11.csv.gz",
+          "sha256": "f9f8ffb7d65c73d55d82bd8477838742a180974d9e8dcbbe10e0faf6189a2cd3",
+          "de": "2019-11-01",
+          "ate": "2019-11-30",
+          "estacoes_recife": 26
+        },
+        {
+          "arquivo": "cemaden_recife_2019_12.csv.gz",
+          "sha256": "17814e8a235abed52b8dd576457a8735430941893febb98d4fecb20a8f942982",
+          "de": "2019-12-01",
+          "ate": "2019-12-31",
+          "estacoes_recife": 26
+        },
+        {
+          "arquivo": "cemaden_recife_2020_01.csv.gz",
+          "sha256": "5a991ebd27c537891f98cd9e822b25303ff10fd70b7fc18ce2340c3334569f4b",
+          "de": "2020-01-01",
+          "ate": "2020-01-31",
+          "estacoes_recife": 24
+        },
+        {
+          "arquivo": "cemaden_recife_2020_02.csv.gz",
+          "sha256": "ef0df76c2bf4e038be1b8249c1514b9a1ca7600aaec4eead16c5ad815d8924dc",
+          "de": "2020-02-01",
+          "ate": "2020-02-29",
+          "estacoes_recife": 24
+        },
+        {
+          "arquivo": "cemaden_recife_2020_03.csv.gz",
+          "sha256": "6f6c72bb11f0d1077158345fa09dfb1bab1637793a2f7a93b71df7043664912e",
+          "de": "2020-03-01",
+          "ate": "2020-03-31",
+          "estacoes_recife": 23
+        },
+        {
+          "arquivo": "cemaden_recife_2020_04.csv.gz",
+          "sha256": "bb16ac731d7c0f194f344278aee388fce0dc6da766103dce797466727ed7ac38",
+          "de": "2020-04-01",
+          "ate": "2020-04-30",
+          "estacoes_recife": 22
+        },
+        {
+          "arquivo": "cemaden_recife_2020_05.csv.gz",
+          "sha256": "6984a825a773528b41f08129805b32ad4f84fa26282d885a761c4372cc687c48",
+          "de": "2020-05-01",
+          "ate": "2020-05-31",
+          "estacoes_recife": 22
+        },
+        {
+          "arquivo": "cemaden_recife_2020_06.csv.gz",
+          "sha256": "9c5f1aef84ca55a5207eadfcaa04b5f417f18a3dc0ba2f0ffb8c33c42b83004a",
+          "de": "2020-06-01",
+          "ate": "2020-06-30",
+          "estacoes_recife": 26
+        },
+        {
+          "arquivo": "cemaden_recife_2020_07.csv.gz",
+          "sha256": "295f0d80fbc86e9455279a26d0943ea4d1761bfa7f87c1f1a349544829e4ddc2",
+          "de": "2020-07-01",
+          "ate": "2020-07-31",
+          "estacoes_recife": 26
+        },
+        {
+          "arquivo": "cemaden_recife_2020_08.csv.gz",
+          "sha256": "da1749b5a3bf1258615390d47223e5175e245ad891ecf1fd85c1f149f40ac800",
+          "de": "2020-08-01",
+          "ate": "2020-08-31",
+          "estacoes_recife": 26
+        },
+        {
+          "arquivo": "cemaden_recife_2020_09.csv.gz",
+          "sha256": "f7f4e3d5e7134b827c8116015d7ea387511b7800fe694b753d311883a832ec3a",
+          "de": "2020-09-01",
+          "ate": "2020-09-30",
+          "estacoes_recife": 26
+        },
+        {
+          "arquivo": "cemaden_recife_2020_10.csv.gz",
+          "sha256": "00d637a3a0d7aae3b01ce4226cfaac56874a3da8100b5a0162f64802ef8995dc",
+          "de": "2020-10-01",
+          "ate": "2020-10-31",
+          "estacoes_recife": 24
+        },
+        {
+          "arquivo": "cemaden_recife_2020_11.csv.gz",
+          "sha256": "f03df3402b1c10f70410889c2e696cb3738b1eeb00832e4b012f301982b58e46",
+          "de": "2020-11-01",
+          "ate": "2020-11-30",
+          "estacoes_recife": 24
+        },
+        {
+          "arquivo": "cemaden_recife_2020_12.csv.gz",
+          "sha256": "c791d140c4d42cb7da07e0f7e3aae80edcc2d350a79c2bca60eb867a38373339",
+          "de": "2020-12-01",
+          "ate": "2020-12-31",
+          "estacoes_recife": 23
+        },
+        {
+          "arquivo": "cemaden_recife_2022_01.csv.gz",
+          "sha256": "d0a54fb2f39f37075cbca505b7ca703735b9e1dfed467cbc8fbcc119cbeabee7",
+          "de": "2022-01-01",
+          "ate": "2022-01-31",
+          "estacoes_recife": 22
+        },
+        {
+          "arquivo": "cemaden_recife_2022_02.csv.gz",
+          "sha256": "64f875e21c55d5bc6496cef132976877ffdea2c6cf915804230c02e2db1d8bb1",
+          "de": "2022-02-01",
+          "ate": "2022-02-28",
+          "estacoes_recife": 22
+        },
+        {
+          "arquivo": "cemaden_recife_2022_03.csv.gz",
+          "sha256": "1793c7c7d1ee20dad5117b700219ea9e724328939b55284d06391c704997864c",
+          "de": "2022-03-01",
+          "ate": "2022-03-31",
+          "estacoes_recife": 23
+        },
+        {
+          "arquivo": "cemaden_recife_2022_04.csv.gz",
+          "sha256": "381c0401e58ff4f037da13c87605fce14d865cf74f4a655abe394150f194fbbe",
+          "de": "2022-04-01",
+          "ate": "2022-04-30",
+          "estacoes_recife": 22
+        },
+        {
+          "arquivo": "cemaden_recife_2022_05.csv.gz",
+          "sha256": "7ad2b51f54f3728150cb5e7d441b578313b2396e94d4578ed9dd59b3bed67d84",
+          "de": "2022-05-01",
+          "ate": "2022-05-31",
+          "estacoes_recife": 21
+        },
+        {
+          "arquivo": "cemaden_recife_2022_06.csv.gz",
+          "sha256": "a947c0c8acfaed41aa64751d81d8d10d3ef4edf27bb69494ad8845fccc14c544",
+          "de": "2022-06-01",
+          "ate": "2022-06-30",
+          "estacoes_recife": 20
+        },
+        {
+          "arquivo": "cemaden_recife_2022_07.csv.gz",
+          "sha256": "e88c0f4a395d063043ec14226c08458862b9af6c8b3c7b289e0d237082a122fc",
+          "de": "2022-07-01",
+          "ate": "2022-07-31",
+          "estacoes_recife": 20
+        },
+        {
+          "arquivo": "cemaden_recife_2022_08.csv.gz",
+          "sha256": "e2c71a192eb9fee7127bf31d95d0a79c2605b2606749822ff6a16987a4ff4492",
+          "de": "2022-08-01",
+          "ate": "2022-08-31",
+          "estacoes_recife": 21
+        },
+        {
+          "arquivo": "cemaden_recife_2022_09.csv.gz",
+          "sha256": "cb5d385370ebe29121b161b5ba76a604ec1bc165e03be7b732d061c48a7ee7ef",
+          "de": "2022-09-01",
+          "ate": "2022-09-30",
+          "estacoes_recife": 21
+        },
+        {
+          "arquivo": "cemaden_recife_2022_10.csv.gz",
+          "sha256": "a03761981ac1feba1ed7360f31f12a15621de01febd492ebd0c0ebfd3967afee",
+          "de": "2022-10-01",
+          "ate": "2022-10-31",
+          "estacoes_recife": 21
+        },
+        {
+          "arquivo": "cemaden_recife_2022_11.csv.gz",
+          "sha256": "971334226f92f59d9d6832ac2c45a6a76b3338a305178fa0ba1dd31e2c7646ec",
+          "de": "2022-11-01",
+          "ate": "2022-11-30",
+          "estacoes_recife": 20
+        },
+        {
+          "arquivo": "cemaden_recife_2022_12.csv.gz",
+          "sha256": "8991f4f69dc7628d15e8b07ce37e61ba77e06bd3b99957bc18796979f9ebfeaf",
+          "de": "2022-12-01",
+          "ate": "2022-12-31",
+          "estacoes_recife": 20
+        },
+        {
+          "arquivo": "cemaden_recife_2023_01.csv.gz",
+          "sha256": "d3a6ae05ce543152e5bdf31b3ef6d3f64bd18b9eef2d595db958c59ca9bc97f4",
+          "de": "2023-01-01",
+          "ate": "2023-01-31",
+          "estacoes_recife": 19
+        },
+        {
+          "arquivo": "cemaden_recife_2023_02.csv.gz",
+          "sha256": "39441823a44d99f14e8df544b522e6ad7053ffbe0a3e0811086039467c4a37df",
+          "de": "2023-02-01",
+          "ate": "2023-02-28",
+          "estacoes_recife": 17
+        },
+        {
+          "arquivo": "cemaden_recife_2023_03.csv.gz",
+          "sha256": "c0b1a1d475d3c3e2c860f56723e4090bab33b63e57079aaf8e6410cd71b7bc0e",
+          "de": "2023-03-01",
+          "ate": "2023-03-31",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2023_04.csv.gz",
+          "sha256": "1e085e6acff6639551e40bf74c53b272d659d9d94324f0fa9d24833369bc39dc",
+          "de": "2023-04-01",
+          "ate": "2023-04-30",
+          "estacoes_recife": 18
+        },
+        {
+          "arquivo": "cemaden_recife_2023_05.csv.gz",
+          "sha256": "8a6d2296642b07947f1565119b41809908454bbe9dd2be6afebc4b955b920d6f",
+          "de": "2023-05-01",
+          "ate": "2023-05-31",
+          "estacoes_recife": 17
+        },
+        {
+          "arquivo": "cemaden_recife_2023_06.csv.gz",
+          "sha256": "d847adca704c8712e73919b935369049201a6e9af03cdca34e64efd981be45b0",
+          "de": "2023-06-01",
+          "ate": "2023-06-30",
+          "estacoes_recife": 17
+        },
+        {
+          "arquivo": "cemaden_recife_2023_07.csv.gz",
+          "sha256": "067aa4ef08de2e27d3ff2a21a5cb16cc09341cd2415a5e0269a3ae93c6ed73fe",
+          "de": "2023-07-01",
+          "ate": "2023-07-31",
+          "estacoes_recife": 22
+        },
+        {
+          "arquivo": "cemaden_recife_2023_08.csv.gz",
+          "sha256": "9faf813c369ce817976d717e8406fba6e67586a59076f1d4f0b275c13e8a8581",
+          "de": "2023-08-01",
+          "ate": "2023-08-31",
+          "estacoes_recife": 21
+        },
+        {
+          "arquivo": "cemaden_recife_2023_09.csv.gz",
+          "sha256": "8f8e77c806cc1514881ae3b815229193473d472f19463b9add0e6081d005b80a",
+          "de": "2023-09-01",
+          "ate": "2023-09-30",
+          "estacoes_recife": 20
+        },
+        {
+          "arquivo": "cemaden_recife_2023_10.csv.gz",
+          "sha256": "09e42946b6772e3f6f8ded0c2ec2bf263fd32a9e5412e7d5552adec8f42d321d",
+          "de": "2023-10-01",
+          "ate": "2023-10-31",
+          "estacoes_recife": 21
+        },
+        {
+          "arquivo": "cemaden_recife_2023_11.csv.gz",
+          "sha256": "399f20617676f80b28447c660ccc930b24b966aa24b346c026c0e997991e91e2",
+          "de": "2023-11-01",
+          "ate": "2023-11-30",
+          "estacoes_recife": 22
+        },
+        {
+          "arquivo": "cemaden_recife_2023_12.csv.gz",
+          "sha256": "b48313ce5b36028d546b3e2ab799a4e914d7b36c502ba1a5a5c69c77909fcaa2",
+          "de": "2023-12-01",
+          "ate": "2023-12-31",
+          "estacoes_recife": 22
+        }
+      ],
+      "cadastro": {
+        "url": "https://resources.cemaden.gov.br/dados/311_24.json",
+        "arquivo": "cemaden_cadastro_estacoes.jsonp",
+        "sha256": "4ffc2212a1a36da20dd3ab69e627983fa3a2c4776b10d04ac89995c279d14a88",
+        "baixado_em": "2026-11-25T17:17:00.507697+00:00"
+      }
+    },
+    "ds": "bairros_esig.geojson agrupados pelo DS de territorio_de (tabela da Secretaria de Saúde)"
+  },
+  "metodo": {
+    "precedencia": "APAC; CEMADEN só preenche estação-dia ausente na APAC (mesmo código)",
+    "dia_cemaden": "dia D termina 10h UTC após 00h UTC de D (07h local, como a APAC); mínimo de 22 horas com transmissão; dia com leitura > 50 mm fica ausente",
+    "dias_leitura_suspeita": [
+      {
+        "codigo": "261160601A",
+        "data": "2019-06-14"
+      },
+      {
+        "codigo": "261160601A",
+        "data": "2023-12-31"
+      },
+      {
+        "codigo": "261160605A",
+        "data": "2023-04-17"
+      },
+      {
+        "codigo": "261160605A",
+        "data": "2023-04-18"
+      },
+      {
+        "codigo": "261160605A",
+        "data": "2023-04-21"
+      },
+      {
+        "codigo": "261160605A",
+        "data": "2023-04-24"
+      },
+      {
+        "codigo": "261160605A",
+        "data": "2023-04-25"
+      },
+      {
+        "codigo": "261160605A",
+        "data": "2023-04-26"
+      },
+      {
+        "codigo": "261160605A",
+        "data": "2023-04-28"
+      },
+      {
+        "codigo": "261160605A",
+        "data": "2023-04-29"
+      },
+      {
+        "codigo": "261160605A",
+        "data": "2023-04-30"
+      },
+      {
+        "codigo": "261160605A",
+        "data": "2023-05-02"
+      },
+      {
+        "codigo": "261160605A",
+        "data": "2023-05-03"
+      },
+      {
+        "codigo": "261160605A",
+        "data": "2023-05-04"
+      },
+      {
+        "codigo": "261160605A",
+        "data": "2023-05-07"
+      },
+      {
+        "codigo": "261160607A",
+        "data": "2016-04-06"
+      },
+      {
+        "codigo": "261160607A",
+        "data": "2022-03-19"
+      },
+      {
+        "codigo": "261160607A",
+        "data": "2023-09-02"
+      },
+      {
+        "codigo": "261160607A",
+        "data": "2023-11-16"
+      },
+      {
+        "codigo": "261160607A",
+        "data": "2023-11-17"
+      },
+      {
+        "codigo": "261160607A",
+        "data": "2023-11-19"
+      },
+      {
+        "codigo": "261160607A",
+        "data": "2023-11-20"
+      },
+      {
+        "codigo": "261160607A",
+        "data": "2023-12-12"
+      },
+      {
+        "codigo": "261160610A",
+        "data": "2020-06-04"
+      },
+      {
+        "codigo": "261160616A",
+        "data": "2018-05-01"
+      },
+      {
+        "codigo": "261160618A",
+        "data": "2019-06-17"
+      }
+    ],
+    "espacializacao": "Thiessen discretizado por DS, recalculado por dia com as estações que mediram",
+    "passo_grade_graus": 0.0025,
+    "pontos_grade": 2889,
+    "limite_falha": 0.2,
+    "silencio_encerra_operacao_dias": 365,
+    "sensor_seco": {
+      "regra": "janela de 30 dias (>= 20 leituras) com chuva < 0.1 x mediana das vizinhas a até 5 km (>= 2; senão, mediana da cidade), quando a referência soma >= 30 mm: dias da janela removidos",
+      "trechos_removidos": [
+        {
+          "codigo": "261160603A",
+          "inicio": "2020-01-20",
+          "fim": "2020-02-29",
+          "dias_removidos": 40,
+          "chuva_removida_mm": 4.9
+        },
+        {
+          "codigo": "261160603G",
+          "inicio": "2024-04-01",
+          "fim": "2024-08-03",
+          "dias_removidos": 115,
+          "chuva_removida_mm": 6.8
+        },
+        {
+          "codigo": "261160603G",
+          "inicio": "2025-04-08",
+          "fim": "2025-10-30",
+          "dias_removidos": 204,
+          "chuva_removida_mm": 0.4
+        },
+        {
+          "codigo": "261160604A",
+          "inicio": "2023-01-03",
+          "fim": "2023-03-10",
+          "dias_removidos": 50,
+          "chuva_removida_mm": 0.4
+        },
+        {
+          "codigo": "261160604V",
+          "inicio": "2016-02-03",
+          "fim": "2016-03-14",
+          "dias_removidos": 41,
+          "chuva_removida_mm": 12.1
+        },
+        {
+          "codigo": "261160605A",
+          "inicio": "2018-01-22",
+          "fim": "2018-03-05",
+          "dias_removidos": 43,
+          "chuva_removida_mm": 9.1
+        },
+        {
+          "codigo": "261160605A",
+          "inicio": "2018-06-29",
+          "fim": "2018-10-20",
+          "dias_removidos": 114,
+          "chuva_removida_mm": 12.6
+        },
+        {
+          "codigo": "261160605A",
+          "inicio": "2018-10-26",
+          "fim": "2019-02-13",
+          "dias_removidos": 109,
+          "chuva_removida_mm": 8.3
+        },
+        {
+          "codigo": "261160605A",
+          "inicio": "2023-05-06",
+          "fim": "2023-07-22",
+          "dias_removidos": 66,
+          "chuva_removida_mm": 36.3
+        },
+        {
+          "codigo": "261160606A",
+          "inicio": "2016-12-09",
+          "fim": "2017-01-18",
+          "dias_removidos": 41,
+          "chuva_removida_mm": 1.4
+        },
+        {
+          "codigo": "261160606A",
+          "inicio": "2018-10-26",
+          "fim": "2019-01-28",
+          "dias_removidos": 95,
+          "chuva_removida_mm": 7.1
+        },
+        {
+          "codigo": "261160606A",
+          "inicio": "2019-03-14",
+          "fim": "2019-04-20",
+          "dias_removidos": 38,
+          "chuva_removida_mm": 14.6
+        },
+        {
+          "codigo": "261160606A",
+          "inicio": "2020-03-29",
+          "fim": "2020-05-11",
+          "dias_removidos": 43,
+          "chuva_removida_mm": 26.2
+        },
+        {
+          "codigo": "261160606A",
+          "inicio": "2023-08-16",
+          "fim": "2023-10-22",
+          "dias_removidos": 66,
+          "chuva_removida_mm": 11.1
+        },
+        {
+          "codigo": "261160606A",
+          "inicio": "2023-10-30",
+          "fim": "2024-01-10",
+          "dias_removidos": 63,
+          "chuva_removida_mm": 6.9
+        },
+        {
+          "codigo": "261160606A",
+          "inicio": "2024-02-04",
+          "fim": "2024-03-27",
+          "dias_removidos": 33,
+          "chuva_removida_mm": 2.0
+        },
+        {
+          "codigo": "261160606A",
+          "inicio": "2024-04-01",
+          "fim": "2024-05-04",
+          "dias_removidos": 24,
+          "chuva_removida_mm": 15.2
+        },
+        {
+          "codigo": "261160609A",
+          "inicio": "2016-06-05",
+          "fim": "2016-08-26",
+          "dias_removidos": 83,
+          "chuva_removida_mm": 8.7
+        },
+        {
+          "codigo": "261160609A",
+          "inicio": "2017-08-02",
+          "fim": "2017-09-06",
+          "dias_removidos": 29,
+          "chuva_removida_mm": 15.8
+        },
+        {
+          "codigo": "261160609A",
+          "inicio": "2023-05-23",
+          "fim": "2023-09-09",
+          "dias_removidos": 103,
+          "chuva_removida_mm": 62.5
+        },
+        {
+          "codigo": "261160609A",
+          "inicio": "2024-12-29",
+          "fim": "2025-01-28",
+          "dias_removidos": 31,
+          "chuva_removida_mm": 14.4
+        },
+        {
+          "codigo": "261160609G",
+          "inicio": "2020-03-09",
+          "fim": "2020-04-14",
+          "dias_removidos": 35,
+          "chuva_removida_mm": 18.8
+        },
+        {
+          "codigo": "261160609G",
+          "inicio": "2020-04-17",
+          "fim": "2020-08-03",
+          "dias_removidos": 77,
+          "chuva_removida_mm": 29.6
+        },
+        {
+          "codigo": "261160609G",
+          "inicio": "2021-12-23",
+          "fim": "2023-03-28",
+          "dias_removidos": 433,
+          "chuva_removida_mm": 4.0
+        },
+        {
+          "codigo": "261160609G",
+          "inicio": "2023-04-24",
+          "fim": "2023-05-23",
+          "dias_removidos": 30,
+          "chuva_removida_mm": 18.8
+        },
+        {
+          "codigo": "261160609G",
+          "inicio": "2023-06-17",
+          "fim": "2023-10-04",
+          "dias_removidos": 108,
+          "chuva_removida_mm": 36.0
+        },
+        {
+          "codigo": "261160610G",
+          "inicio": "2020-11-25",
+          "fim": "2021-01-07",
+          "dias_removidos": 34,
+          "chuva_removida_mm": 2.6
+        },
+        {
+          "codigo": "261160612A",
+          "inicio": "2025-09-24",
+          "fim": "2025-10-25",
+          "dias_removidos": 22,
+          "chuva_removida_mm": 5.7
+        },
+        {
+          "codigo": "261160613A",
+          "inicio": "2024-06-13",
+          "fim": "2024-10-12",
+          "dias_removidos": 102,
+          "chuva_removida_mm": 0.0
+        },
+        {
+          "codigo": "261160613A",
+          "inicio": "2024-12-15",
+          "fim": "2025-04-06",
+          "dias_removidos": 84,
+          "chuva_removida_mm": 0.0
+        },
+        {
+          "codigo": "261160613A",
+          "inicio": "2025-09-30",
+          "fim": "2025-10-31",
+          "dias_removidos": 21,
+          "chuva_removida_mm": 0.0
+        },
+        {
+          "codigo": "261160614A",
+          "inicio": "2024-01-31",
+          "fim": "2024-07-11",
+          "dias_removidos": 160,
+          "chuva_removida_mm": 84.2
+        },
+        {
+          "codigo": "261160617A",
+          "inicio": "2024-04-18",
+          "fim": "2024-07-20",
+          "dias_removidos": 89,
+          "chuva_removida_mm": 28.6
+        },
+        {
+          "codigo": "261160617A",
+          "inicio": "2025-05-20",
+          "fim": "2025-10-30",
+          "dias_removidos": 163,
+          "chuva_removida_mm": 37.3
+        },
+        {
+          "codigo": "261160618A",
+          "inicio": "2022-03-06",
+          "fim": "2022-06-22",
+          "dias_removidos": 92,
+          "chuva_removida_mm": 57.4
+        },
+        {
+          "codigo": "261160620A",
+          "inicio": "2024-12-15",
+          "fim": "2025-04-04",
+          "dias_removidos": 95,
+          "chuva_removida_mm": 13.0
+        },
+        {
+          "codigo": "261160620A",
+          "inicio": "2025-04-16",
+          "fim": "2025-06-23",
+          "dias_removidos": 63,
+          "chuva_removida_mm": 25.0
+        },
+        {
+          "codigo": "261160620A",
+          "inicio": "2025-07-22",
+          "fim": "2025-09-30",
+          "dias_removidos": 68,
+          "chuva_removida_mm": 35.6
+        },
+        {
+          "codigo": "261160622A",
+          "inicio": "2020-11-14",
+          "fim": "2021-01-02",
+          "dias_removidos": 41,
+          "chuva_removida_mm": 1.4
+        }
+      ],
+      "estacoes_sem_vizinha_no_raio": [
+        "261160608G"
+      ]
+    }
+  },
+  "estacoes": {
+    "inventario": 36,
+    "com_leitura": 36,
+    "por_rede": {
+      "CEMADEN": 32,
+      "APAC": 4
+    }
+  },
+  "pesos_thiessen_rede_completa": [
+    {
+      "ds": "1",
+      "codigo": "261160622A",
+      "peso": 0.48
+    },
+    {
+      "ds": "1",
+      "codigo": "261160620A",
+      "peso": 0.275
+    },
+    {
+      "ds": "1",
+      "codigo": "261160602V",
+      "peso": 0.1
+    },
+    {
+      "ds": "1",
+      "codigo": "261160623A",
+      "peso": 0.095
+    },
+    {
+      "ds": "1",
+      "codigo": "261160618A",
+      "peso": 0.05
+    },
+    {
+      "ds": "2",
+      "codigo": "261160618A",
+      "peso": 0.2602
+    },
+    {
+      "ds": "2",
+      "codigo": "261160607A",
+      "peso": 0.2143
+    },
+    {
+      "ds": "2",
+      "codigo": "261160616G",
+      "peso": 0.1735
+    },
+    {
+      "ds": "2",
+      "codigo": "261160614A",
+      "peso": 0.1429
+    },
+    {
+      "ds": "2",
+      "codigo": "261160613G",
+      "peso": 0.0867
+    },
+    {
+      "ds": "2",
+      "codigo": "261160606A",
+      "peso": 0.051
+    },
+    {
+      "ds": "2",
+      "codigo": "261160605A",
+      "peso": 0.0306
+    },
+    {
+      "ds": "2",
+      "codigo": "261160602V",
+      "peso": 0.0204
+    },
+    {
+      "ds": "2",
+      "codigo": "261160613A",
+      "peso": 0.0204
+    },
+    {
+      "ds": "3",
+      "codigo": "261160603A",
+      "peso": 0.2418
+    },
+    {
+      "ds": "3",
+      "codigo": "261160610A",
+      "peso": 0.1475
+    },
+    {
+      "ds": "3",
+      "codigo": "261160613A",
+      "peso": 0.1352
+    },
+    {
+      "ds": "3",
+      "codigo": "261160601V",
+      "peso": 0.1148
+    },
+    {
+      "ds": "3",
+      "codigo": "261160618A",
+      "peso": 0.1066
+    },
+    {
+      "ds": "3",
+      "codigo": "261160608A",
+      "peso": 0.0697
+    },
+    {
+      "ds": "3",
+      "codigo": "261160604G",
+      "peso": 0.0533
+    },
+    {
+      "ds": "3",
+      "codigo": "261160615G",
+      "peso": 0.0533
+    },
+    {
+      "ds": "3",
+      "codigo": "261160612A",
+      "peso": 0.0492
+    },
+    {
+      "ds": "3",
+      "codigo": "261160622A",
+      "peso": 0.0287
+    },
+    {
+      "ds": "4",
+      "codigo": "261160603G",
+      "peso": 0.2852
+    },
+    {
+      "ds": "4",
+      "codigo": "261160616A",
+      "peso": 0.2523
+    },
+    {
+      "ds": "4",
+      "codigo": "261160601V",
+      "peso": 0.2048
+    },
+    {
+      "ds": "4",
+      "codigo": "261160610A",
+      "peso": 0.0585
+    },
+    {
+      "ds": "4",
+      "codigo": "261160604G",
+      "peso": 0.0512
+    },
+    {
+      "ds": "4",
+      "codigo": "261160619A",
+      "peso": 0.0494
+    },
+    {
+      "ds": "4",
+      "codigo": "261160603A",
+      "peso": 0.0402
+    },
+    {
+      "ds": "4",
+      "codigo": "261160601A",
+      "peso": 0.0384
+    },
+    {
+      "ds": "4",
+      "codigo": "261160622A",
+      "peso": 0.011
+    },
+    {
+      "ds": "4",
+      "codigo": "261160608G",
+      "peso": 0.0091
+    },
+    {
+      "ds": "5",
+      "codigo": "261160619A",
+      "peso": 0.4422
+    },
+    {
+      "ds": "5",
+      "codigo": "261160605G",
+      "peso": 0.2005
+    },
+    {
+      "ds": "5",
+      "codigo": "261160621A",
+      "peso": 0.1799
+    },
+    {
+      "ds": "5",
+      "codigo": "261160616A",
+      "peso": 0.108
+    },
+    {
+      "ds": "5",
+      "codigo": "261160603G",
+      "peso": 0.0437
+    },
+    {
+      "ds": "5",
+      "codigo": "261160622A",
+      "peso": 0.0231
+    },
+    {
+      "ds": "5",
+      "codigo": "261160601V",
+      "peso": 0.0026
+    },
+    {
+      "ds": "6",
+      "codigo": "261160609A",
+      "peso": 0.4424
+    },
+    {
+      "ds": "6",
+      "codigo": "261160617A",
+      "peso": 0.3424
+    },
+    {
+      "ds": "6",
+      "codigo": "261160621A",
+      "peso": 0.1273
+    },
+    {
+      "ds": "6",
+      "codigo": "261160622A",
+      "peso": 0.0636
+    },
+    {
+      "ds": "6",
+      "codigo": "261160619A",
+      "peso": 0.0182
+    },
+    {
+      "ds": "6",
+      "codigo": "261160620A",
+      "peso": 0.0061
+    },
+    {
+      "ds": "7",
+      "codigo": "261160604A",
+      "peso": 0.3122
+    },
+    {
+      "ds": "7",
+      "codigo": "261160609A",
+      "peso": 0.1719
+    },
+    {
+      "ds": "7",
+      "codigo": "261160605G",
+      "peso": 0.1493
+    },
+    {
+      "ds": "7",
+      "codigo": "261160621A",
+      "peso": 0.1131
+    },
+    {
+      "ds": "7",
+      "codigo": "261160609G",
+      "peso": 0.095
+    },
+    {
+      "ds": "7",
+      "codigo": "261160615A",
+      "peso": 0.0362
+    },
+    {
+      "ds": "7",
+      "codigo": "261160605A",
+      "peso": 0.0317
+    },
+    {
+      "ds": "7",
+      "codigo": "261160611G",
+      "peso": 0.0317
+    },
+    {
+      "ds": "7",
+      "codigo": "261160606G",
+      "peso": 0.0271
+    },
+    {
+      "ds": "7",
+      "codigo": "261160607G",
+      "peso": 0.0226
+    },
+    {
+      "ds": "7",
+      "codigo": "261160612A",
+      "peso": 0.0045
+    },
+    {
+      "ds": "7",
+      "codigo": "261160616G",
+      "peso": 0.0045
+    },
+    {
+      "ds": "8",
+      "codigo": "261160612A",
+      "peso": 0.7612
+    },
+    {
+      "ds": "8",
+      "codigo": "261160613G",
+      "peso": 0.1181
+    },
+    {
+      "ds": "8",
+      "codigo": "261160613A",
+      "peso": 0.0367
+    },
+    {
+      "ds": "8",
+      "codigo": "261160605A",
+      "peso": 0.0249
+    },
+    {
+      "ds": "8",
+      "codigo": "261160608A",
+      "peso": 0.0184
+    },
+    {
+      "ds": "8",
+      "codigo": "261160610G",
+      "peso": 0.0157
+    },
+    {
+      "ds": "8",
+      "codigo": "261160610A",
+      "peso": 0.0118
+    },
+    {
+      "ds": "8",
+      "codigo": "261160615G",
+      "peso": 0.0052
+    },
+    {
+      "ds": "8",
+      "codigo": "261160603A",
+      "peso": 0.0039
+    },
+    {
+      "ds": "8",
+      "codigo": "261160604G",
+      "peso": 0.0013
+    },
+    {
+      "ds": "8",
+      "codigo": "261160604V",
+      "peso": 0.0013
+    },
+    {
+      "ds": "8",
+      "codigo": "261160607A",
+      "peso": 0.0013
+    }
+  ],
+  "cobertura_por_ano": [
+    {
+      "ano": 2016,
+      "estacoes": 22,
+      "estacoes_apac": 2,
+      "estacoes_cemaden": 20,
+      "estacao_dias_apac": 680,
+      "estacao_dias_cemaden": 6609
+    },
+    {
+      "ano": 2017,
+      "estacoes": 24,
+      "estacoes_apac": 3,
+      "estacoes_cemaden": 21,
+      "estacao_dias_apac": 997,
+      "estacao_dias_cemaden": 6632
+    },
+    {
+      "ano": 2018,
+      "estacoes": 24,
+      "estacoes_apac": 3,
+      "estacoes_cemaden": 21,
+      "estacao_dias_apac": 1093,
+      "estacao_dias_cemaden": 6260
+    },
+    {
+      "ano": 2019,
+      "estacoes": 30,
+      "estacoes_apac": 3,
+      "estacoes_cemaden": 27,
+      "estacao_dias_apac": 1073,
+      "estacao_dias_cemaden": 5850
+    },
+    {
+      "ano": 2020,
+      "estacoes": 29,
+      "estacoes_apac": 3,
+      "estacoes_cemaden": 26,
+      "estacao_dias_apac": 1041,
+      "estacao_dias_cemaden": 7489
+    },
+    {
+      "ano": 2021,
+      "estacoes": 3,
+      "estacoes_apac": 3,
+      "estacoes_cemaden": 0,
+      "estacao_dias_apac": 1032,
+      "estacao_dias_cemaden": 0
+    },
+    {
+      "ano": 2022,
+      "estacoes": 24,
+      "estacoes_apac": 2,
+      "estacoes_cemaden": 22,
+      "estacao_dias_apac": 719,
+      "estacao_dias_cemaden": 6207
+    },
+    {
+      "ano": 2023,
+      "estacoes": 29,
+      "estacoes_apac": 2,
+      "estacoes_cemaden": 27,
+      "estacao_dias_apac": 724,
+      "estacao_dias_cemaden": 5124
+    },
+    {
+      "ano": 2024,
+      "estacoes": 20,
+      "estacoes_apac": 20,
+      "estacoes_cemaden": 0,
+      "estacao_dias_apac": 4546,
+      "estacao_dias_cemaden": 0
+    },
+    {
+      "ano": 2025,
+      "estacoes": 17,
+      "estacoes_apac": 17,
+      "estacoes_cemaden": 0,
+      "estacao_dias_apac": 3501,
+      "estacao_dias_cemaden": 0
+    },
+    {
+      "ano": 2026,
+      "estacoes": 10,
+      "estacoes_apac": 10,
+      "estacoes_cemaden": 0,
+      "estacao_dias_apac": 28,
+      "estacao_dias_cemaden": 0
+    }
+  ],
+  "cobertura_ds_por_ano": [
+    {
+      "ano": 2016,
+      "pct_semanas_completas": 93.3,
+      "falha_media": 0.034,
+      "dist_media_km": 1.78
+    },
+    {
+      "ano": 2017,
+      "pct_semanas_completas": 82.9,
+      "falha_media": 0.092,
+      "dist_media_km": 1.81
+    },
+    {
+      "ano": 2018,
+      "pct_semanas_completas": 76.7,
+      "falha_media": 0.133,
+      "dist_media_km": 1.94
+    },
+    {
+      "ano": 2019,
+      "pct_semanas_completas": 59.6,
+      "falha_media": 0.213,
+      "dist_media_km": 2.22
+    },
+    {
+      "ano": 2020,
+      "pct_semanas_completas": 72.4,
+      "falha_media": 0.161,
+      "dist_media_km": 1.96
+    },
+    {
+      "ano": 2021,
+      "pct_semanas_completas": 95.7,
+      "falha_media": 0.038,
+      "dist_media_km": 4.73
+    },
+    {
+      "ano": 2022,
+      "pct_semanas_completas": 73.8,
+      "falha_media": 0.144,
+      "dist_media_km": 2.19
+    },
+    {
+      "ano": 2023,
+      "pct_semanas_completas": 62.5,
+      "falha_media": 0.176,
+      "dist_media_km": 2.18
+    },
+    {
+      "ano": 2024,
+      "pct_semanas_completas": 66.3,
+      "falha_media": 0.188,
+      "dist_media_km": 2.77
+    },
+    {
+      "ano": 2025,
+      "pct_semanas_completas": 51.2,
+      "falha_media": 0.294,
+      "dist_media_km": 3.04
+    }
+  ],
+  "reconciliacao": {
+    "estacoes_duplicadas": [],
+    "convencoes_dia": [
+      {
+        "convencao": "07h local de D (10h UTC)",
+        "fim_dia_utc_h": 10,
+        "pares_vizinhos": 14,
+        "pearson_medio_vizinhos": 0.89,
+        "estacoes_duplicadas": 0,
+        "dias_duplicados": 0,
+        "pct_concordancia_duplicadas": null
+      },
+      {
+        "convencao": "08h local de D (11h UTC)",
+        "fim_dia_utc_h": 11,
+        "pares_vizinhos": 14,
+        "pearson_medio_vizinhos": 0.799,
+        "estacoes_duplicadas": 0,
+        "dias_duplicados": 0,
+        "pct_concordancia_duplicadas": null
+      },
+      {
+        "convencao": "09h local de D (12h UTC)",
+        "fim_dia_utc_h": 12,
+        "pares_vizinhos": 14,
+        "pearson_medio_vizinhos": 0.764,
+        "estacoes_duplicadas": 0,
+        "dias_duplicados": 0,
+        "pct_concordancia_duplicadas": null
+      },
+      {
+        "convencao": "dia civil de Recife (00h a 24h local)",
+        "fim_dia_utc_h": 27,
+        "pares_vizinhos": 14,
+        "pearson_medio_vizinhos": 0.492,
+        "estacoes_duplicadas": 0,
+        "dias_duplicados": 0,
+        "pct_concordancia_duplicadas": null
+      }
+    ],
+    "raio_pares_km": 3.0,
+    "pares_proximos": [
+      {
+        "codigo_a": "261160604V",
+        "nome_a": "Alto da Brasileira",
+        "rede_a": "APAC",
+        "codigo_b": "261160615G",
+        "nome_b": "COMPESA - Alto da Brasileira",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.07,
+        "dias_comuns": 57,
+        "diaria": {
+          "pearson": 0.883,
+          "spearman": 0.624
+        },
+        "semanas_comuns": 6,
+        "semanal": {
+          "pearson": 0.994,
+          "spearman": 0.829
+        }
+      },
+      {
+        "codigo_a": "261160602V",
+        "nome_a": "Recife (Codecipe / Santo Amaro)",
+        "rede_a": "APAC",
+        "codigo_b": "261160623A",
+        "nome_b": "Sede",
+        "rede_b": "APAC",
+        "dist_km": 0.1,
+        "dias_comuns": 2221,
+        "diaria": {
+          "pearson": 0.961,
+          "spearman": 0.867
+        },
+        "semanas_comuns": 276,
+        "semanal": {
+          "pearson": 0.983,
+          "spearman": 0.969
+        }
+      },
+      {
+        "codigo_a": "261160604V",
+        "nome_a": "Alto da Brasileira",
+        "rede_a": "APAC",
+        "codigo_b": "261160610G",
+        "nome_b": "Nova Descoberta",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.22,
+        "dias_comuns": 314,
+        "diaria": {
+          "pearson": 0.945,
+          "spearman": 0.884
+        },
+        "semanas_comuns": 15,
+        "semanal": {
+          "pearson": 0.992,
+          "spearman": 0.971
+        }
+      },
+      {
+        "codigo_a": "261160601A",
+        "nome_a": "Varzea",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160603G",
+        "nome_b": "Brega e Chique",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.24,
+        "dias_comuns": 688,
+        "diaria": {
+          "pearson": 0.992,
+          "spearman": 0.953
+        },
+        "semanas_comuns": 51,
+        "semanal": {
+          "pearson": 0.996,
+          "spearman": 0.98
+        }
+      },
+      {
+        "codigo_a": "261160607G",
+        "nome_a": "UR2 - COHAB",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160615A",
+        "nome_b": "Ibura",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.27,
+        "dias_comuns": 281,
+        "diaria": {
+          "pearson": 0.986,
+          "spearman": 0.855
+        },
+        "semanas_comuns": 19,
+        "semanal": {
+          "pearson": 0.987,
+          "spearman": 0.914
+        }
+      },
+      {
+        "codigo_a": "261160611G",
+        "nome_a": "UR12 - COHAB II",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160615A",
+        "nome_b": "Ibura",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.35,
+        "dias_comuns": 311,
+        "diaria": {
+          "pearson": 0.993,
+          "spearman": 0.977
+        },
+        "semanas_comuns": 33,
+        "semanal": {
+          "pearson": 0.993,
+          "spearman": 0.986
+        }
+      },
+      {
+        "codigo_a": "261160605G",
+        "nome_a": "UR3 - Ibura",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160606G",
+        "nome_b": "Lagoa Encantada - COHAB",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.4,
+        "dias_comuns": 561,
+        "diaria": {
+          "pearson": 0.991,
+          "spearman": 0.955
+        },
+        "semanas_comuns": 46,
+        "semanal": {
+          "pearson": 0.993,
+          "spearman": 0.993
+        }
+      },
+      {
+        "codigo_a": "261160606G",
+        "nome_a": "Lagoa Encantada - COHAB",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160607G",
+        "nome_b": "UR2 - COHAB",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.54,
+        "dias_comuns": 273,
+        "diaria": {
+          "pearson": 0.982,
+          "spearman": 0.876
+        },
+        "semanas_comuns": 17,
+        "semanal": {
+          "pearson": 0.979,
+          "spearman": 0.96
+        }
+      },
+      {
+        "codigo_a": "261160604V",
+        "nome_a": "Alto da Brasileira",
+        "rede_a": "APAC",
+        "codigo_b": "261160608A",
+        "nome_b": "Corrego Jenipapo",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.67,
+        "dias_comuns": 1790,
+        "diaria": {
+          "pearson": 0.932,
+          "spearman": 0.836
+        },
+        "semanas_comuns": 203,
+        "semanal": {
+          "pearson": 0.974,
+          "spearman": 0.961
+        }
+      },
+      {
+        "codigo_a": "261160606G",
+        "nome_a": "Lagoa Encantada - COHAB",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160615A",
+        "nome_b": "Ibura",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.71,
+        "dias_comuns": 577,
+        "diaria": {
+          "pearson": 0.977,
+          "spearman": 0.933
+        },
+        "semanas_comuns": 47,
+        "semanal": {
+          "pearson": 0.988,
+          "spearman": 0.983
+        }
+      },
+      {
+        "codigo_a": "261160608A",
+        "nome_a": "Corrego Jenipapo",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160610G",
+        "nome_b": "Nova Descoberta",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.75,
+        "dias_comuns": 249,
+        "diaria": {
+          "pearson": 0.979,
+          "spearman": 0.928
+        },
+        "semanas_comuns": 12,
+        "semanal": {
+          "pearson": 0.985,
+          "spearman": 0.904
+        }
+      },
+      {
+        "codigo_a": "261160604V",
+        "nome_a": "Alto da Brasileira",
+        "rede_a": "APAC",
+        "codigo_b": "261160612A",
+        "nome_b": "Guabiraba",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.78,
+        "dias_comuns": 1153,
+        "diaria": {
+          "pearson": 0.888,
+          "spearman": 0.807
+        },
+        "semanas_comuns": 143,
+        "semanal": {
+          "pearson": 0.952,
+          "spearman": 0.956
+        }
+      },
+      {
+        "codigo_a": "261160605A",
+        "nome_a": "Nova Descoberta",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160613G",
+        "nome_b": "COMPESA - Alto da Esperança",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.78,
+        "dias_comuns": 52,
+        "diaria": {
+          "pearson": 0.986,
+          "spearman": 0.89
+        },
+        "semanas_comuns": 7,
+        "semanal": {
+          "pearson": 0.991,
+          "spearman": 0.901
+        }
+      },
+      {
+        "codigo_a": "261160606G",
+        "nome_a": "Lagoa Encantada - COHAB",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160611G",
+        "nome_b": "UR12 - COHAB II",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.9,
+        "dias_comuns": 156,
+        "diaria": {
+          "pearson": 0.981,
+          "spearman": 0.929
+        },
+        "semanas_comuns": 18,
+        "semanal": {
+          "pearson": 0.984,
+          "spearman": 0.977
+        }
+      },
+      {
+        "codigo_a": "261160605G",
+        "nome_a": "UR3 - Ibura",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160607G",
+        "nome_b": "UR2 - COHAB",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.93,
+        "dias_comuns": 289,
+        "diaria": {
+          "pearson": 0.973,
+          "spearman": 0.827
+        },
+        "semanas_comuns": 20,
+        "semanal": {
+          "pearson": 0.974,
+          "spearman": 0.916
+        }
+      },
+      {
+        "codigo_a": "261160607G",
+        "nome_a": "UR2 - COHAB",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160609G",
+        "nome_b": "UR12 - COHAB",
+        "rede_b": "CEMADEN",
+        "dist_km": 0.96,
+        "dias_comuns": 147,
+        "diaria": {
+          "pearson": 0.808,
+          "spearman": 0.693
+        },
+        "semanas_comuns": 6,
+        "semanal": {
+          "pearson": 0.985,
+          "spearman": 1.0
+        }
+      },
+      {
+        "codigo_a": "261160609G",
+        "nome_a": "UR12 - COHAB",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160615A",
+        "nome_b": "Ibura",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.01,
+        "dias_comuns": 285,
+        "diaria": {
+          "pearson": 0.7,
+          "spearman": 0.684
+        },
+        "semanas_comuns": 16,
+        "semanal": {
+          "pearson": 0.699,
+          "spearman": 0.79
+        }
+      },
+      {
+        "codigo_a": "261160620A",
+        "nome_a": "Porto",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160623A",
+        "nome_b": "Sede",
+        "rede_b": "APAC",
+        "dist_km": 1.03,
+        "dias_comuns": 2009,
+        "diaria": {
+          "pearson": 0.966,
+          "spearman": 0.895
+        },
+        "semanas_comuns": 227,
+        "semanal": {
+          "pearson": 0.982,
+          "spearman": 0.959
+        }
+      },
+      {
+        "codigo_a": "261160605G",
+        "nome_a": "UR3 - Ibura",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160615A",
+        "nome_b": "Ibura",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.07,
+        "dias_comuns": 941,
+        "diaria": {
+          "pearson": 0.977,
+          "spearman": 0.911
+        },
+        "semanas_comuns": 94,
+        "semanal": {
+          "pearson": 0.982,
+          "spearman": 0.98
+        }
+      },
+      {
+        "codigo_a": "261160602V",
+        "nome_a": "Recife (Codecipe / Santo Amaro)",
+        "rede_a": "APAC",
+        "codigo_b": "261160620A",
+        "nome_b": "Porto",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.13,
+        "dias_comuns": 2236,
+        "diaria": {
+          "pearson": 0.917,
+          "spearman": 0.8
+        },
+        "semanas_comuns": 270,
+        "semanal": {
+          "pearson": 0.975,
+          "spearman": 0.939
+        }
+      },
+      {
+        "codigo_a": "261160604A",
+        "nome_a": "Alto Bela Vista",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160606G",
+        "nome_b": "Lagoa Encantada - COHAB",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.14,
+        "dias_comuns": 486,
+        "diaria": {
+          "pearson": 0.985,
+          "spearman": 0.949
+        },
+        "semanas_comuns": 40,
+        "semanal": {
+          "pearson": 0.987,
+          "spearman": 0.986
+        }
+      },
+      {
+        "codigo_a": "261160607A",
+        "nome_a": "Alto do Céu",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160614A",
+        "nome_b": "Campina do Barreto",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.22,
+        "dias_comuns": 1358,
+        "diaria": {
+          "pearson": 0.976,
+          "spearman": 0.912
+        },
+        "semanas_comuns": 160,
+        "semanal": {
+          "pearson": 0.989,
+          "spearman": 0.98
+        }
+      },
+      {
+        "codigo_a": "261160604A",
+        "nome_a": "Alto Bela Vista",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160607G",
+        "nome_b": "UR2 - COHAB",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.23,
+        "dias_comuns": 277,
+        "diaria": {
+          "pearson": 0.969,
+          "spearman": 0.86
+        },
+        "semanas_comuns": 16,
+        "semanal": {
+          "pearson": 0.956,
+          "spearman": 0.894
+        }
+      },
+      {
+        "codigo_a": "261160602V",
+        "nome_a": "Recife (Codecipe / Santo Amaro)",
+        "rede_a": "APAC",
+        "codigo_b": "261160618A",
+        "nome_b": "Torreão",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.26,
+        "dias_comuns": 2280,
+        "diaria": {
+          "pearson": 0.915,
+          "spearman": 0.833
+        },
+        "semanas_comuns": 274,
+        "semanal": {
+          "pearson": 0.962,
+          "spearman": 0.949
+        }
+      },
+      {
+        "codigo_a": "261160605A",
+        "nome_a": "Nova Descoberta",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160606A",
+        "nome_b": "Dois Unidos",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.28,
+        "dias_comuns": 1676,
+        "diaria": {
+          "pearson": 0.956,
+          "spearman": 0.852
+        },
+        "semanas_comuns": 199,
+        "semanal": {
+          "pearson": 0.956,
+          "spearman": 0.911
+        }
+      },
+      {
+        "codigo_a": "261160605G",
+        "nome_a": "UR3 - Ibura",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160611G",
+        "nome_b": "UR12 - COHAB II",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.3,
+        "dias_comuns": 318,
+        "diaria": {
+          "pearson": 0.982,
+          "spearman": 0.936
+        },
+        "semanas_comuns": 37,
+        "semanal": {
+          "pearson": 0.995,
+          "spearman": 0.981
+        }
+      },
+      {
+        "codigo_a": "261160604A",
+        "nome_a": "Alto Bela Vista",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160605G",
+        "nome_b": "UR3 - Ibura",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.31,
+        "dias_comuns": 682,
+        "diaria": {
+          "pearson": 0.939,
+          "spearman": 0.894
+        },
+        "semanas_comuns": 81,
+        "semanal": {
+          "pearson": 0.996,
+          "spearman": 0.985
+        }
+      },
+      {
+        "codigo_a": "261160618A",
+        "nome_a": "Torreão",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160623A",
+        "nome_b": "Sede",
+        "rede_b": "APAC",
+        "dist_km": 1.31,
+        "dias_comuns": 2147,
+        "diaria": {
+          "pearson": 0.98,
+          "spearman": 0.918
+        },
+        "semanas_comuns": 247,
+        "semanal": {
+          "pearson": 0.989,
+          "spearman": 0.976
+        }
+      },
+      {
+        "codigo_a": "261160604A",
+        "nome_a": "Alto Bela Vista",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160611G",
+        "nome_b": "UR12 - COHAB II",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.38,
+        "dias_comuns": 254,
+        "diaria": {
+          "pearson": 0.94,
+          "spearman": 0.82
+        },
+        "semanas_comuns": 30,
+        "semanal": {
+          "pearson": 0.985,
+          "spearman": 0.994
+        }
+      },
+      {
+        "codigo_a": "261160604A",
+        "nome_a": "Alto Bela Vista",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160609G",
+        "nome_b": "UR12 - COHAB",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.42,
+        "dias_comuns": 234,
+        "diaria": {
+          "pearson": 0.783,
+          "spearman": 0.784
+        },
+        "semanas_comuns": 12,
+        "semanal": {
+          "pearson": 0.94,
+          "spearman": 0.959
+        }
+      },
+      {
+        "codigo_a": "261160610A",
+        "nome_a": "Alto Mandu",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160613A",
+        "nome_b": "Morro da Conceição",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.43,
+        "dias_comuns": 1619,
+        "diaria": {
+          "pearson": 0.974,
+          "spearman": 0.897
+        },
+        "semanas_comuns": 194,
+        "semanal": {
+          "pearson": 0.989,
+          "spearman": 0.974
+        }
+      },
+      {
+        "codigo_a": "261160606G",
+        "nome_a": "Lagoa Encantada - COHAB",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160609G",
+        "nome_b": "UR12 - COHAB",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.44,
+        "dias_comuns": 269,
+        "diaria": {
+          "pearson": 0.686,
+          "spearman": 0.737
+        },
+        "semanas_comuns": 15,
+        "semanal": {
+          "pearson": 0.691,
+          "spearman": 0.656
+        }
+      },
+      {
+        "codigo_a": "261160608A",
+        "nome_a": "Corrego Jenipapo",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160612A",
+        "nome_b": "Guabiraba",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.44,
+        "dias_comuns": 597,
+        "diaria": {
+          "pearson": 0.943,
+          "spearman": 0.898
+        },
+        "semanas_comuns": 85,
+        "semanal": {
+          "pearson": 0.964,
+          "spearman": 0.971
+        }
+      },
+      {
+        "codigo_a": "261160604A",
+        "nome_a": "Alto Bela Vista",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160615A",
+        "nome_b": "Ibura",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.5,
+        "dias_comuns": 2005,
+        "diaria": {
+          "pearson": 0.959,
+          "spearman": 0.894
+        },
+        "semanas_comuns": 239,
+        "semanal": {
+          "pearson": 0.936,
+          "spearman": 0.952
+        }
+      },
+      {
+        "codigo_a": "261160605A",
+        "nome_a": "Nova Descoberta",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160610G",
+        "nome_b": "Nova Descoberta",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.52,
+        "dias_comuns": 319,
+        "diaria": {
+          "pearson": 0.973,
+          "spearman": 0.868
+        },
+        "semanas_comuns": 22,
+        "semanal": {
+          "pearson": 0.963,
+          "spearman": 0.962
+        }
+      },
+      {
+        "codigo_a": "261160606A",
+        "nome_a": "Dois Unidos",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160616G",
+        "nome_b": "COMPAZ - Alto Sta. Terezinha",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.59,
+        "dias_comuns": 178,
+        "diaria": {
+          "pearson": 0.965,
+          "spearman": 0.836
+        },
+        "semanas_comuns": 16,
+        "semanal": {
+          "pearson": 0.973,
+          "spearman": 0.982
+        }
+      },
+      {
+        "codigo_a": "261160613A",
+        "nome_a": "Morro da Conceição",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160616G",
+        "nome_b": "COMPAZ - Alto Sta. Terezinha",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.73,
+        "dias_comuns": 182,
+        "diaria": {
+          "pearson": 0.809,
+          "spearman": 0.58
+        },
+        "semanas_comuns": 13,
+        "semanal": {
+          "pearson": 0.978,
+          "spearman": 0.765
+        }
+      },
+      {
+        "codigo_a": "261160604V",
+        "nome_a": "Alto da Brasileira",
+        "rede_a": "APAC",
+        "codigo_b": "261160605A",
+        "nome_b": "Nova Descoberta",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.74,
+        "dias_comuns": 2344,
+        "diaria": {
+          "pearson": 0.901,
+          "spearman": 0.789
+        },
+        "semanas_comuns": 269,
+        "semanal": {
+          "pearson": 0.951,
+          "spearman": 0.936
+        }
+      },
+      {
+        "codigo_a": "261160603A",
+        "nome_a": "Dois Irmãos",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160608A",
+        "nome_b": "Corrego Jenipapo",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.75,
+        "dias_comuns": 1737,
+        "diaria": {
+          "pearson": 0.96,
+          "spearman": 0.892
+        },
+        "semanas_comuns": 220,
+        "semanal": {
+          "pearson": 0.982,
+          "spearman": 0.962
+        }
+      },
+      {
+        "codigo_a": "261160605A",
+        "nome_a": "Nova Descoberta",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160615G",
+        "nome_b": "COMPESA - Alto da Brasileira",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.8,
+        "dias_comuns": 59,
+        "diaria": {
+          "pearson": 0.926,
+          "spearman": 0.827
+        },
+        "semanas_comuns": 8,
+        "semanal": {
+          "pearson": 0.958,
+          "spearman": 0.69
+        }
+      },
+      {
+        "codigo_a": "261160605G",
+        "nome_a": "UR3 - Ibura",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160609G",
+        "nome_b": "UR12 - COHAB",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.84,
+        "dias_comuns": 278,
+        "diaria": {
+          "pearson": 0.562,
+          "spearman": 0.611
+        },
+        "semanas_comuns": 14,
+        "semanal": {
+          "pearson": 0.643,
+          "spearman": 0.649
+        }
+      },
+      {
+        "codigo_a": "261160605A",
+        "nome_a": "Nova Descoberta",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160608A",
+        "nome_b": "Corrego Jenipapo",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.93,
+        "dias_comuns": 1368,
+        "diaria": {
+          "pearson": 0.942,
+          "spearman": 0.853
+        },
+        "semanas_comuns": 160,
+        "semanal": {
+          "pearson": 0.935,
+          "spearman": 0.919
+        }
+      },
+      {
+        "codigo_a": "261160605A",
+        "nome_a": "Nova Descoberta",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160613A",
+        "nome_b": "Morro da Conceição",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.95,
+        "dias_comuns": 1448,
+        "diaria": {
+          "pearson": 0.956,
+          "spearman": 0.834
+        },
+        "semanas_comuns": 157,
+        "semanal": {
+          "pearson": 0.974,
+          "spearman": 0.932
+        }
+      },
+      {
+        "codigo_a": "261160605A",
+        "nome_a": "Nova Descoberta",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160616G",
+        "nome_b": "COMPAZ - Alto Sta. Terezinha",
+        "rede_b": "CEMADEN",
+        "dist_km": 1.98,
+        "dias_comuns": 686,
+        "diaria": {
+          "pearson": 0.969,
+          "spearman": 0.904
+        },
+        "semanas_comuns": 94,
+        "semanal": {
+          "pearson": 0.981,
+          "spearman": 0.978
+        }
+      },
+      {
+        "codigo_a": "261160603A",
+        "nome_a": "Dois Irmãos",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160604G",
+        "nome_b": "Barreira",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.04,
+        "dias_comuns": 263,
+        "diaria": {
+          "pearson": 0.936,
+          "spearman": 0.859
+        },
+        "semanas_comuns": 21,
+        "semanal": {
+          "pearson": 0.965,
+          "spearman": 0.867
+        }
+      },
+      {
+        "codigo_a": "261160605A",
+        "nome_a": "Nova Descoberta",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160612A",
+        "nome_b": "Guabiraba",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.04,
+        "dias_comuns": 1068,
+        "diaria": {
+          "pearson": 0.957,
+          "spearman": 0.899
+        },
+        "semanas_comuns": 146,
+        "semanal": {
+          "pearson": 0.948,
+          "spearman": 0.959
+        }
+      },
+      {
+        "codigo_a": "261160613G",
+        "nome_a": "COMPESA - Alto da Esperança",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160616G",
+        "nome_b": "COMPAZ - Alto Sta. Terezinha",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.04,
+        "dias_comuns": 52,
+        "diaria": {
+          "pearson": 0.976,
+          "spearman": 0.788
+        },
+        "semanas_comuns": 7,
+        "semanal": {
+          "pearson": 0.982,
+          "spearman": 0.901
+        }
+      },
+      {
+        "codigo_a": "261160608A",
+        "nome_a": "Corrego Jenipapo",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160610A",
+        "nome_b": "Alto Mandu",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.13,
+        "dias_comuns": 1463,
+        "diaria": {
+          "pearson": 0.955,
+          "spearman": 0.895
+        },
+        "semanas_comuns": 171,
+        "semanal": {
+          "pearson": 0.983,
+          "spearman": 0.956
+        }
+      },
+      {
+        "codigo_a": "261160601A",
+        "nome_a": "Varzea",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160604G",
+        "nome_b": "Barreira",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.14,
+        "dias_comuns": 379,
+        "diaria": {
+          "pearson": 0.939,
+          "spearman": 0.853
+        },
+        "semanas_comuns": 31,
+        "semanal": {
+          "pearson": 0.985,
+          "spearman": 0.843
+        }
+      },
+      {
+        "codigo_a": "261160604V",
+        "nome_a": "Alto da Brasileira",
+        "rede_a": "APAC",
+        "codigo_b": "261160613G",
+        "nome_b": "COMPESA - Alto da Esperança",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.21,
+        "dias_comuns": 50,
+        "diaria": {
+          "pearson": 0.927,
+          "spearman": 0.601
+        },
+        "semanas_comuns": 6,
+        "semanal": {
+          "pearson": 0.994,
+          "spearman": 0.943
+        }
+      },
+      {
+        "codigo_a": "261160603G",
+        "nome_a": "Brega e Chique",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160604G",
+        "nome_b": "Barreira",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.23,
+        "dias_comuns": 283,
+        "diaria": {
+          "pearson": 0.951,
+          "spearman": 0.871
+        },
+        "semanas_comuns": 16,
+        "semanal": {
+          "pearson": 0.976,
+          "spearman": 0.817
+        }
+      },
+      {
+        "codigo_a": "261160618A",
+        "nome_a": "Torreão",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160620A",
+        "nome_b": "Porto",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.24,
+        "dias_comuns": 2624,
+        "diaria": {
+          "pearson": 0.942,
+          "spearman": 0.852
+        },
+        "semanas_comuns": 320,
+        "semanal": {
+          "pearson": 0.965,
+          "spearman": 0.946
+        }
+      },
+      {
+        "codigo_a": "261160603A",
+        "nome_a": "Dois Irmãos",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160615G",
+        "nome_b": "COMPESA - Alto da Brasileira",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.28,
+        "dias_comuns": 59,
+        "diaria": {
+          "pearson": 0.904,
+          "spearman": 0.757
+        },
+        "semanas_comuns": 8,
+        "semanal": {
+          "pearson": 0.93,
+          "spearman": 0.571
+        }
+      },
+      {
+        "codigo_a": "261160613G",
+        "nome_a": "COMPESA - Alto da Esperança",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160615G",
+        "nome_b": "COMPESA - Alto da Brasileira",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.28,
+        "dias_comuns": 52,
+        "diaria": {
+          "pearson": 0.983,
+          "spearman": 0.896
+        },
+        "semanas_comuns": 7,
+        "semanal": {
+          "pearson": 0.995,
+          "spearman": 0.667
+        }
+      },
+      {
+        "codigo_a": "261160603A",
+        "nome_a": "Dois Irmãos",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160610A",
+        "nome_b": "Alto Mandu",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.3,
+        "dias_comuns": 1917,
+        "diaria": {
+          "pearson": 0.966,
+          "spearman": 0.909
+        },
+        "semanas_comuns": 240,
+        "semanal": {
+          "pearson": 0.989,
+          "spearman": 0.981
+        }
+      },
+      {
+        "codigo_a": "261160601A",
+        "nome_a": "Varzea",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160616A",
+        "nome_b": "Várzea",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.34,
+        "dias_comuns": 683,
+        "diaria": {
+          "pearson": 0.973,
+          "spearman": 0.912
+        },
+        "semanas_comuns": 94,
+        "semanal": {
+          "pearson": 0.986,
+          "spearman": 0.97
+        }
+      },
+      {
+        "codigo_a": "261160603A",
+        "nome_a": "Dois Irmãos",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160604V",
+        "nome_b": "Alto da Brasileira",
+        "rede_b": "APAC",
+        "dist_km": 2.34,
+        "dias_comuns": 2392,
+        "diaria": {
+          "pearson": 0.869,
+          "spearman": 0.768
+        },
+        "semanas_comuns": 283,
+        "semanal": {
+          "pearson": 0.945,
+          "spearman": 0.947
+        }
+      },
+      {
+        "codigo_a": "261160614A",
+        "nome_a": "Campina do Barreto",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160616G",
+        "nome_b": "COMPAZ - Alto Sta. Terezinha",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.44,
+        "dias_comuns": 508,
+        "diaria": {
+          "pearson": 0.926,
+          "spearman": 0.885
+        },
+        "semanas_comuns": 68,
+        "semanal": {
+          "pearson": 0.965,
+          "spearman": 0.976
+        }
+      },
+      {
+        "codigo_a": "261160603A",
+        "nome_a": "Dois Irmãos",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160610G",
+        "nome_b": "Nova Descoberta",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.47,
+        "dias_comuns": 222,
+        "diaria": {
+          "pearson": 0.922,
+          "spearman": 0.834
+        },
+        "semanas_comuns": 16,
+        "semanal": {
+          "pearson": 0.986,
+          "spearman": 0.882
+        }
+      },
+      {
+        "codigo_a": "261160613A",
+        "nome_a": "Morro da Conceição",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160613G",
+        "nome_b": "COMPESA - Alto da Esperança",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.56,
+        "dias_comuns": 52,
+        "diaria": {
+          "pearson": 0.966,
+          "spearman": 0.774
+        },
+        "semanas_comuns": 7,
+        "semanal": {
+          "pearson": 0.991,
+          "spearman": 0.991
+        }
+      },
+      {
+        "codigo_a": "261160606A",
+        "nome_a": "Dois Unidos",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160607A",
+        "nome_b": "Alto do Céu",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.57,
+        "dias_comuns": 1346,
+        "diaria": {
+          "pearson": 0.947,
+          "spearman": 0.87
+        },
+        "semanas_comuns": 169,
+        "semanal": {
+          "pearson": 0.968,
+          "spearman": 0.88
+        }
+      },
+      {
+        "codigo_a": "261160605A",
+        "nome_a": "Nova Descoberta",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160610A",
+        "nome_b": "Alto Mandu",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.59,
+        "dias_comuns": 1477,
+        "diaria": {
+          "pearson": 0.932,
+          "spearman": 0.843
+        },
+        "semanas_comuns": 174,
+        "semanal": {
+          "pearson": 0.952,
+          "spearman": 0.937
+        }
+      },
+      {
+        "codigo_a": "261160606A",
+        "nome_a": "Dois Unidos",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160613A",
+        "nome_b": "Morro da Conceição",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.59,
+        "dias_comuns": 1493,
+        "diaria": {
+          "pearson": 0.935,
+          "spearman": 0.828
+        },
+        "semanas_comuns": 173,
+        "semanal": {
+          "pearson": 0.97,
+          "spearman": 0.922
+        }
+      },
+      {
+        "codigo_a": "261160620A",
+        "nome_a": "Porto",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160622A",
+        "nome_b": "Boa Vista",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.59,
+        "dias_comuns": 1700,
+        "diaria": {
+          "pearson": 0.942,
+          "spearman": 0.834
+        },
+        "semanas_comuns": 212,
+        "semanal": {
+          "pearson": 0.964,
+          "spearman": 0.951
+        }
+      },
+      {
+        "codigo_a": "261160605G",
+        "nome_a": "UR3 - Ibura",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160621A",
+        "nome_b": "Areias",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.6,
+        "dias_comuns": 1039,
+        "diaria": {
+          "pearson": 0.957,
+          "spearman": 0.874
+        },
+        "semanas_comuns": 124,
+        "semanal": {
+          "pearson": 0.984,
+          "spearman": 0.957
+        }
+      },
+      {
+        "codigo_a": "261160603A",
+        "nome_a": "Dois Irmãos",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160616A",
+        "nome_b": "Várzea",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.63,
+        "dias_comuns": 683,
+        "diaria": {
+          "pearson": 0.93,
+          "spearman": 0.85
+        },
+        "semanas_comuns": 94,
+        "semanal": {
+          "pearson": 0.983,
+          "spearman": 0.973
+        }
+      },
+      {
+        "codigo_a": "261160610A",
+        "nome_a": "Alto Mandu",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160610G",
+        "nome_b": "Nova Descoberta",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.64,
+        "dias_comuns": 156,
+        "diaria": {
+          "pearson": 0.988,
+          "spearman": 0.87
+        },
+        "semanas_comuns": 5,
+        "semanal": {
+          "pearson": -0.231,
+          "spearman": -0.3
+        }
+      },
+      {
+        "codigo_a": "261160607A",
+        "nome_a": "Alto do Céu",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160613A",
+        "nome_b": "Morro da Conceição",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.65,
+        "dias_comuns": 914,
+        "diaria": {
+          "pearson": 0.943,
+          "spearman": 0.87
+        },
+        "semanas_comuns": 108,
+        "semanal": {
+          "pearson": 0.98,
+          "spearman": 0.952
+        }
+      },
+      {
+        "codigo_a": "261160608A",
+        "nome_a": "Corrego Jenipapo",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160613A",
+        "nome_b": "Morro da Conceição",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.67,
+        "dias_comuns": 1405,
+        "diaria": {
+          "pearson": 0.959,
+          "spearman": 0.888
+        },
+        "semanas_comuns": 165,
+        "semanal": {
+          "pearson": 0.986,
+          "spearman": 0.961
+        }
+      },
+      {
+        "codigo_a": "261160609A",
+        "nome_a": "Imbiribeira",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160621A",
+        "nome_b": "Areias",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.67,
+        "dias_comuns": 2049,
+        "diaria": {
+          "pearson": 0.882,
+          "spearman": 0.799
+        },
+        "semanas_comuns": 242,
+        "semanal": {
+          "pearson": 0.874,
+          "spearman": 0.852
+        }
+      },
+      {
+        "codigo_a": "261160614A",
+        "nome_a": "Campina do Barreto",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160618A",
+        "nome_b": "Torreão",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.67,
+        "dias_comuns": 2554,
+        "diaria": {
+          "pearson": 0.943,
+          "spearman": 0.832
+        },
+        "semanas_comuns": 324,
+        "semanal": {
+          "pearson": 0.966,
+          "spearman": 0.95
+        }
+      },
+      {
+        "codigo_a": "261160606A",
+        "nome_a": "Dois Unidos",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160610G",
+        "nome_b": "Nova Descoberta",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.68,
+        "dias_comuns": 296,
+        "diaria": {
+          "pearson": 0.943,
+          "spearman": 0.882
+        },
+        "semanas_comuns": 18,
+        "semanal": {
+          "pearson": 0.908,
+          "spearman": 0.915
+        }
+      },
+      {
+        "codigo_a": "261160601V",
+        "nome_a": "Recife (Várzea)",
+        "rede_a": "APAC",
+        "codigo_b": "261160619A",
+        "nome_b": "San Martin",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.69,
+        "dias_comuns": 1388,
+        "diaria": {
+          "pearson": 0.91,
+          "spearman": 0.8
+        },
+        "semanas_comuns": 175,
+        "semanal": {
+          "pearson": 0.966,
+          "spearman": 0.953
+        }
+      },
+      {
+        "codigo_a": "261160604V",
+        "nome_a": "Alto da Brasileira",
+        "rede_a": "APAC",
+        "codigo_b": "261160610A",
+        "nome_b": "Alto Mandu",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.69,
+        "dias_comuns": 2172,
+        "diaria": {
+          "pearson": 0.863,
+          "spearman": 0.783
+        },
+        "semanas_comuns": 254,
+        "semanal": {
+          "pearson": 0.94,
+          "spearman": 0.935
+        }
+      },
+      {
+        "codigo_a": "261160610A",
+        "nome_a": "Alto Mandu",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160615G",
+        "nome_b": "COMPESA - Alto da Brasileira",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.69,
+        "dias_comuns": 59,
+        "diaria": {
+          "pearson": 0.895,
+          "spearman": 0.729
+        },
+        "semanas_comuns": 8,
+        "semanal": {
+          "pearson": 0.929,
+          "spearman": 0.524
+        }
+      },
+      {
+        "codigo_a": "261160604A",
+        "nome_a": "Alto Bela Vista",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160621A",
+        "nome_b": "Areias",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.76,
+        "dias_comuns": 2064,
+        "diaria": {
+          "pearson": 0.928,
+          "spearman": 0.829
+        },
+        "semanas_comuns": 272,
+        "semanal": {
+          "pearson": 0.943,
+          "spearman": 0.932
+        }
+      },
+      {
+        "codigo_a": "261160610G",
+        "nome_a": "Nova Descoberta",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160613A",
+        "nome_b": "Morro da Conceição",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.82,
+        "dias_comuns": 338,
+        "diaria": {
+          "pearson": 0.954,
+          "spearman": 0.858
+        },
+        "semanas_comuns": 24,
+        "semanal": {
+          "pearson": 0.935,
+          "spearman": 0.938
+        }
+      },
+      {
+        "codigo_a": "261160604V",
+        "nome_a": "Alto da Brasileira",
+        "rede_a": "APAC",
+        "codigo_b": "261160606A",
+        "nome_b": "Dois Unidos",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.89,
+        "dias_comuns": 2117,
+        "diaria": {
+          "pearson": 0.873,
+          "spearman": 0.745
+        },
+        "semanas_comuns": 237,
+        "semanal": {
+          "pearson": 0.943,
+          "spearman": 0.911
+        }
+      },
+      {
+        "codigo_a": "261160607A",
+        "nome_a": "Alto do Céu",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160618A",
+        "nome_b": "Torreão",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.9,
+        "dias_comuns": 1301,
+        "diaria": {
+          "pearson": 0.95,
+          "spearman": 0.859
+        },
+        "semanas_comuns": 155,
+        "semanal": {
+          "pearson": 0.974,
+          "spearman": 0.955
+        }
+      },
+      {
+        "codigo_a": "261160606G",
+        "nome_a": "Lagoa Encantada - COHAB",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160621A",
+        "nome_b": "Areias",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.91,
+        "dias_comuns": 645,
+        "diaria": {
+          "pearson": 0.944,
+          "spearman": 0.827
+        },
+        "semanas_comuns": 56,
+        "semanal": {
+          "pearson": 0.973,
+          "spearman": 0.936
+        }
+      },
+      {
+        "codigo_a": "261160603A",
+        "nome_a": "Dois Irmãos",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160612A",
+        "nome_b": "Guabiraba",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.96,
+        "dias_comuns": 871,
+        "diaria": {
+          "pearson": 0.939,
+          "spearman": 0.826
+        },
+        "semanas_comuns": 120,
+        "semanal": {
+          "pearson": 0.972,
+          "spearman": 0.948
+        }
+      },
+      {
+        "codigo_a": "261160604V",
+        "nome_a": "Alto da Brasileira",
+        "rede_a": "APAC",
+        "codigo_b": "261160613A",
+        "nome_b": "Morro da Conceição",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.97,
+        "dias_comuns": 1831,
+        "diaria": {
+          "pearson": 0.915,
+          "spearman": 0.799
+        },
+        "semanas_comuns": 194,
+        "semanal": {
+          "pearson": 0.97,
+          "spearman": 0.927
+        }
+      },
+      {
+        "codigo_a": "261160606A",
+        "nome_a": "Dois Unidos",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160612A",
+        "nome_b": "Guabiraba",
+        "rede_b": "CEMADEN",
+        "dist_km": 2.97,
+        "dias_comuns": 690,
+        "diaria": {
+          "pearson": 0.935,
+          "spearman": 0.825
+        },
+        "semanas_comuns": 86,
+        "semanal": {
+          "pearson": 0.952,
+          "spearman": 0.879
+        }
+      },
+      {
+        "codigo_a": "261160613A",
+        "nome_a": "Morro da Conceição",
+        "rede_a": "CEMADEN",
+        "codigo_b": "261160615G",
+        "nome_b": "COMPESA - Alto da Brasileira",
+        "rede_b": "CEMADEN",
+        "dist_km": 3.0,
+        "dias_comuns": 59,
+        "diaria": {
+          "pearson": 0.919,
+          "spearman": 0.802
+        },
+        "semanas_comuns": 8,
+        "semanal": {
+          "pearson": 0.937,
+          "spearman": 0.548
+        }
+      }
+    ],
+    "correlacao_revisar_abaixo_de": 0.5,
+    "estacoes_vs_vizinhas": [
+      {
+        "codigo": "261160609G",
+        "pares": 5,
+        "pearson_diaria_mediana": 0.7,
+        "revisar": false
+      },
+      {
+        "codigo": "261160609A",
+        "pares": 1,
+        "pearson_diaria_mediana": 0.882,
+        "revisar": false
+      },
+      {
+        "codigo": "261160604V",
+        "pares": 10,
+        "pearson_diaria_mediana": 0.895,
+        "revisar": false
+      },
+      {
+        "codigo": "261160601V",
+        "pares": 1,
+        "pearson_diaria_mediana": 0.91,
+        "revisar": false
+      },
+      {
+        "codigo": "261160619A",
+        "pares": 1,
+        "pearson_diaria_mediana": 0.91,
+        "revisar": false
+      },
+      {
+        "codigo": "261160615G",
+        "pares": 6,
+        "pearson_diaria_mediana": 0.911,
+        "revisar": false
+      },
+      {
+        "codigo": "261160602V",
+        "pares": 3,
+        "pearson_diaria_mediana": 0.917,
+        "revisar": false
+      },
+      {
+        "codigo": "261160603A",
+        "pares": 8,
+        "pearson_diaria_mediana": 0.933,
+        "revisar": false
+      },
+      {
+        "codigo": "261160621A",
+        "pares": 4,
+        "pearson_diaria_mediana": 0.936,
+        "revisar": false
+      },
+      {
+        "codigo": "261160612A",
+        "pares": 5,
+        "pearson_diaria_mediana": 0.939,
+        "revisar": false
+      },
+      {
+        "codigo": "261160604G",
+        "pares": 3,
+        "pearson_diaria_mediana": 0.939,
+        "revisar": false
+      },
+      {
+        "codigo": "261160604A",
+        "pares": 7,
+        "pearson_diaria_mediana": 0.94,
+        "revisar": false
+      },
+      {
+        "codigo": "261160620A",
+        "pares": 4,
+        "pearson_diaria_mediana": 0.942,
+        "revisar": false
+      },
+      {
+        "codigo": "261160622A",
+        "pares": 1,
+        "pearson_diaria_mediana": 0.942,
+        "revisar": false
+      },
+      {
+        "codigo": "261160614A",
+        "pares": 3,
+        "pearson_diaria_mediana": 0.943,
+        "revisar": false
+      },
+      {
+        "codigo": "261160618A",
+        "pares": 5,
+        "pearson_diaria_mediana": 0.943,
+        "revisar": false
+      },
+      {
+        "codigo": "261160606A",
+        "pares": 7,
+        "pearson_diaria_mediana": 0.943,
+        "revisar": false
+      },
+      {
+        "codigo": "261160607A",
+        "pares": 4,
+        "pearson_diaria_mediana": 0.948,
+        "revisar": false
+      },
+      {
+        "codigo": "261160613A",
+        "pares": 10,
+        "pearson_diaria_mediana": 0.948,
+        "revisar": false
+      },
+      {
+        "codigo": "261160616A",
+        "pares": 2,
+        "pearson_diaria_mediana": 0.952,
+        "revisar": false
+      },
+      {
+        "codigo": "261160610G",
+        "pares": 7,
+        "pearson_diaria_mediana": 0.954,
+        "revisar": false
+      },
+      {
+        "codigo": "261160608A",
+        "pares": 7,
+        "pearson_diaria_mediana": 0.955,
+        "revisar": false
+      },
+      {
+        "codigo": "261160610A",
+        "pares": 7,
+        "pearson_diaria_mediana": 0.955,
+        "revisar": false
+      },
+      {
+        "codigo": "261160605A",
+        "pares": 10,
+        "pearson_diaria_mediana": 0.956,
+        "revisar": false
+      },
+      {
+        "codigo": "261160616G",
+        "pares": 5,
+        "pearson_diaria_mediana": 0.965,
+        "revisar": false
+      },
+      {
+        "codigo": "261160623A",
+        "pares": 3,
+        "pearson_diaria_mediana": 0.966,
+        "revisar": false
+      },
+      {
+        "codigo": "261160603G",
+        "pares": 2,
+        "pearson_diaria_mediana": 0.972,
+        "revisar": false
+      },
+      {
+        "codigo": "261160601A",
+        "pares": 3,
+        "pearson_diaria_mediana": 0.973,
+        "revisar": false
+      },
+      {
+        "codigo": "261160607G",
+        "pares": 5,
+        "pearson_diaria_mediana": 0.973,
+        "revisar": false
+      },
+      {
+        "codigo": "261160605G",
+        "pares": 7,
+        "pearson_diaria_mediana": 0.973,
+        "revisar": false
+      },
+      {
+        "codigo": "261160613G",
+        "pares": 5,
+        "pearson_diaria_mediana": 0.976,
+        "revisar": false
+      },
+      {
+        "codigo": "261160615A",
+        "pares": 6,
+        "pearson_diaria_mediana": 0.977,
+        "revisar": false
+      },
+      {
+        "codigo": "261160606G",
+        "pares": 7,
+        "pearson_diaria_mediana": 0.981,
+        "revisar": false
+      },
+      {
+        "codigo": "261160611G",
+        "pares": 4,
+        "pearson_diaria_mediana": 0.982,
+        "revisar": false
+      }
+    ]
+  }
+}
