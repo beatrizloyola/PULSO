@@ -40,6 +40,12 @@ backend/mlruns/
 
 # Dados brutos de cache (SINAN/dengue anuais) — não versionados (regeneráveis via build_sinan_historico.py)
 backend/app/data/cache/dengue_*.csv
+# Brutos de clima (regeneráveis via build_chuva_estacoes.py / build_temperatura_historica.py)
+backend/app/data/cache/apac_diario_*.html
+backend/app/data/cache/cemaden/
+backend/app/data/cache/cemaden_cadastro_estacoes.jsonp
+backend/app/data/cache/chuva_estacao_dia.csv
+backend/app/data/cache/openmeteo_temperatura_*.json
 
 # Env files
 .env

@@ -70,6 +70,31 @@ python scripts/build_sinan_historico.py
 Metodologia, colunas, filtros e limitações estão no
 [data card](app/data/sinan_bairro_se_data_card.md).
 
+## Chuva por estação e por DS (APAC + CEMADEN, 2016–2025)
+
+Gera o inventário de estações, a chuva estação × SE e DS × SE (Thiessen, com flag de
+semana incompleta) e o relatório de reconciliação APAC × CEMADEN. Os CSVs mensais do
+CEMADEN são baixados à mão (captcha) para `app/data/cache/cemaden/`; o script guarda só
+as linhas de Recife em `app/data/cemaden_recife/` (versionado), de onde lê a série.
+
+```bash
+cd backend
+python scripts/build_chuva_estacoes.py
+```
+
+Fontes, regra de precedência, definição de falha e limitações no
+[data card](app/data/chuva_estacoes_data_card.md).
+
+## Temperatura semanal (2016–2025)
+
+```bash
+cd backend
+python scripts/build_temperatura_historica.py
+```
+
+Gera `app/data/temperatura_se_2016_2025.csv` (média, média das máximas e máxima absoluta
+por SE) a partir do Open-Meteo. Ver o [data card](app/data/temperatura_se_data_card.md).
+
 ## Endpoints
 
 | Método | Rota | Conteúdo |

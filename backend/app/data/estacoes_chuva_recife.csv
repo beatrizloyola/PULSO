@@ -1,0 +1,37 @@
+codigo,nome,latitude,longitude,fonte_coordenada,rede,tipo,rotulo_apac,publicada_apac,publicada_cemaden,inicio,fim,dias_com_leitura,ds
+261160601A,Varzea,-8.036,-34.98,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,CEMADEN,True,True,2016-01-03,2025-07-12,1972,4
+261160601V,Recife (Várzea),-8.05,-34.917,"APAC, Atlas Climatológico de Pernambuco (normais 1991-2020), posto Recife (Várzea)",APAC,convencional,Convencional,True,False,2016-01-03,2024-06-04,2109,4
+261160602V,Recife (Codecipe / Santo Amaro),-8.044,-34.875,"APAC, Atlas Climatológico de Pernambuco (normais 1991-2020), posto Recife (Santo Amaro)",APAC,convencional,Convencional,True,False,2017-04-01,2025-05-21,2955,1
+261160603A,Dois Irmãos,-8.01838,-34.94706,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,CEMADEN,True,True,2016-01-03,2025-03-12,2488,3
+261160603G,Brega e Chique,-8.03805,-34.9793,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,geotecnica,CEMADEN,True,True,2019-10-02,2026-01-03,1338,4
+261160604A,Alto Bela Vista,-8.123583,-34.941528,Download CEMADEN (https://mapainterativo.cemaden.gov.br/download/download_form.php),CEMADEN,automatica,,False,True,2016-01-03,2023-07-21,2070,7
+261160604G,Barreira,-8.02422,-34.96462,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,geotecnica,,False,True,2019-10-02,2023-12-31,389,4
+261160604V,Alto da Brasileira,-8.001,-34.935,"APAC, Atlas Climatológico de Pernambuco (normais 1991-2020), posto Recife (Alto da Brasileira)",APAC,convencional,Convencional,True,False,2016-01-03,2026-01-03,3507,8
+261160605A,Nova Descoberta,-8.00192,-34.91928,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,APAC,True,True,2016-05-04,2026-01-03,2413,7
+261160605G,UR3 - Ibura,-8.114365,-34.949029,Download CEMADEN (https://mapainterativo.cemaden.gov.br/download/download_form.php),CEMADEN,geotecnica,,False,True,2019-10-02,2023-10-30,1055,7
+261160606A,Dois Unidos,-7.99628,-34.90917,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,CEMADEN,True,True,2016-01-03,2025-01-24,2219,2
+261160606G,Lagoa Encantada - COHAB,-8.11784,-34.95014,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,geotecnica,,False,True,2019-10-02,2023-12-31,650,7
+261160607A,Alto do Céu,-8.012,-34.892,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,,False,True,2016-04-29,2023-10-02,1393,2
+261160607G,UR2 - COHAB,-8.122034,-34.952593,Download CEMADEN (https://mapainterativo.cemaden.gov.br/download/download_form.php),CEMADEN,geotecnica,,False,True,2019-10-02,2020-09-16,290,7
+261160608A,Corrego Jenipapo,-8.007,-34.936,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,,False,True,2016-01-03,2023-08-01,1876,8
+261160608G,Manassu,-8.08619,-35.028697,Download CEMADEN (https://mapainterativo.cemaden.gov.br/download/download_form.php),CEMADEN,geotecnica,,False,True,2019-10-03,2019-12-31,65,4
+261160609A,Imbiribeira,-8.12098,-34.91398,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,CEMADEN,True,True,2016-01-03,2026-01-03,2401,6
+261160609G,UR12 - COHAB,-8.130699,-34.952228,Download CEMADEN (https://mapainterativo.cemaden.gov.br/download/download_form.php),CEMADEN,geotecnica,,False,True,2019-10-02,2023-10-30,319,7
+261160610A,Alto Mandu,-8.024,-34.927,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,CEMADEN,True,True,2016-01-03,2025-09-17,2262,3
+261160610G,Nova Descoberta,-8.000933,-34.933022,Download CEMADEN (https://mapainterativo.cemaden.gov.br/download/download_form.php),CEMADEN,geotecnica,,False,True,2019-10-02,2020-11-24,349,8
+261160611G,UR12 - COHAB II,-8.125,-34.954,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,geotecnica,,False,True,2022-01-02,2023-12-31,379,7
+261160612A,Guabiraba,-7.994,-34.936,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,APAC,True,True,2016-01-03,2026-01-03,1215,8
+261160613A,Morro da Conceição,-8.019,-34.915,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,CEMADEN,True,True,2016-01-03,2026-01-03,1934,8
+261160613G,COMPESA - Alto da Esperança,-7.99584,-34.91562,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,geotecnica,,False,True,2023-11-10,2023-12-31,52,2
+261160614A,Campina do Barreto,-8.013,-34.881,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,CEMADEN,True,True,2016-01-03,2025-12-31,2742,2
+261160615A,Ibura,-8.122,-34.955,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,,False,True,2016-01-03,2023-09-09,2327,7
+261160615G,COMPESA - Alto da Brasileira,-8.00125,-34.93557,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,geotecnica,,False,True,2023-11-03,2023-12-31,59,8
+261160616A,Várzea,-8.039,-34.959,Download CEMADEN (https://mapainterativo.cemaden.gov.br/download/download_form.php),CEMADEN,automatica,,False,True,2016-01-03,2018-05-03,684,4
+261160616G,COMPAZ - Alto Sta. Terezinha,-8.00919,-34.90282,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,geotecnica,CEMADEN,True,True,2023-11-02,2026-01-03,691,2
+261160617A,Pina,-8.099,-34.887,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,CEMADEN,True,True,2016-01-03,2026-01-03,2895,6
+261160618A,Torreão,-8.037,-34.884,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,CEMADEN,True,True,2016-01-03,2026-01-03,2977,2
+261160619A,San Martin,-8.073,-34.925,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,CEMADEN,True,True,2016-01-03,2024-09-09,1807,5
+261160620A,Porto,-8.054,-34.873,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,CEMADEN,True,True,2016-01-03,2026-01-03,2819,1
+261160621A,Areias,-8.102,-34.929,Cadastro CEMADEN (https://resources.cemaden.gov.br/dados/311_24.json),CEMADEN,automatica,CEMADEN,True,True,2016-01-03,2024-12-22,2786,5
+261160622A,Boa Vista,-8.069,-34.891,Download CEMADEN (https://mapainterativo.cemaden.gov.br/download/download_form.php),CEMADEN,automatica,,False,True,2016-01-03,2020-11-13,1741,1
+261160623A,Sede,-8.04491,-34.87518,"ANA HidroInventário, estação 834020 (APAC-PE, Recife)",APAC,automatica,APAC,True,True,2017-11-13,2025-12-19,2377,1

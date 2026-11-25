@@ -109,14 +109,7 @@ def eligible_weeks(weather, case_weeks):
     return eligible
 
 
-def download_temperatures(session, start, end):
-    response = session.get(config.OPENMETEO_ARCHIVE_URL, params={
-        "latitude": config.RECIFE_LAT, "longitude": config.RECIFE_LON,
-        "start_date": start.isoformat(), "end_date": end.isoformat(),
-        "daily": "temperature_2m_mean,temperature_2m_max", "timezone": "America/Recife",
-    }, timeout=(10, 60))
-    response.raise_for_status()
-    payload = response.json()
+def parse_temperatures(payload, start, end):
     daily = payload["daily"]
     df = pd.DataFrame({"data": daily["time"], "temp_media": daily["temperature_2m_mean"],
                        "temp_max": daily["temperature_2m_max"]})
@@ -127,7 +120,18 @@ def download_temperatures(session, start, end):
         df[col] = pd.to_numeric(df[col], errors="raise")
         if not df[col].dropna().between(-20, 60).all():
             raise ValueError("Temperatura: valor fora do intervalo válido")
-    return df, payload
+    return df
+
+
+def download_temperatures(session, start, end):
+    response = session.get(config.OPENMETEO_ARCHIVE_URL, params={
+        "latitude": config.RECIFE_LAT, "longitude": config.RECIFE_LON,
+        "start_date": start.isoformat(), "end_date": end.isoformat(),
+        "daily": "temperature_2m_mean,temperature_2m_max", "timezone": "America/Recife",
+    }, timeout=(10, 60))
+    response.raise_for_status()
+    payload = response.json()
+    return parse_temperatures(payload, start, end), payload
 
 
 def discover_resources(package):

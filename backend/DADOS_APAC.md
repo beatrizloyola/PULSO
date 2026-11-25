@@ -15,6 +15,9 @@ Ano/Mês e colunas 01–31. São preservados os números decimais brasileiros e
 as leituras de zero. `-` é uma leitura ausente. Formato inesperado, precipitação
 inválida ou valores conflitantes para estação/data interrompem a publicação.
 As estações são as publicadas pela APAC, incluindo redes parceiras, como CEMADEN.
+A série histórica por estação e por Distrito Sanitário (2016–2025), com o CEMADEN
+integrado, é gerada à parte por `scripts/build_chuva_estacoes.py`
+([data card](app/data/chuva_estacoes_data_card.md)); ela ainda não alimenta o modelo.
 
 A série de Recife é a **média das estações com leitura válida em cada dia**,
 seguida da soma dos sete dias da semana epidemiológica CDC. Isso representa o
