@@ -5,7 +5,7 @@ from flask_cors import CORS
 
 from app import config
 from app.services import model as model_svc
-from app.services import forecast_serving, data_sync
+from app.services import forecast_serving, data_sync, socioterritorial
 
 
 # Carregar GeoJSON dos bairros do ESIG (polígonos reais) em memória no startup
@@ -62,13 +62,22 @@ def health():
         "modelo_carregado": run_id is not None,
         "modelo_run_id": run_id,
         "bairros_lookup": lookup_ok,
+        "idh_disponivel": socioterritorial.disponivel(),
     })
 
 @app.route("/bairros")
 def listar_bairros():
     with open(config.BAIRROS_LOOKUP_FILE, "r", encoding="utf-8") as f:
         bairros = json.load(f)
-    return jsonify({"total": len(bairros), "bairros": bairros})
+    for bairro in bairros:
+        idh = socioterritorial.por_bairro(bairro.get("nome"))
+        bairro["idh"] = idh["idh"] if idh else None
+        bairro["idh_udhs"] = idh["udhs"] if idh else 0
+    return jsonify({
+        "total": len(bairros),
+        "idh_referencia": socioterritorial.referencia(),
+        "bairros": bairros,
+    })
 
 @app.route("/prioridade", methods=["POST"])
 def calcular_prioridade():
@@ -96,6 +105,7 @@ def calcular_prioridade():
     percentual = round((soma_coberta / soma_total * 100), 1) if soma_total > 0 else 0.0
 
     def row_to_dict(r):
+        idh = socioterritorial.por_bairro(r["bairro_nome"]) or {}
         return {
             "rank": _to_int(r["rank"]),
             "bairro_id": r["bairro_id"],
@@ -104,6 +114,8 @@ def calcular_prioridade():
             "rpa": r["rpa"],
             "score": _to_float(r["score"]),
             "classificacao": r["classificacao"],
+            "idh": idh.get("idh"),
+            "idh_udhs": idh.get("udhs", 0),
             "componentes": {
                 "tendencia_epidemiologica": _to_float(r["tendencia_epidemiologica"]),
                 "condicoes_climaticas": _to_float(r["condicoes_climaticas"]),
@@ -127,6 +139,7 @@ def calcular_prioridade():
         "semanas_disponiveis": meta["semanas_disponiveis"],
         "dados": meta["dados"],
         "fontes": {"clima": meta["fonte_clima"], "casos": meta["fonte_casos"]},
+        "idh_referencia": socioterritorial.referencia(),
         "validacao": data_sync.read_json(config.FORECAST_META_FILE).get("backtest", {}).get("metrics", {}),
         "semana_cod": meta["semana_cod"],
         "semana_alvo_cod": meta["semana_alvo_cod"],
@@ -152,6 +165,7 @@ def detalhe_bairro(bairro_id):
 
     r = row.iloc[0]
     score = _to_float(r["score"])
+    idh = socioterritorial.por_bairro(r["bairro_nome"]) or {}
     return jsonify({
         "bairro_id": bairro_id,
         "bairro_nome": r["bairro_nome"],
@@ -159,6 +173,9 @@ def detalhe_bairro(bairro_id):
         "rpa": r["rpa"],
         "score": score,
         "classificacao": model_svc.classificar_prioridade(score),
+        "idh": idh.get("idh"),
+        "idh_udhs": idh.get("udhs", 0),
+        "idh_referencia": socioterritorial.referencia(),
         "componentes": {
             "tendencia_epidemiologica": _to_float(r["tendencia_epidemiologica"]),
             "condicoes_climaticas": _to_float(r["condicoes_climaticas"]),

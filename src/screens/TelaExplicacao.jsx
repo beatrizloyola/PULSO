@@ -37,12 +37,15 @@ const EVOLUCAO_MOCK = [
 ];
 
 export default function TelaExplicacao() {
-  const { territoriosOrdenados, territorioSelecionado, irPara } = usePulso();
+  const { territoriosOrdenados, territorioSelecionado, irPara, idhReferencia } = usePulso();
   const territorio =
     territoriosOrdenados.find((t) => t.nome?.toUpperCase() === territorioSelecionado?.toUpperCase()) ??
     territoriosOrdenados[0];
 
   if (!territorio) return null;
+
+  const idhAno = idhReferencia?.ano ?? 2010;
+  const defasagemAnos = Math.max(0, new Date().getFullYear() - idhAno);
 
   const componentes = [
     { chave: "tendenciaEpidemiologica", valor: territorio.tendenciaEpidemiologica },
@@ -108,6 +111,29 @@ export default function TelaExplicacao() {
           );
         })}
       </div>
+
+      {/* Contexto socioterritorial — referência, não componente do score */}
+      {territorio.idh != null && (
+        <div className="card contexto-idh">
+          <div className="contexto-idh__topo">
+            <div>
+              <div className="contexto-idh__titulo">IDH do bairro — Atlas Brasil</div>
+              <div className="contexto-idh__fonte">
+                {territorio.idhUdhCount > 0 &&
+                  `${territorio.idhUdhCount} ${territorio.idhUdhCount === 1 ? "UDH" : "UDHs"} · `}
+                Censo {idhAno} · defasagem de {defasagemAnos} anos
+              </div>
+            </div>
+            <span className="contexto-idh__badge">Contexto — não entra no score</span>
+          </div>
+          <div className="contexto-idh__valor">{territorio.idh.toFixed(3)}</div>
+          <p className="contexto-idh__descricao">
+            IDHM das Unidades de Desenvolvimento Humano (UDHs) que compõem o
+            bairro, ponderado pela população. É um retrato do Censo {idhAno}; serve
+            para analisar associação com a incidência, não para medir a condição atual.
+          </p>
+        </div>
+      )}
 
       {/* Barras de contribuição + Evolução */}
       <div className="visao-geral__grid">
