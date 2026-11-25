@@ -1,0 +1,41 @@
+{
+  "gerado_em": "2026-11-25T17:15:17.877471+00:00",
+  "fonte": {
+    "nome": "Open-Meteo Historical Weather API (reanálise ERA5/ERA5-Land)",
+    "url": "https://archive-api.open-meteo.com/v1/archive",
+    "parametros": {
+      "latitude": -8.05,
+      "longitude": -34.88,
+      "daily": "temperature_2m_mean,temperature_2m_max",
+      "timezone": "America/Recife",
+      "start_date": "2016-01-03",
+      "end_date": "2026-01-03"
+    },
+    "ponto_grade": {
+      "latitude": -8.049209,
+      "longitude": -34.923065,
+      "elevation": 3.0
+    },
+    "unidades": {
+      "time": "iso8601",
+      "temperature_2m_mean": "°C",
+      "temperature_2m_max": "°C"
+    },
+    "arquivo_cache": "openmeteo_temperatura_2016-01-03_2026-01-03.json",
+    "sha256": "1e14bae7983b43d778b34c861b651f0f46dca722965e8465d92752ce3219ea4b",
+    "baixado_em": "2026-11-25T17:15:17.846606+00:00",
+    "atribuicao": "Weather data by Open-Meteo.com (CC BY 4.0)"
+  },
+  "cobertura": {
+    "semana_min": 201601,
+    "semana_max": 202553,
+    "semanas": 522,
+    "semanas_incompletas": 0,
+    "dias_sem_valor": 0
+  },
+  "definicoes": {
+    "temp_media": "média das temperaturas médias diárias (°C)",
+    "temp_max": "média das máximas diárias (°C), mesma definição do modelo",
+    "temp_max_abs": "maior máxima diária da semana (°C)"
+  }
+}

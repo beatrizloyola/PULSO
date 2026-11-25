@@ -85,6 +85,16 @@ python scripts/build_chuva_estacoes.py
 Fontes, regra de precedência, definição de falha e limitações no
 [data card](app/data/chuva_estacoes_data_card.md).
 
+## Temperatura semanal (2016–2025)
+
+```bash
+cd backend
+python scripts/build_temperatura_historica.py
+```
+
+Gera `app/data/temperatura_se_2016_2025.csv` (média, média das máximas e máxima absoluta
+por SE) a partir do Open-Meteo. Ver o [data card](app/data/temperatura_se_data_card.md).
+
 ## Endpoints
 
 | Método | Rota | Conteúdo |
