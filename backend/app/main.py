@@ -6,6 +6,7 @@ from flask_cors import CORS
 from app import config
 from app.services import model as model_svc
 from app.services import forecast_serving, data_sync, socioterritorial
+from app.shared.territorio import normalizar_nome_bairro, todos_territorios
 
 
 # Carregar GeoJSON dos bairros do ESIG (polígonos reais) em memória no startup
@@ -49,6 +50,59 @@ def _to_float(val):
 
 def _to_int(val):
     return int(val) if val is not None else 0
+
+
+_FATORES_COMPONENTES = (
+    ("condicoes_climaticas", "chuva_semanal", "Acúmulo de chuva nas últimas semanas"),
+    ("tendencia_epidemiologica", "tendencia_epidemiologica", "Tendência recente de casos prováveis no distrito"),
+    ("vulnerabilidade_territorial", "vulnerabilidade_territorial", "Vulnerabilidade socioambiental no território"),
+    ("historico", "historico_sazonal", "Histórico sazonal de transmissão no distrito"),
+)
+
+
+def _parse_horizonte(raw_value) -> int:
+    """Valida e converte o query param horizonte contra config.FORECAST_HORIZONS."""
+    if raw_value in (None, ""):
+        return 1
+    try:
+        horizonte = int(raw_value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError("Horizonte deve estar entre 1 e 4 semanas.") from exc
+    if horizonte not in config.FORECAST_HORIZONS:
+        raise ValueError("Horizonte deve estar entre 1 e 4 semanas.")
+    return horizonte
+
+
+def _derivar_fatores_ds(grupo) -> list[dict]:
+    """Deriva os principais fatores do distrito a partir dos componentes agregados."""
+    fatores = []
+    if not grupo.empty:
+        for col, fator, descricao in _FATORES_COMPONENTES:
+            if col not in grupo.columns:
+                continue
+            media = float(grupo[col].mean())
+            # Nos 4 componentes, valor alto = piora do risco (mais chuva, tendência
+            # de alta, mais vulnerabilidade, histórico ruim) — "impacto" reflete o
+            # efeito no risco do distrito, não se o valor em si é bom ou ruim.
+            if media >= 50:
+                impacto = "negativo"
+            elif media >= 25:
+                impacto = "neutro"
+            else:
+                impacto = "positivo"
+            fatores.append((media, {
+                "fator": fator,
+                "descricao": descricao,
+                "impacto": impacto,
+            }))
+    fatores.sort(key=lambda item: item[0], reverse=True)
+    if fatores:
+        return [item[1] for item in fatores[:3]]
+    return [{
+        "fator": "chuva_semanal",
+        "descricao": "Acúmulo de chuva nas últimas semanas",
+        "impacto": "neutro",
+    }]
 
 @app.route("/health")
 def health():
@@ -248,6 +302,69 @@ def mapa_prioridade():
             props["bairro"] = bairro_nome
     
     return jsonify(geojson)
+
+
+@app.route("/risco/distritos")
+def risco_distritos():
+    """Retorna risco agregado para os 8 Distritos Sanitários."""
+    semana_id = request.args.get("semana_id")
+    horizonte = _parse_horizonte(request.args.get("horizonte"))
+
+    df_features, meta = forecast_serving.build_prioridades(semana_id, horizon=horizonte)
+    territorios = todos_territorios()
+    rpa_por_ds = {t.ds: t.rpa for t in territorios}
+    ds_por_bairro = {t.bairro_normalizado: t.ds for t in territorios}
+
+    df = df_features.copy()
+    fallback_ds = df["ds"].astype(str) if "ds" in df.columns else [""] * len(df)
+    df["ds_canonico"] = [
+        ds_por_bairro.get(normalizar_nome_bairro(nome), fb)
+        for nome, fb in zip(df["bairro_nome"], fallback_ds)
+    ]
+
+    distritos = []
+    for ds in sorted(rpa_por_ds):
+        grupo = df[df["ds_canonico"] == ds]
+        casos_previstos = round(float(grupo["casos_previstos"].sum()), 1) if not grupo.empty else 0.0
+        score_ds = float(grupo["score"].mean()) if not grupo.empty else 0.0
+        nivel_risco = model_svc.classificar_prioridade(score_ds)["chave"]
+
+        top_bairros = grupo.sort_values(
+            ["casos_previstos", "score", "bairro_nome"],
+            ascending=[False, False, True],
+        ).head(3)
+        bairros_chave = [
+            {
+                "bairro_id": str(r["bairro_id"]),
+                "bairro_nome": str(r["bairro_nome"]),
+                "casos_previstos": round(_to_float(r["casos_previstos"]), 1),
+            }
+            for _, r in top_bairros.iterrows()
+        ]
+
+        distritos.append({
+            "ds": ds,
+            "rpa": rpa_por_ds[ds],
+            "nivel_risco": nivel_risco,
+            "incidencia_prevista": None,
+            "casos_previstos": casos_previstos,
+            "bairros_chave": bairros_chave,
+            "fatores": _derivar_fatores_ds(grupo),
+        })
+
+    return jsonify({
+        "semana_id": f"{meta['semana_cod'] // 100}-W{meta['semana_cod'] % 100:02d}",
+        "semana_cod": meta["semana_cod"],
+        "semana_alvo_cod": meta["semana_alvo_cod"],
+        "horizonte": meta["horizonte"],
+        "modelo_status": "mock_agregado",
+        "cobertura_dados": {
+            "semanas_consolidadas": True,
+            "fontes_disponiveis": ["SINAN", "APAC", "Open-Meteo"],
+            "fontes_ausentes": ["Censo2022", "Ovitrampas", "Compesa"],
+        },
+        "distritos": distritos,
+    })
 
 
 if __name__ == "__main__":
