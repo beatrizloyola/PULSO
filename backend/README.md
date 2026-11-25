@@ -86,6 +86,20 @@ Informe `YYYY-Wnn` para consultar outra semana retornada em `semanas_disponiveis
 `horizonte` aceita 1 a 4. Semana sem cobertura retorna HTTP 400; ausência de um
 histórico suficiente retorna HTTP 503.
 
+## IDH por bairro (Atlas Brasil)
+
+`app/data/idh_atlas_2010.json` (gerado por `python -m scripts.build_idh_atlas`)
+traz o IDHM 2010 do Atlas Brasil, publicado por Unidade de Desenvolvimento
+Humano (UDH), agregado para os 94 bairros do Recife. É contexto
+socioeconômico — não é variável do modelo de previsão.
+
+**Limitação:** quando uma UDH abrange mais de um bairro, sua população é
+dividida igualmente entre eles e o mesmo IDH é repetido para todos — não é um
+valor exclusivo de cada bairro. O campo `udhs_compartilhadas` em cada entrada
+de `bairros` conta quantas das UDHs daquele bairro são compartilhadas dessa
+forma; vários bairros com esse campo > 0 vão exibir o mesmo IDH entre si
+(ex.: Santana, Poço e Casa Forte, que caem na mesma UDH).
+
 ## Variáveis de ambiente
 
 ```bash

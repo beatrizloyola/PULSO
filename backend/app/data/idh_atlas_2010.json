@@ -1,0 +1,2332 @@
+{
+  "fonte": "Atlas do Desenvolvimento Humano no Brasil (PNUD, Ipea e FJP)",
+  "url": "https://www.atlasbrasil.org.br/consulta/planilha",
+  "indicador": "IDHM — Índice de Desenvolvimento Humano Municipal (Censo 2010)",
+  "ano_referencia": 2010,
+  "agregacao": "IDHM 2010 das UDHs do Recife agregado por bairro com média ponderada pela população; quando a UDH abrange mais de um bairro, sua população é dividida igualmente entre eles.",
+  "cobertura": {
+    "udhs": 194,
+    "bairros": 94,
+    "populacao_udhs": 1537704
+  },
+  "bairros": {
+    "AFLITOS": {
+      "idh": 0.952,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "AFOGADOS": {
+      "idh": 0.7175,
+      "udhs": 8,
+      "udhs_compartilhadas": 2
+    },
+    "AGUA FRIA": {
+      "idh": 0.6899,
+      "udhs": 5,
+      "udhs_compartilhadas": 5
+    },
+    "ALTO DO MANDU": {
+      "idh": 0.76,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "ALTO JOSE BONIFACIO": {
+      "idh": 0.659,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "ALTO JOSE DO PINHO": {
+      "idh": 0.6656,
+      "udhs": 2,
+      "udhs_compartilhadas": 1
+    },
+    "ALTO SANTA TEREZINHA": {
+      "idh": 0.664,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "APIPUCOS": {
+      "idh": 0.7825,
+      "udhs": 3,
+      "udhs_compartilhadas": 2
+    },
+    "AREIAS": {
+      "idh": 0.7517,
+      "udhs": 4,
+      "udhs_compartilhadas": 2
+    },
+    "ARRUDA": {
+      "idh": 0.7328,
+      "udhs": 5,
+      "udhs_compartilhadas": 3
+    },
+    "BARRO": {
+      "idh": 0.695,
+      "udhs": 4,
+      "udhs_compartilhadas": 3
+    },
+    "BEBERIBE": {
+      "idh": 0.664,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "BOA VIAGEM": {
+      "idh": 0.8982,
+      "udhs": 14,
+      "udhs_compartilhadas": 3
+    },
+    "BOA VISTA": {
+      "idh": 0.88,
+      "udhs": 2,
+      "udhs_compartilhadas": 2
+    },
+    "BOMBA DO HEMETERIO": {
+      "idh": 0.6524,
+      "udhs": 2,
+      "udhs_compartilhadas": 2
+    },
+    "BONGI": {
+      "idh": 0.7299,
+      "udhs": 4,
+      "udhs_compartilhadas": 3
+    },
+    "BRASILIA TEIMOSA": {
+      "idh": 0.69,
+      "udhs": 1,
+      "udhs_compartilhadas": 0
+    },
+    "BREJO DA GUABIRABA": {
+      "idh": 0.632,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "BREJO DE BEBERIBE": {
+      "idh": 0.632,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "CABANGA": {
+      "idh": 0.6424,
+      "udhs": 2,
+      "udhs_compartilhadas": 1
+    },
+    "CACOTE": {
+      "idh": 0.64,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "CAJUEIRO": {
+      "idh": 0.8237,
+      "udhs": 2,
+      "udhs_compartilhadas": 2
+    },
+    "CAMPINA DO BARRETO": {
+      "idh": 0.6743,
+      "udhs": 2,
+      "udhs_compartilhadas": 2
+    },
+    "CAMPO GRANDE": {
+      "idh": 0.7391,
+      "udhs": 7,
+      "udhs_compartilhadas": 2
+    },
+    "CASA AMARELA": {
+      "idh": 0.8135,
+      "udhs": 4,
+      "udhs_compartilhadas": 3
+    },
+    "CASA FORTE": {
+      "idh": 0.941,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "CAXANGA": {
+      "idh": 0.7069,
+      "udhs": 3,
+      "udhs_compartilhadas": 1
+    },
+    "CIDADE UNIVERSITARIA": {
+      "idh": 0.777,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "COELHOS": {
+      "idh": 0.6558,
+      "udhs": 2,
+      "udhs_compartilhadas": 2
+    },
+    "COHAB": {
+      "idh": 0.6794,
+      "udhs": 8,
+      "udhs_compartilhadas": 0
+    },
+    "COQUEIRAL": {
+      "idh": 0.674,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "CORDEIRO": {
+      "idh": 0.7554,
+      "udhs": 9,
+      "udhs_compartilhadas": 5
+    },
+    "CORREGO DO JENIPAPO": {
+      "idh": 0.654,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "CURADO": {
+      "idh": 0.6852,
+      "udhs": 4,
+      "udhs_compartilhadas": 1
+    },
+    "DERBY": {
+      "idh": 0.919,
+      "udhs": 1,
+      "udhs_compartilhadas": 0
+    },
+    "DOIS IRMAOS": {
+      "idh": 0.6932,
+      "udhs": 3,
+      "udhs_compartilhadas": 3
+    },
+    "DOIS UNIDOS": {
+      "idh": 0.648,
+      "udhs": 1,
+      "udhs_compartilhadas": 0
+    },
+    "ENCRUZILHADA": {
+      "idh": 0.9039,
+      "udhs": 4,
+      "udhs_compartilhadas": 4
+    },
+    "ENGENHO DO MEIO": {
+      "idh": 0.7902,
+      "udhs": 4,
+      "udhs_compartilhadas": 1
+    },
+    "ESPINHEIRO": {
+      "idh": 0.9407,
+      "udhs": 2,
+      "udhs_compartilhadas": 0
+    },
+    "ESTANCIA": {
+      "idh": 0.7162,
+      "udhs": 4,
+      "udhs_compartilhadas": 3
+    },
+    "FUNDAO": {
+      "idh": 0.7325,
+      "udhs": 3,
+      "udhs_compartilhadas": 3
+    },
+    "GRACAS": {
+      "idh": 0.952,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "GUABIRABA": {
+      "idh": 0.6375,
+      "udhs": 2,
+      "udhs_compartilhadas": 2
+    },
+    "HIPODROMO": {
+      "idh": 0.893,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "IBURA": {
+      "idh": 0.6987,
+      "udhs": 7,
+      "udhs_compartilhadas": 4
+    },
+    "ILHA DO LEITE": {
+      "idh": 0.88,
+      "udhs": 2,
+      "udhs_compartilhadas": 2
+    },
+    "ILHA DO RETIRO": {
+      "idh": 0.8649,
+      "udhs": 2,
+      "udhs_compartilhadas": 1
+    },
+    "ILHA JOANA BEZERRA": {
+      "idh": 0.622,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "IMBIRIBEIRA": {
+      "idh": 0.7589,
+      "udhs": 11,
+      "udhs_compartilhadas": 5
+    },
+    "IPSEP": {
+      "idh": 0.7524,
+      "udhs": 5,
+      "udhs_compartilhadas": 3
+    },
+    "IPUTINGA": {
+      "idh": 0.7497,
+      "udhs": 10,
+      "udhs_compartilhadas": 1
+    },
+    "JAQUEIRA": {
+      "idh": 0.9497,
+      "udhs": 2,
+      "udhs_compartilhadas": 2
+    },
+    "JARDIM SAO PAULO": {
+      "idh": 0.7581,
+      "udhs": 8,
+      "udhs_compartilhadas": 2
+    },
+    "JIQUIA": {
+      "idh": 0.7187,
+      "udhs": 3,
+      "udhs_compartilhadas": 2
+    },
+    "JORDAO": {
+      "idh": 0.6578,
+      "udhs": 4,
+      "udhs_compartilhadas": 3
+    },
+    "LINHA DO TIRO": {
+      "idh": 0.664,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "MACAXEIRA": {
+      "idh": 0.6822,
+      "udhs": 2,
+      "udhs_compartilhadas": 2
+    },
+    "MADALENA": {
+      "idh": 0.8467,
+      "udhs": 5,
+      "udhs_compartilhadas": 2
+    },
+    "MANGABEIRA": {
+      "idh": 0.6811,
+      "udhs": 2,
+      "udhs_compartilhadas": 1
+    },
+    "MANGUEIRA": {
+      "idh": 0.674,
+      "udhs": 2,
+      "udhs_compartilhadas": 1
+    },
+    "MONTEIRO": {
+      "idh": 0.8533,
+      "udhs": 4,
+      "udhs_compartilhadas": 2
+    },
+    "MORRO DA CONCEICAO": {
+      "idh": 0.659,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "MUSTARDINHA": {
+      "idh": 0.726,
+      "udhs": 2,
+      "udhs_compartilhadas": 2
+    },
+    "NOVA DESCOBERTA": {
+      "idh": 0.643,
+      "udhs": 1,
+      "udhs_compartilhadas": 0
+    },
+    "PAISSANDU": {
+      "idh": 0.893,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "PARNAMIRIM": {
+      "idh": 0.9157,
+      "udhs": 2,
+      "udhs_compartilhadas": 1
+    },
+    "PASSARINHO": {
+      "idh": 0.632,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "PAU FERRO": {
+      "idh": 0.798,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "PEIXINHOS": {
+      "idh": 0.615,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "PINA": {
+      "idh": 0.8026,
+      "udhs": 9,
+      "udhs_compartilhadas": 2
+    },
+    "POCO": {
+      "idh": 0.941,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "PONTO DE PARADA": {
+      "idh": 0.8643,
+      "udhs": 2,
+      "udhs_compartilhadas": 2
+    },
+    "PORTO DA MADEIRA": {
+      "idh": 0.7625,
+      "udhs": 2,
+      "udhs_compartilhadas": 2
+    },
+    "PRADO": {
+      "idh": 0.8269,
+      "udhs": 6,
+      "udhs_compartilhadas": 3
+    },
+    "RECIFE": {
+      "idh": 0.796,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "ROSARINHO": {
+      "idh": 0.9118,
+      "udhs": 2,
+      "udhs_compartilhadas": 2
+    },
+    "SAN MARTIN": {
+      "idh": 0.7503,
+      "udhs": 6,
+      "udhs_compartilhadas": 4
+    },
+    "SANCHO": {
+      "idh": 0.7051,
+      "udhs": 3,
+      "udhs_compartilhadas": 2
+    },
+    "SANTANA": {
+      "idh": 0.941,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "SANTO AMARO": {
+      "idh": 0.6844,
+      "udhs": 4,
+      "udhs_compartilhadas": 2
+    },
+    "SANTO ANTONIO": {
+      "idh": 0.841,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "SAO JOSE": {
+      "idh": 0.6541,
+      "udhs": 2,
+      "udhs_compartilhadas": 1
+    },
+    "SITIO DOS PINTOS": {
+      "idh": 0.7277,
+      "udhs": 3,
+      "udhs_compartilhadas": 2
+    },
+    "SOLEDADE": {
+      "idh": 0.893,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "TAMARINEIRA": {
+      "idh": 0.9222,
+      "udhs": 2,
+      "udhs_compartilhadas": 2
+    },
+    "TEJIPIO": {
+      "idh": 0.7533,
+      "udhs": 4,
+      "udhs_compartilhadas": 3
+    },
+    "TORRE": {
+      "idh": 0.8351,
+      "udhs": 4,
+      "udhs_compartilhadas": 2
+    },
+    "TORREAO": {
+      "idh": 0.893,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "TORROES": {
+      "idh": 0.7058,
+      "udhs": 3,
+      "udhs_compartilhadas": 2
+    },
+    "TOTO": {
+      "idh": 0.674,
+      "udhs": 1,
+      "udhs_compartilhadas": 1
+    },
+    "VARZEA": {
+      "idh": 0.7554,
+      "udhs": 14,
+      "udhs_compartilhadas": 2
+    },
+    "VASCO DA GAMA": {
+      "idh": 0.6676,
+      "udhs": 2,
+      "udhs_compartilhadas": 1
+    },
+    "ZUMBI": {
+      "idh": 0.8038,
+      "udhs": 3,
+      "udhs_compartilhadas": 3
+    }
+  },
+  "udhs": [
+    {
+      "id": 22715,
+      "nome": "Boa Vista / Ilha do Leite / Paissandu / Soledade / Santo Amaro",
+      "bairros": [
+        "BOA VISTA",
+        "ILHA DO LEITE",
+        "PAISSANDU",
+        "SOLEDADE",
+        "SANTO AMARO"
+      ],
+      "idhm": 0.893,
+      "populacao": 19544
+    },
+    {
+      "id": 22716,
+      "nome": "Boa Vista / Santo Antônio / Ilha do Leite / Coelhos : Rua da Imperatriz",
+      "bairros": [
+        "BOA VISTA",
+        "SANTO ANTONIO",
+        "ILHA DO LEITE",
+        "COELHOS"
+      ],
+      "idhm": 0.841,
+      "populacao": 5196
+    },
+    {
+      "id": 22717,
+      "nome": "São José : Forte das Cinco Pontas",
+      "bairros": [
+        "SAO JOSE"
+      ],
+      "idhm": 0.893,
+      "populacao": 957
+    },
+    {
+      "id": 22718,
+      "nome": "Cabanga",
+      "bairros": [
+        "CABANGA"
+      ],
+      "idhm": 0.86,
+      "populacao": 667
+    },
+    {
+      "id": 22719,
+      "nome": "São José / Ilha Joana Bezerra / Coelhos / Cabanga : Zeis Coque / Zeis Coelhos",
+      "bairros": [
+        "SAO JOSE",
+        "ILHA JOANA BEZERRA",
+        "COELHOS",
+        "CABANGA"
+      ],
+      "idhm": 0.622,
+      "populacao": 28467
+    },
+    {
+      "id": 22720,
+      "nome": "Recife / Santo Amaro : Av. Cruz Cabugá / Vila Naval",
+      "bairros": [
+        "RECIFE",
+        "SANTO AMARO"
+      ],
+      "idhm": 0.796,
+      "populacao": 7291
+    },
+    {
+      "id": 22721,
+      "nome": "Santo Amaro : Zeis Santo Amaro",
+      "bairros": [
+        "SANTO AMARO"
+      ],
+      "idhm": 0.608,
+      "populacao": 15384
+    },
+    {
+      "id": 22722,
+      "nome": "Santo Amaro : Zeis João de Barros",
+      "bairros": [
+        "SANTO AMARO"
+      ],
+      "idhm": 0.608,
+      "populacao": 608
+    },
+    {
+      "id": 22723,
+      "nome": "Encruzilhada / Torreão : Rua Marechal Deodoro",
+      "bairros": [
+        "ENCRUZILHADA",
+        "TORREAO"
+      ],
+      "idhm": 0.893,
+      "populacao": 4871
+    },
+    {
+      "id": 22724,
+      "nome": "Campo Grande : Zeis Ilha do Joaneiro",
+      "bairros": [
+        "CAMPO GRANDE"
+      ],
+      "idhm": 0.623,
+      "populacao": 5704
+    },
+    {
+      "id": 22725,
+      "nome": "Campo Grande : Zeis Chié",
+      "bairros": [
+        "CAMPO GRANDE"
+      ],
+      "idhm": 0.794,
+      "populacao": 3016
+    },
+    {
+      "id": 22726,
+      "nome": "Campo Grande : Zeis Chié / Fábrica Tacaruna",
+      "bairros": [
+        "CAMPO GRANDE"
+      ],
+      "idhm": 0.644,
+      "populacao": 2500
+    },
+    {
+      "id": 22727,
+      "nome": "Rosarinho / Encruzilhada : Av. Santos Dumont",
+      "bairros": [
+        "ROSARINHO",
+        "ENCRUZILHADA"
+      ],
+      "idhm": 0.941,
+      "populacao": 7182
+    },
+    {
+      "id": 22728,
+      "nome": "Encruzilhada / Ponto de Parada / Hipódromo : Av. Beberibe",
+      "bairros": [
+        "ENCRUZILHADA",
+        "PONTO DE PARADA",
+        "HIPODROMO"
+      ],
+      "idhm": 0.893,
+      "populacao": 6468
+    },
+    {
+      "id": 22729,
+      "nome": "Campo Grande : Estrada de Belém",
+      "bairros": [
+        "CAMPO GRANDE"
+      ],
+      "idhm": 0.88,
+      "populacao": 6964
+    },
+    {
+      "id": 22730,
+      "nome": "Campo Grande : Av. Correia de Brito / Zeis Campo Grande",
+      "bairros": [
+        "CAMPO GRANDE"
+      ],
+      "idhm": 0.798,
+      "populacao": 5794
+    },
+    {
+      "id": 22731,
+      "nome": "Rosarinho / Ponto de Parada ( Espinheirão )",
+      "bairros": [
+        "ROSARINHO",
+        "PONTO DE PARADA"
+      ],
+      "idhm": 0.796,
+      "populacao": 1809
+    },
+    {
+      "id": 22732,
+      "nome": "Arruda / Água Fria : Estádio do Arruda / Mercado de Água Fria",
+      "bairros": [
+        "ARRUDA",
+        "AGUA FRIA"
+      ],
+      "idhm": 0.832,
+      "populacao": 5999
+    },
+    {
+      "id": 22733,
+      "nome": "Água Fria / Bomba do Hemetério : Zeis Casa Amarela",
+      "bairros": [
+        "AGUA FRIA",
+        "BOMBA DO HEMETERIO"
+      ],
+      "idhm": 0.644,
+      "populacao": 37738
+    },
+    {
+      "id": 22734,
+      "nome": "Arruda / Água Fria / Fundão : Rua da Regeneração / Rua Gravatá / Zeis Campo Grande / Zeis Fundão de Fora",
+      "bairros": [
+        "ARRUDA",
+        "AGUA FRIA",
+        "FUNDAO"
+      ],
+      "idhm": 0.769,
+      "populacao": 14532
+    },
+    {
+      "id": 22735,
+      "nome": "Campo Grande / Arruda / Peixinhos / Campina do Barreto : Zeis Campo Grande",
+      "bairros": [
+        "CAMPO GRANDE",
+        "ARRUDA",
+        "PEIXINHOS",
+        "CAMPINA DO BARRETO"
+      ],
+      "idhm": 0.615,
+      "populacao": 22062
+    },
+    {
+      "id": 22736,
+      "nome": "Água Fria / Fundão : Zeis Fundão de Fora",
+      "bairros": [
+        "AGUA FRIA",
+        "FUNDAO"
+      ],
+      "idhm": 0.695,
+      "populacao": 4319
+    },
+    {
+      "id": 22737,
+      "nome": "Cajueiro / Campina do Barreto : Rua Pará / Rua dos Peixinhos",
+      "bairros": [
+        "CAJUEIRO",
+        "CAMPINA DO BARRETO"
+      ],
+      "idhm": 0.794,
+      "populacao": 5469
+    },
+    {
+      "id": 22738,
+      "nome": "Cajueiro / Porto da Madeira : Rua Sebastião Salazar",
+      "bairros": [
+        "CAJUEIRO",
+        "PORTO DA MADEIRA"
+      ],
+      "idhm": 0.86,
+      "populacao": 4486
+    },
+    {
+      "id": 22739,
+      "nome": "Porto da Madeira / Fundão : Zeis Casa Amarela",
+      "bairros": [
+        "PORTO DA MADEIRA",
+        "FUNDAO"
+      ],
+      "idhm": 0.709,
+      "populacao": 8179
+    },
+    {
+      "id": 22740,
+      "nome": "Beberibe / Linha do Tiro / Alto Santa Terezinha : Zeis Casa Amarela",
+      "bairros": [
+        "BEBERIBE",
+        "LINHA DO TIRO",
+        "ALTO SANTA TEREZINHA"
+      ],
+      "idhm": 0.664,
+      "populacao": 31426
+    },
+    {
+      "id": 22741,
+      "nome": "Dois Unidos : Zeis Dois Unidos / Zeis Linha do Tiro",
+      "bairros": [
+        "DOIS UNIDOS"
+      ],
+      "idhm": 0.648,
+      "populacao": 32905
+    },
+    {
+      "id": 22742,
+      "nome": "Derby",
+      "bairros": [
+        "DERBY"
+      ],
+      "idhm": 0.919,
+      "populacao": 2071
+    },
+    {
+      "id": 22743,
+      "nome": "Graças / Aflitos",
+      "bairros": [
+        "GRACAS",
+        "AFLITOS"
+      ],
+      "idhm": 0.952,
+      "populacao": 26311
+    },
+    {
+      "id": 22744,
+      "nome": "Espinheiro",
+      "bairros": [
+        "ESPINHEIRO"
+      ],
+      "idhm": 0.955,
+      "populacao": 9635
+    },
+    {
+      "id": 22745,
+      "nome": "Espinheiro : Zeis Campo do Vila",
+      "bairros": [
+        "ESPINHEIRO"
+      ],
+      "idhm": 0.769,
+      "populacao": 803
+    },
+    {
+      "id": 22746,
+      "nome": "Jaqueira / Parnamirim / Santana / Casa Forte / Poço / Monteiro : Zeis Poço da Panela / Esperança / Cabocó / Inaldo Martins",
+      "bairros": [
+        "JAQUEIRA",
+        "PARNAMIRIM",
+        "SANTANA",
+        "CASA FORTE",
+        "POCO",
+        "MONTEIRO"
+      ],
+      "idhm": 0.941,
+      "populacao": 25540
+    },
+    {
+      "id": 22747,
+      "nome": "Parnamirim : Zeis Lemos Torres",
+      "bairros": [
+        "PARNAMIRIM"
+      ],
+      "idhm": 0.796,
+      "populacao": 900
+    },
+    {
+      "id": 22748,
+      "nome": "Jaqueira / Tamarineira / Casa Amarela : Estrada do Arraial / Zeis Tamarineira",
+      "bairros": [
+        "JAQUEIRA",
+        "TAMARINEIRA",
+        "CASA AMARELA"
+      ],
+      "idhm": 0.955,
+      "populacao": 20976
+    },
+    {
+      "id": 22749,
+      "nome": "Tamarineira / Casa Amarela : Av. Norte / Zeis Tamarineira",
+      "bairros": [
+        "TAMARINEIRA",
+        "CASA AMARELA"
+      ],
+      "idhm": 0.86,
+      "populacao": 7390
+    },
+    {
+      "id": 22750,
+      "nome": "Mangabeira : Av. Professor José dos Anjos",
+      "bairros": [
+        "MANGABEIRA"
+      ],
+      "idhm": 0.769,
+      "populacao": 2425
+    },
+    {
+      "id": 22751,
+      "nome": "Alto José do Pinho : Rua Valeriano Lobo",
+      "bairros": [
+        "ALTO JOSE DO PINHO"
+      ],
+      "idhm": 0.736,
+      "populacao": 899
+    },
+    {
+      "id": 22752,
+      "nome": "Morro da Conceição / Alto José do Pinho / Alto José Bonifácio / Mangabeira : Zeis Casa Amarela",
+      "bairros": [
+        "MORRO DA CONCEICAO",
+        "ALTO JOSE DO PINHO",
+        "ALTO JOSE BONIFACIO",
+        "MANGABEIRA"
+      ],
+      "idhm": 0.659,
+      "populacao": 38604
+    },
+    {
+      "id": 22753,
+      "nome": "Casa Amarela : Zeis Alto do Mandú / Alto Santa Izabel",
+      "bairros": [
+        "CASA AMARELA"
+      ],
+      "idhm": 0.716,
+      "populacao": 10064
+    },
+    {
+      "id": 22754,
+      "nome": "Casa Amarela / Vasco da Gama / Alto do Mandu / Monteiro / Apipucos : Zeis Alto do Mandú / Alto Santa Izabel e Vila São João",
+      "bairros": [
+        "CASA AMARELA",
+        "VASCO DA GAMA",
+        "ALTO DO MANDU",
+        "MONTEIRO",
+        "APIPUCOS"
+      ],
+      "idhm": 0.76,
+      "populacao": 16824
+    },
+    {
+      "id": 22755,
+      "nome": "Vasco da Gama : Zeis Casa Amarela",
+      "bairros": [
+        "VASCO DA GAMA"
+      ],
+      "idhm": 0.656,
+      "populacao": 26812
+    },
+    {
+      "id": 22756,
+      "nome": "Nova Descoberta : Zeis Casa Amarela",
+      "bairros": [
+        "NOVA DESCOBERTA"
+      ],
+      "idhm": 0.643,
+      "populacao": 33657
+    },
+    {
+      "id": 22757,
+      "nome": "Macaxeira / Córrego do Jenipapo : Zeis Casa Amarela",
+      "bairros": [
+        "MACAXEIRA",
+        "CORREGO DO JENIPAPO"
+      ],
+      "idhm": 0.654,
+      "populacao": 26364
+    },
+    {
+      "id": 22758,
+      "nome": "Apipucos : Zeis Apipucos e Zeis Vila Marcionila / Mussum",
+      "bairros": [
+        "APIPUCOS"
+      ],
+      "idhm": 0.716,
+      "populacao": 1294
+    },
+    {
+      "id": 22759,
+      "nome": "Ilha do Retiro : Zeis Caranguejo / Campo Tabaiares",
+      "bairros": [
+        "ILHA DO RETIRO"
+      ],
+      "idhm": 0.608,
+      "populacao": 1939
+    },
+    {
+      "id": 22760,
+      "nome": "Dois Irmãos / Sítio dos Pintos : Rua Manoel de Medeiros",
+      "bairros": [
+        "DOIS IRMAOS",
+        "SITIO DOS PINTOS"
+      ],
+      "idhm": 0.86,
+      "populacao": 1868
+    },
+    {
+      "id": 22761,
+      "nome": "Brejo da Guabiraba / Brejo de Beberibe / Passarinho",
+      "bairros": [
+        "BREJO DA GUABIRABA",
+        "BREJO DE BEBERIBE",
+        "PASSARINHO"
+      ],
+      "idhm": 0.632,
+      "populacao": 40329
+    },
+    {
+      "id": 22762,
+      "nome": "Guabiraba / Dois Irmãos ( Bola na Rede / Bom Clima )",
+      "bairros": [
+        "GUABIRABA",
+        "DOIS IRMAOS"
+      ],
+      "idhm": 0.615,
+      "populacao": 5871
+    },
+    {
+      "id": 22763,
+      "nome": "Guabiraba / Pau Ferro : Estrada do Orfanato",
+      "bairros": [
+        "GUABIRABA",
+        "PAU FERRO"
+      ],
+      "idhm": 0.798,
+      "populacao": 824
+    },
+    {
+      "id": 22764,
+      "nome": "Madalena / Torre / Ilha do Retiro / Prado",
+      "bairros": [
+        "MADALENA",
+        "TORRE",
+        "ILHA DO RETIRO",
+        "PRADO"
+      ],
+      "idhm": 0.93,
+      "populacao": 30629
+    },
+    {
+      "id": 22765,
+      "nome": "Madalena : Zeis Mangueira da Torre",
+      "bairros": [
+        "MADALENA"
+      ],
+      "idhm": 0.693,
+      "populacao": 655
+    },
+    {
+      "id": 22766,
+      "nome": "Madalena : Rua Dom Manoel da Costa",
+      "bairros": [
+        "MADALENA"
+      ],
+      "idhm": 0.777,
+      "populacao": 669
+    },
+    {
+      "id": 22767,
+      "nome": "Madalena : Rua Graciliano Cardoso",
+      "bairros": [
+        "MADALENA"
+      ],
+      "idhm": 0.794,
+      "populacao": 1059
+    },
+    {
+      "id": 22768,
+      "nome": "Prado : Rua Desembargador Adolfo Ciriaco",
+      "bairros": [
+        "PRADO"
+      ],
+      "idhm": 0.842,
+      "populacao": 1233
+    },
+    {
+      "id": 22769,
+      "nome": "Prado : Rua Engenheiro Brandão Cavalcante",
+      "bairros": [
+        "PRADO"
+      ],
+      "idhm": 0.832,
+      "populacao": 1134
+    },
+    {
+      "id": 22770,
+      "nome": "Madalena / Zumbi / Prado : Zeis Sítio do Cardoso / Zeis Sítio do Berardo",
+      "bairros": [
+        "MADALENA",
+        "ZUMBI",
+        "PRADO"
+      ],
+      "idhm": 0.709,
+      "populacao": 9458
+    },
+    {
+      "id": 22771,
+      "nome": "Prado / Cordeiro / Zumbi : Rua Gomes Taborda / Zeis Prado",
+      "bairros": [
+        "PRADO",
+        "CORDEIRO",
+        "ZUMBI"
+      ],
+      "idhm": 0.76,
+      "populacao": 6141
+    },
+    {
+      "id": 22772,
+      "nome": "Prado : Zeis Prado",
+      "bairros": [
+        "PRADO"
+      ],
+      "idhm": 0.68,
+      "populacao": 2083
+    },
+    {
+      "id": 22773,
+      "nome": "Cordeiro : Rua Alexandre de Gusmão",
+      "bairros": [
+        "CORDEIRO"
+      ],
+      "idhm": 0.716,
+      "populacao": 1497
+    },
+    {
+      "id": 22774,
+      "nome": "Cordeiro / Zumbi : Exposição dos Animais",
+      "bairros": [
+        "CORDEIRO",
+        "ZUMBI"
+      ],
+      "idhm": 0.842,
+      "populacao": 20370
+    },
+    {
+      "id": 22775,
+      "nome": "Torre / Cordeiro ( Vila Santa Luzia )",
+      "bairros": [
+        "TORRE",
+        "CORDEIRO"
+      ],
+      "idhm": 0.705,
+      "populacao": 8200
+    },
+    {
+      "id": 22776,
+      "nome": "Torrões : Rua Gurupi",
+      "bairros": [
+        "TORROES"
+      ],
+      "idhm": 0.794,
+      "populacao": 1271
+    },
+    {
+      "id": 22777,
+      "nome": "Torrões / Cordeiro : Zeis Torrões / Zeis Vietnã",
+      "bairros": [
+        "TORROES",
+        "CORDEIRO"
+      ],
+      "idhm": 0.665,
+      "populacao": 31715
+    },
+    {
+      "id": 22778,
+      "nome": "Engenho do Meio : Rua Waldemar Falcão / Zeis Vila Redenção",
+      "bairros": [
+        "ENGENHO DO MEIO"
+      ],
+      "idhm": 0.769,
+      "populacao": 5323
+    },
+    {
+      "id": 22779,
+      "nome": "Engenho do Meio : Zeis Vila Redenção",
+      "bairros": [
+        "ENGENHO DO MEIO"
+      ],
+      "idhm": 0.68,
+      "populacao": 942
+    },
+    {
+      "id": 22780,
+      "nome": "Cordeiro : Rua Bom Pastor / Canal do Cavoco",
+      "bairros": [
+        "CORDEIRO"
+      ],
+      "idhm": 0.86,
+      "populacao": 3448
+    },
+    {
+      "id": 22781,
+      "nome": "Iputinga : Av. Caxangá",
+      "bairros": [
+        "IPUTINGA"
+      ],
+      "idhm": 0.841,
+      "populacao": 11668
+    },
+    {
+      "id": 22782,
+      "nome": "Iputinga ( Detran / Barbalho ) : Zeis Vila União",
+      "bairros": [
+        "IPUTINGA"
+      ],
+      "idhm": 0.693,
+      "populacao": 6751
+    },
+    {
+      "id": 22783,
+      "nome": "Iputinga ( São João / Santa Marta / Ayrton Sena )",
+      "bairros": [
+        "IPUTINGA"
+      ],
+      "idhm": 0.608,
+      "populacao": 7948
+    },
+    {
+      "id": 22784,
+      "nome": "Várzea : Av. General Polidoro",
+      "bairros": [
+        "VARZEA"
+      ],
+      "idhm": 0.893,
+      "populacao": 4912
+    },
+    {
+      "id": 22785,
+      "nome": "Várzea / Cidade Universitária : Terminal Integrado de Passageiros - TIP",
+      "bairros": [
+        "VARZEA",
+        "CIDADE UNIVERSITARIA"
+      ],
+      "idhm": 0.777,
+      "populacao": 10293
+    },
+    {
+      "id": 22786,
+      "nome": "Várzea : Rua Francisco Lisboa / Praça Quitéria",
+      "bairros": [
+        "VARZEA"
+      ],
+      "idhm": 0.88,
+      "populacao": 2631
+    },
+    {
+      "id": 22787,
+      "nome": "Várzea : Zeis Vila Arraes",
+      "bairros": [
+        "VARZEA"
+      ],
+      "idhm": 0.615,
+      "populacao": 2305
+    },
+    {
+      "id": 22788,
+      "nome": "Várzea : Zeis Campo do Banco",
+      "bairros": [
+        "VARZEA"
+      ],
+      "idhm": 0.623,
+      "populacao": 2361
+    },
+    {
+      "id": 22789,
+      "nome": "Várzea : Rua Estevão de Sá",
+      "bairros": [
+        "VARZEA"
+      ],
+      "idhm": 0.832,
+      "populacao": 4497
+    },
+    {
+      "id": 22790,
+      "nome": "Várzea : Zeis Sítio Wanderley",
+      "bairros": [
+        "VARZEA"
+      ],
+      "idhm": 0.76,
+      "populacao": 5756
+    },
+    {
+      "id": 22791,
+      "nome": "Várzea ( Brasilit 2 )",
+      "bairros": [
+        "VARZEA"
+      ],
+      "idhm": 0.608,
+      "populacao": 668
+    },
+    {
+      "id": 22792,
+      "nome": "Várzea : Zeis Brasilit",
+      "bairros": [
+        "VARZEA"
+      ],
+      "idhm": 0.644,
+      "populacao": 5715
+    },
+    {
+      "id": 22793,
+      "nome": "Várzea : Caxangá Golf Clube",
+      "bairros": [
+        "VARZEA"
+      ],
+      "idhm": 0.893,
+      "populacao": 2432
+    },
+    {
+      "id": 22794,
+      "nome": "Caxangá : Loteamento Nova Morada",
+      "bairros": [
+        "CAXANGA"
+      ],
+      "idhm": 0.796,
+      "populacao": 4137
+    },
+    {
+      "id": 22795,
+      "nome": "Várzea / Caxangá : Zeis Rosa Selvagem / Zeis Vila Felicidade",
+      "bairros": [
+        "VARZEA",
+        "CAXANGA"
+      ],
+      "idhm": 0.653,
+      "populacao": 21462
+    },
+    {
+      "id": 22796,
+      "nome": "Caxangá : Av. Joaquim Ribeiro",
+      "bairros": [
+        "CAXANGA"
+      ],
+      "idhm": 0.86,
+      "populacao": 1368
+    },
+    {
+      "id": 22797,
+      "nome": "Afogados : Zeis Caranguejo / Campo Tabaiares",
+      "bairros": [
+        "AFOGADOS"
+      ],
+      "idhm": 0.608,
+      "populacao": 1371
+    },
+    {
+      "id": 22798,
+      "nome": "Afogados : Estrada dos Remédios",
+      "bairros": [
+        "AFOGADOS"
+      ],
+      "idhm": 0.705,
+      "populacao": 8653
+    },
+    {
+      "id": 22799,
+      "nome": "Afogados : Zeis Afogados",
+      "bairros": [
+        "AFOGADOS"
+      ],
+      "idhm": 0.693,
+      "populacao": 8648
+    },
+    {
+      "id": 22800,
+      "nome": "Afogados : Rua Madressilva",
+      "bairros": [
+        "AFOGADOS"
+      ],
+      "idhm": 0.88,
+      "populacao": 1095
+    },
+    {
+      "id": 22801,
+      "nome": "Afogados / Estância / Jiquiá : Av. Central / Zeis Vila do Siri / Mangueira / Rua do Rio / Iraque",
+      "bairros": [
+        "AFOGADOS",
+        "ESTANCIA",
+        "JIQUIA"
+      ],
+      "idhm": 0.796,
+      "populacao": 13854
+    },
+    {
+      "id": 22802,
+      "nome": "Afogados : Rua Cosme Viana",
+      "bairros": [
+        "AFOGADOS"
+      ],
+      "idhm": 0.736,
+      "populacao": 3621
+    },
+    {
+      "id": 22803,
+      "nome": "Afogados : Rua Florentino Olímpio dos Santos",
+      "bairros": [
+        "AFOGADOS"
+      ],
+      "idhm": 0.832,
+      "populacao": 1198
+    },
+    {
+      "id": 22804,
+      "nome": "Afogados / Mustardinha / Bongi : Zeis Mustardinha",
+      "bairros": [
+        "AFOGADOS",
+        "MUSTARDINHA",
+        "BONGI"
+      ],
+      "idhm": 0.674,
+      "populacao": 18889
+    },
+    {
+      "id": 22805,
+      "nome": "Bongi / San Martin : Zeis Novo Prado",
+      "bairros": [
+        "BONGI",
+        "SAN MARTIN"
+      ],
+      "idhm": 0.69,
+      "populacao": 2171
+    },
+    {
+      "id": 22806,
+      "nome": "San Martin / Bongi : Av. Consul Vilares Fragoso",
+      "bairros": [
+        "SAN MARTIN",
+        "BONGI"
+      ],
+      "idhm": 0.798,
+      "populacao": 8601
+    },
+    {
+      "id": 22807,
+      "nome": "San Martin ( Boa Idéia )",
+      "bairros": [
+        "SAN MARTIN"
+      ],
+      "idhm": 0.64,
+      "populacao": 2027
+    },
+    {
+      "id": 22808,
+      "nome": "San Martin / Mustardinha : Zeis Mangueira",
+      "bairros": [
+        "SAN MARTIN",
+        "MUSTARDINHA"
+      ],
+      "idhm": 0.777,
+      "populacao": 12830
+    },
+    {
+      "id": 22809,
+      "nome": "Mangueira / San Martin / Jiquiá / Estância : Zeis Mangueira",
+      "bairros": [
+        "MANGUEIRA",
+        "SAN MARTIN",
+        "JIQUIA",
+        "ESTANCIA"
+      ],
+      "idhm": 0.656,
+      "populacao": 16010
+    },
+    {
+      "id": 22810,
+      "nome": "Curado : Jardim Botânico / BR 232 / Ceasa",
+      "bairros": [
+        "CURADO"
+      ],
+      "idhm": 0.653,
+      "populacao": 10056
+    },
+    {
+      "id": 22811,
+      "nome": "Curado : Conjunto Habitacional Jardim Botânico",
+      "bairros": [
+        "CURADO"
+      ],
+      "idhm": 0.842,
+      "populacao": 1369
+    },
+    {
+      "id": 22812,
+      "nome": "Coqueiral / Tejipió / Sancho / Totó : Zeis Cavaleiro",
+      "bairros": [
+        "COQUEIRAL",
+        "TEJIPIO",
+        "SANCHO",
+        "TOTO"
+      ],
+      "idhm": 0.674,
+      "populacao": 15604
+    },
+    {
+      "id": 22813,
+      "nome": "Sancho : Rua Aprígio Guimarães / Presídio Professor Aníbal Bruno / Zeis Coqueiral",
+      "bairros": [
+        "SANCHO"
+      ],
+      "idhm": 0.695,
+      "populacao": 7760
+    },
+    {
+      "id": 22814,
+      "nome": "Tejipió / Sancho / Curado : Av. Liberdade / Zeis Planeta dos Macacos",
+      "bairros": [
+        "TEJIPIO",
+        "SANCHO",
+        "CURADO"
+      ],
+      "idhm": 0.769,
+      "populacao": 9371
+    },
+    {
+      "id": 22815,
+      "nome": "Barro : Vila dos Milagres / Mata do Barro / Zeis Tejipió",
+      "bairros": [
+        "BARRO"
+      ],
+      "idhm": 0.641,
+      "populacao": 20350
+    },
+    {
+      "id": 22816,
+      "nome": "Curado : Zeis Planeta dos Macacos",
+      "bairros": [
+        "CURADO"
+      ],
+      "idhm": 0.641,
+      "populacao": 3440
+    },
+    {
+      "id": 22817,
+      "nome": "Jardim São Paulo : Zeis Jardim São Paulo II / Zeis Planeta dos Macacos",
+      "bairros": [
+        "JARDIM SAO PAULO"
+      ],
+      "idhm": 0.736,
+      "populacao": 9265
+    },
+    {
+      "id": 22818,
+      "nome": "Jardim São Paulo : Rua Miracema",
+      "bairros": [
+        "JARDIM SAO PAULO"
+      ],
+      "idhm": 0.828,
+      "populacao": 1814
+    },
+    {
+      "id": 22819,
+      "nome": "Jardim São Paulo : BR 101 / Av. Central",
+      "bairros": [
+        "JARDIM SAO PAULO"
+      ],
+      "idhm": 0.736,
+      "populacao": 4328
+    },
+    {
+      "id": 22820,
+      "nome": "Jardim São Paulo : Av. Recife / Zeis Jardim São Paulo I",
+      "bairros": [
+        "JARDIM SAO PAULO"
+      ],
+      "idhm": 0.705,
+      "populacao": 1178
+    },
+    {
+      "id": 22821,
+      "nome": "Jardim São Paulo : Praça Jardim São Paulo",
+      "bairros": [
+        "JARDIM SAO PAULO"
+      ],
+      "idhm": 0.841,
+      "populacao": 6177
+    },
+    {
+      "id": 22822,
+      "nome": "Jardim São Paulo / Barro : Zeis Areias / Zeis Barro",
+      "bairros": [
+        "JARDIM SAO PAULO",
+        "BARRO"
+      ],
+      "idhm": 0.693,
+      "populacao": 11769
+    },
+    {
+      "id": 22823,
+      "nome": "Areias : Zeis Capuá",
+      "bairros": [
+        "AREIAS"
+      ],
+      "idhm": 0.693,
+      "populacao": 2351
+    },
+    {
+      "id": 22824,
+      "nome": "Areias / Barro : Av. Dr. José Rufino",
+      "bairros": [
+        "AREIAS",
+        "BARRO"
+      ],
+      "idhm": 0.794,
+      "populacao": 16468
+    },
+    {
+      "id": 22825,
+      "nome": "Areias / Caçote : Zeis Jardim Uchôa / Zeis Beirinha / Zeis Caçote",
+      "bairros": [
+        "AREIAS",
+        "CACOTE"
+      ],
+      "idhm": 0.64,
+      "populacao": 16402
+    },
+    {
+      "id": 22826,
+      "nome": "Areias : Residencial Inez Andreazza",
+      "bairros": [
+        "AREIAS"
+      ],
+      "idhm": 0.832,
+      "populacao": 8789
+    },
+    {
+      "id": 22827,
+      "nome": "Estância : Zeis Rua do Rio / Iraque",
+      "bairros": [
+        "ESTANCIA"
+      ],
+      "idhm": 0.64,
+      "populacao": 2277
+    },
+    {
+      "id": 22828,
+      "nome": "Boa Viagem / Pina : Orla",
+      "bairros": [
+        "BOA VIAGEM",
+        "PINA"
+      ],
+      "idhm": 0.951,
+      "populacao": 31561
+    },
+    {
+      "id": 22829,
+      "nome": "Pina : Av. Conselheiro Aguiar / Zeis Pina / Encanta Moça e Zeis Brasília Teimosa",
+      "bairros": [
+        "PINA"
+      ],
+      "idhm": 0.88,
+      "populacao": 1110
+    },
+    {
+      "id": 22830,
+      "nome": "Brasília Teimosa : Zeis Brasília Teimosa",
+      "bairros": [
+        "BRASILIA TEIMOSA"
+      ],
+      "idhm": 0.69,
+      "populacao": 20408
+    },
+    {
+      "id": 22831,
+      "nome": "Pina : Av. Herculano Bandeira / Rua Manoel de Brito",
+      "bairros": [
+        "PINA"
+      ],
+      "idhm": 0.919,
+      "populacao": 557
+    },
+    {
+      "id": 22832,
+      "nome": "Pina : Shopping Rio Mar",
+      "bairros": [
+        "PINA"
+      ],
+      "idhm": 0.798,
+      "populacao": 3572
+    },
+    {
+      "id": 22833,
+      "nome": "Pina ( Jardim Beira Rio / Bode II ) : Zeis Pina / Encanta Moça",
+      "bairros": [
+        "PINA"
+      ],
+      "idhm": 0.644,
+      "populacao": 11928
+    },
+    {
+      "id": 22834,
+      "nome": "Pina : Zeis Ilha de Deus",
+      "bairros": [
+        "PINA"
+      ],
+      "idhm": 0.608,
+      "populacao": 514
+    },
+    {
+      "id": 22835,
+      "nome": "Pina / Imbiribeira / Boa Viagem : Parque dos Manguezais / Zeis Ilha do Destino",
+      "bairros": [
+        "PINA",
+        "IMBIRIBEIRA",
+        "BOA VIAGEM"
+      ],
+      "idhm": 0.828,
+      "populacao": 3803
+    },
+    {
+      "id": 22836,
+      "nome": "Boa Viagem : Zeis Ilha do Destino",
+      "bairros": [
+        "BOA VIAGEM"
+      ],
+      "idhm": 0.695,
+      "populacao": 1461
+    },
+    {
+      "id": 22837,
+      "nome": "Boa Viagem : Shopping Recife / Rua Artur Muniz",
+      "bairros": [
+        "BOA VIAGEM"
+      ],
+      "idhm": 0.935,
+      "populacao": 27533
+    },
+    {
+      "id": 22838,
+      "nome": "Boa Viagem : Zeis Entra Apulso",
+      "bairros": [
+        "BOA VIAGEM"
+      ],
+      "idhm": 0.644,
+      "populacao": 1707
+    },
+    {
+      "id": 22839,
+      "nome": "Boa Viagem : Edifício Holiday",
+      "bairros": [
+        "BOA VIAGEM"
+      ],
+      "idhm": 0.736,
+      "populacao": 720
+    },
+    {
+      "id": 22840,
+      "nome": "Boa Viagem : Rua Bruno Veloso / Rua Barão de Souza Leão / Zeis Entra Apulso",
+      "bairros": [
+        "BOA VIAGEM"
+      ],
+      "idhm": 0.921,
+      "populacao": 28959
+    },
+    {
+      "id": 22841,
+      "nome": "Boa Viagem ( Beira Rio ) : Zeis Entra Apulso",
+      "bairros": [
+        "BOA VIAGEM"
+      ],
+      "idhm": 0.777,
+      "populacao": 2625
+    },
+    {
+      "id": 22842,
+      "nome": "Boa Viagem : Canal do Rio Jordão / Rua Barão de Tefé",
+      "bairros": [
+        "BOA VIAGEM"
+      ],
+      "idhm": 0.842,
+      "populacao": 4073
+    },
+    {
+      "id": 22843,
+      "nome": "Boa Viagem ( Setubal )",
+      "bairros": [
+        "BOA VIAGEM"
+      ],
+      "idhm": 0.919,
+      "populacao": 21524
+    },
+    {
+      "id": 22844,
+      "nome": "Boa Viagem : Rua Vinte de Janeiro / Rua João Cardoso Ayres",
+      "bairros": [
+        "BOA VIAGEM"
+      ],
+      "idhm": 0.841,
+      "populacao": 1470
+    },
+    {
+      "id": 22845,
+      "nome": "Boa Viagem ( Tijolos / Rua da Linha ) : Zeis Borborema",
+      "bairros": [
+        "BOA VIAGEM"
+      ],
+      "idhm": 0.69,
+      "populacao": 2007
+    },
+    {
+      "id": 22846,
+      "nome": "Boa Viagem / Imbiribeira : Zeis Entra Apulso / Zeis Coronel Fabriciano",
+      "bairros": [
+        "BOA VIAGEM",
+        "IMBIRIBEIRA"
+      ],
+      "idhm": 0.644,
+      "populacao": 5364
+    },
+    {
+      "id": 22847,
+      "nome": "Imbiribeira : Residenciais Marechal Castelo Branco e Boa Viagem II",
+      "bairros": [
+        "IMBIRIBEIRA"
+      ],
+      "idhm": 0.86,
+      "populacao": 2417
+    },
+    {
+      "id": 22848,
+      "nome": "Imbiribeira : Rua Alameda das Hortênsias / Rua Guarabira",
+      "bairros": [
+        "IMBIRIBEIRA"
+      ],
+      "idhm": 0.796,
+      "populacao": 855
+    },
+    {
+      "id": 22849,
+      "nome": "Imbiribeira : Av. Mônaco / Rua Júlio Verne",
+      "bairros": [
+        "IMBIRIBEIRA"
+      ],
+      "idhm": 0.841,
+      "populacao": 6487
+    },
+    {
+      "id": 22850,
+      "nome": "Imbiribeira : Lagoa do Araçá",
+      "bairros": [
+        "IMBIRIBEIRA"
+      ],
+      "idhm": 0.893,
+      "populacao": 5620
+    },
+    {
+      "id": 22851,
+      "nome": "Imbiribeira : Estação de Metrô Imbiribeira / Zeis Aritana / Zeis Coqueiral",
+      "bairros": [
+        "IMBIRIBEIRA"
+      ],
+      "idhm": 0.656,
+      "populacao": 10798
+    },
+    {
+      "id": 22852,
+      "nome": "Ipsep / Imbiribeira / Ibura : Av. Recife",
+      "bairros": [
+        "IPSEP",
+        "IMBIRIBEIRA",
+        "IBURA"
+      ],
+      "idhm": 0.828,
+      "populacao": 18568
+    },
+    {
+      "id": 22853,
+      "nome": "Jordão / Ibura : Aeroporto / Zeis Alto da Jaqueira",
+      "bairros": [
+        "JORDAO",
+        "IBURA"
+      ],
+      "idhm": 0.623,
+      "populacao": 21371
+    },
+    {
+      "id": 22854,
+      "nome": "Ibura : Residencial Vale dos Rios",
+      "bairros": [
+        "IBURA"
+      ],
+      "idhm": 0.798,
+      "populacao": 2054
+    },
+    {
+      "id": 22855,
+      "nome": "Ibura : Residencial Primavera",
+      "bairros": [
+        "IBURA"
+      ],
+      "idhm": 0.794,
+      "populacao": 1111
+    },
+    {
+      "id": 22856,
+      "nome": "Jordão : Rua Maria Irene / Zeis Alto da Jaqueira",
+      "bairros": [
+        "JORDAO"
+      ],
+      "idhm": 0.695,
+      "populacao": 3220
+    },
+    {
+      "id": 22857,
+      "nome": "Ibura / Jordão : Zeis Ibura / Jordão e Zeis Alto da Jaqueira",
+      "bairros": [
+        "IBURA",
+        "JORDAO"
+      ],
+      "idhm": 0.695,
+      "populacao": 14475
+    },
+    {
+      "id": 22858,
+      "nome": "Ibura / Jordão : Zeis Ibura / Jordão",
+      "bairros": [
+        "IBURA",
+        "JORDAO"
+      ],
+      "idhm": 0.656,
+      "populacao": 17486
+    },
+    {
+      "id": 22859,
+      "nome": "Ibura : Zeis Ibura / Jordão e Zeis Greve Geral",
+      "bairros": [
+        "IBURA"
+      ],
+      "idhm": 0.709,
+      "populacao": 9626
+    },
+    {
+      "id": 22860,
+      "nome": "Cohab : UR 01 / UR 04 / Lagoa Encantada",
+      "bairros": [
+        "COHAB"
+      ],
+      "idhm": 0.68,
+      "populacao": 26072
+    },
+    {
+      "id": 22861,
+      "nome": "Cohab : UR 10 / Vila das Crianças",
+      "bairros": [
+        "COHAB"
+      ],
+      "idhm": 0.644,
+      "populacao": 6454
+    },
+    {
+      "id": 22862,
+      "nome": "Cohab : UR 05",
+      "bairros": [
+        "COHAB"
+      ],
+      "idhm": 0.716,
+      "populacao": 5366
+    },
+    {
+      "id": 22863,
+      "nome": "Cohab : Zeis UR 05 / Três Carneiros",
+      "bairros": [
+        "COHAB"
+      ],
+      "idhm": 0.641,
+      "populacao": 12329
+    },
+    {
+      "id": 22864,
+      "nome": "Cohab ( Jardim Monte Verde )",
+      "bairros": [
+        "COHAB"
+      ],
+      "idhm": 0.64,
+      "populacao": 5305
+    },
+    {
+      "id": 22865,
+      "nome": "Cohab : UR 02",
+      "bairros": [
+        "COHAB"
+      ],
+      "idhm": 0.736,
+      "populacao": 3989
+    },
+    {
+      "id": 22866,
+      "nome": "Cohab : UR 03",
+      "bairros": [
+        "COHAB"
+      ],
+      "idhm": 0.777,
+      "populacao": 4394
+    },
+    {
+      "id": 22867,
+      "nome": "Bomba do Hemetério / Água Fria : Estrada Velha de Água Fria",
+      "bairros": [
+        "BOMBA DO HEMETERIO",
+        "AGUA FRIA"
+      ],
+      "idhm": 0.705,
+      "populacao": 6060
+    },
+    {
+      "id": 22868,
+      "nome": "Monteiro : Zeis Vila Esperança / Cabocó",
+      "bairros": [
+        "MONTEIRO"
+      ],
+      "idhm": 0.623,
+      "populacao": 403
+    },
+    {
+      "id": 22869,
+      "nome": "Torre : Conjunto Habitacional da Torre",
+      "bairros": [
+        "TORRE"
+      ],
+      "idhm": 0.608,
+      "populacao": 1014
+    },
+    {
+      "id": 22870,
+      "nome": "Cordeiro : Conjunto Habitacional do Cordeiro",
+      "bairros": [
+        "CORDEIRO"
+      ],
+      "idhm": 0.608,
+      "populacao": 2521
+    },
+    {
+      "id": 22871,
+      "nome": "Iputinga : Parque do Caiara / Rua Leal de Barros",
+      "bairros": [
+        "IPUTINGA"
+      ],
+      "idhm": 0.654,
+      "populacao": 7475
+    },
+    {
+      "id": 22872,
+      "nome": "Pina ( Bode III ) : Zeis Pina / Encanta Moça",
+      "bairros": [
+        "PINA"
+      ],
+      "idhm": 0.716,
+      "populacao": 4973
+    },
+    {
+      "id": 22873,
+      "nome": "Jiquiá : Zeis Rua do Rio / Iraque",
+      "bairros": [
+        "JIQUIA"
+      ],
+      "idhm": 0.615,
+      "populacao": 1024
+    },
+    {
+      "id": 22874,
+      "nome": "Sítio dos Pintos : Santa Leopoldina / Rua São Pedro",
+      "bairros": [
+        "SITIO DOS PINTOS"
+      ],
+      "idhm": 0.656,
+      "populacao": 1191
+    },
+    {
+      "id": 22875,
+      "nome": "Sítio dos Pintos / Dois Irmãos : Sítio São Braz / Córrego da Fortuna",
+      "bairros": [
+        "SITIO DOS PINTOS",
+        "DOIS IRMAOS"
+      ],
+      "idhm": 0.716,
+      "populacao": 6490
+    },
+    {
+      "id": 22876,
+      "nome": "Imbiribeira : Rua Nestor Moreira / Av. Sul",
+      "bairros": [
+        "IMBIRIBEIRA"
+      ],
+      "idhm": 0.76,
+      "populacao": 1067
+    },
+    {
+      "id": 22877,
+      "nome": "Boa Viagem : Zeis Borborema",
+      "bairros": [
+        "BOA VIAGEM"
+      ],
+      "idhm": 0.736,
+      "populacao": 1768
+    },
+    {
+      "id": 22878,
+      "nome": "Estância / Jardim São Paulo : Av. Recife / Zeis Jardim São Paulo I",
+      "bairros": [
+        "ESTANCIA",
+        "JARDIM SAO PAULO"
+      ],
+      "idhm": 0.736,
+      "populacao": 4617
+    },
+    {
+      "id": 22879,
+      "nome": "Mangueira : Rua Nelson Ávila / Zeis Mangueira",
+      "bairros": [
+        "MANGUEIRA"
+      ],
+      "idhm": 0.716,
+      "populacao": 1720
+    },
+    {
+      "id": 22880,
+      "nome": "Ipsep / Imbiribeira : Rua Rio Oceânico",
+      "bairros": [
+        "IPSEP",
+        "IMBIRIBEIRA"
+      ],
+      "idhm": 0.777,
+      "populacao": 4156
+    },
+    {
+      "id": 22881,
+      "nome": "Ipsep ( Vila Mauricéia ) : Rua Potengy",
+      "bairros": [
+        "IPSEP"
+      ],
+      "idhm": 0.769,
+      "populacao": 3386
+    },
+    {
+      "id": 22882,
+      "nome": "Várzea : Jardim Petrópolis / Av. Afonso Olidense",
+      "bairros": [
+        "VARZEA"
+      ],
+      "idhm": 0.798,
+      "populacao": 10712
+    },
+    {
+      "id": 22883,
+      "nome": "Arruda : Residencial Eldorado",
+      "bairros": [
+        "ARRUDA"
+      ],
+      "idhm": 0.798,
+      "populacao": 641
+    },
+    {
+      "id": 22884,
+      "nome": "Monteiro : Av. 17 de Agosto / Zeis Alto do Mandú / Santa Isabel",
+      "bairros": [
+        "MONTEIRO"
+      ],
+      "idhm": 0.88,
+      "populacao": 1260
+    },
+    {
+      "id": 22885,
+      "nome": "Várzea : Rua Delfim Moreira / Av. Barão de Bonito",
+      "bairros": [
+        "VARZEA"
+      ],
+      "idhm": 0.88,
+      "populacao": 913
+    },
+    {
+      "id": 22886,
+      "nome": "Iputinga : Conjunto Jardim Florença / Rua São Mateus",
+      "bairros": [
+        "IPUTINGA"
+      ],
+      "idhm": 0.893,
+      "populacao": 1536
+    },
+    {
+      "id": 22887,
+      "nome": "Iputinga : Rua Padre Fernão Cardim / Rua Conselheiro Silveira de Souza",
+      "bairros": [
+        "IPUTINGA"
+      ],
+      "idhm": 0.88,
+      "populacao": 3811
+    },
+    {
+      "id": 22888,
+      "nome": "Iputinga : Canal do Cavoco / Rua Expedicionário Ailson Simões",
+      "bairros": [
+        "IPUTINGA"
+      ],
+      "idhm": 0.796,
+      "populacao": 739
+    },
+    {
+      "id": 22889,
+      "nome": "Engenho do Meio / Iputinga : Praça do Bom Pastor",
+      "bairros": [
+        "ENGENHO DO MEIO",
+        "IPUTINGA"
+      ],
+      "idhm": 0.88,
+      "populacao": 3071
+    },
+    {
+      "id": 22890,
+      "nome": "Engenho do Meio : Rua Manoel Corte Real / Rua Antônio Curado",
+      "bairros": [
+        "ENGENHO DO MEIO"
+      ],
+      "idhm": 0.828,
+      "populacao": 2083
+    },
+    {
+      "id": 22891,
+      "nome": "Iputinga : Rua Leal de Barros / Rua Odilon Araújo",
+      "bairros": [
+        "IPUTINGA"
+      ],
+      "idhm": 0.832,
+      "populacao": 5516
+    },
+    {
+      "id": 22892,
+      "nome": "Cordeiro / Torrões : Morada Recife Antigo / Praça da Chesf",
+      "bairros": [
+        "CORDEIRO",
+        "TORROES"
+      ],
+      "idhm": 0.893,
+      "populacao": 5725
+    },
+    {
+      "id": 22893,
+      "nome": "Cordeiro : Rua Cláudio Brotherhood / Rua João Rosendo",
+      "bairros": [
+        "CORDEIRO"
+      ],
+      "idhm": 0.88,
+      "populacao": 3396
+    },
+    {
+      "id": 22894,
+      "nome": "Jardim São Paulo : Condomínio Vila Jardim",
+      "bairros": [
+        "JARDIM SAO PAULO"
+      ],
+      "idhm": 0.88,
+      "populacao": 1310
+    },
+    {
+      "id": 22895,
+      "nome": "Barro / Tejipió : Av. Dr. José Rufino / BR 101",
+      "bairros": [
+        "BARRO",
+        "TEJIPIO"
+      ],
+      "idhm": 0.832,
+      "populacao": 4324
+    },
+    {
+      "id": 22896,
+      "nome": "Tejipió : Rua da Espernaça / Rua Luiz Soares",
+      "bairros": [
+        "TEJIPIO"
+      ],
+      "idhm": 0.893,
+      "populacao": 643
+    },
+    {
+      "id": 22897,
+      "nome": "San Martin : Residenciais Quinta das Graças e Quinta da Boa Vista",
+      "bairros": [
+        "SAN MARTIN"
+      ],
+      "idhm": 0.919,
+      "populacao": 1722
+    },
+    {
+      "id": 22898,
+      "nome": "Arruda : Rua José Fulco / Rua Sete Pecados",
+      "bairros": [
+        "ARRUDA"
+      ],
+      "idhm": 0.88,
+      "populacao": 916
+    },
+    {
+      "id": 22899,
+      "nome": "Campo Grande / Encruzilhada : Rua Othon Paraíso",
+      "bairros": [
+        "CAMPO GRANDE",
+        "ENCRUZILHADA"
+      ],
+      "idhm": 0.828,
+      "populacao": 2194
+    },
+    {
+      "id": 22900,
+      "nome": "Várzea : Av. Caxangá / Rua Torres Homem",
+      "bairros": [
+        "VARZEA"
+      ],
+      "idhm": 0.86,
+      "populacao": 743
+    },
+    {
+      "id": 22901,
+      "nome": "Torre : Carrefour / Vila Santa Luzia",
+      "bairros": [
+        "TORRE"
+      ],
+      "idhm": 0.86,
+      "populacao": 1474
+    },
+    {
+      "id": 22902,
+      "nome": "Apipucos / Macaxeira : Fábrica da Macaxeira / Açude Apipucos / Zeis Apipucos / Zeis Vila São João",
+      "bairros": [
+        "APIPUCOS",
+        "MACAXEIRA"
+      ],
+      "idhm": 0.86,
+      "populacao": 4176
+    },
+    {
+      "id": 22903,
+      "nome": "Iputinga ( Caiara / Bomba Grande )",
+      "bairros": [
+        "IPUTINGA"
+      ],
+      "idhm": 0.705,
+      "populacao": 5548
+    },
+    {
+      "id": 22904,
+      "nome": "Cohab : Zeis UR 05 / Três Carneiros / Lagoa Encantada",
+      "bairros": [
+        "COHAB"
+      ],
+      "idhm": 0.69,
+      "populacao": 4246
+    },
+    {
+      "id": 22905,
+      "nome": "Imbiribeira / Ipsep : Zeis Sítio Grande",
+      "bairros": [
+        "IMBIRIBEIRA",
+        "IPSEP"
+      ],
+      "idhm": 0.64,
+      "populacao": 11725
+    },
+    {
+      "id": 22906,
+      "nome": "Ipsep : Av. Presidente Kennedy",
+      "bairros": [
+        "IPSEP"
+      ],
+      "idhm": 0.794,
+      "populacao": 1999
+    },
+    {
+      "id": 22907,
+      "nome": "Pina : Av. República do Líbano / Bacardi",
+      "bairros": [
+        "PINA"
+      ],
+      "idhm": 0.608,
+      "populacao": 437
+    },
+    {
+      "id": 22908,
+      "nome": "Bongi : Zeis Mustardinha / Estrada do Bongi / Rua Pedro Américo",
+      "bairros": [
+        "BONGI"
+      ],
+      "idhm": 0.88,
+      "populacao": 682
+    }
+  ]
+}
