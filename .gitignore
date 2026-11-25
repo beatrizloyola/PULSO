@@ -32,6 +32,14 @@ venv/
 env/
 .pytest_cache/
 backend/app/data/cache/atualizacao/
+backend/app/data/painel/
+
+# MLflow (tracking local; o modelo servido é exportado para backend/app/models)
+backend/mlflow.db
+backend/mlruns/
+
+# Dados brutos de cache (SINAN/dengue anuais) — não versionados (regeneráveis via build_sinan_historico.py)
+backend/app/data/cache/dengue_*.csv
 
 # Env files
 .env

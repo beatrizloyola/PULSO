@@ -1,8 +1,15 @@
 # PULSO Backend
 
-API **Flask** com XGBoost para previsão de casos de dengue e priorização dos
-94 bairros de Recife. Usa chuva do portal APAC, temperatura histórica do
+API **Flask** com XGBoost + MLflow para previsão de casos de dengue e priorização
+dos 94 bairros de Recife. Usa chuva do portal APAC, temperatura histórica do
 Open-Meteo e notificações SINAN do catálogo de Dados Abertos do Recife.
+
+## Stack
+
+- **Flask** — API REST
+- **XGBoost** — previsão de casos de dengue por bairro (horizontes de 1–4 semanas)
+- **MLflow** — tracking de treinos e empacotamento do modelo (pyfunc/cloudpickle)
+- **Pandas** — painel bairro × semana epidemiológica
 
 ## Executar (Linux, Python 3.12)
 
@@ -11,24 +18,68 @@ cd backend
 python3.12 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-python -m app.main
+python -m app.main        # http://localhost:8000
 ```
 
-Servidor em `http://localhost:8000`. A coleta é iniciada em segundo plano e
-renovada diariamente por padrão. A API continua usando o último conjunto
-válido enquanto a coleta acontece. Configuração, metodologia e testes em
-[DADOS_APAC.md](DADOS_APAC.md).
+O modelo servido já vem no repositório (`app/models/pulso_forecast`). A coleta
+de dados é iniciada em segundo plano e renovada diariamente por padrão. A API
+continua usando o último conjunto válido enquanto a coleta acontece.
+Configuração, metodologia e testes em [DADOS_APAC.md](DADOS_APAC.md).
+
+Atualizar os dados não retreina o modelo: para promover um modelo treinado com
+os dados novos, siga a seção abaixo.
+
+## Treinar e promover um modelo
+
+```bash
+python scripts/train_forecast.py   # loga um run no MLflow
+python scripts/export_model.py     # gate de métricas + export do último run
+python scripts/export_model.py --run-id <RUN_ID>   # ou um run específico
+pytest -q
+mlflow ui --backend-store-uri sqlite:///mlflow.db  # comparar runs
+```
+
+- O export só acontece se o XGBoost bater a persistência (MAE menor e
+  precisão@10 ≥) em todos os horizontes; caso contrário sai com código 1.
+- Commite `app/models/pulso_forecast/` e `app/models/forecast_meta.json` para
+  promover o modelo. `mlflow.db` e `mlruns/` são locais (gitignored).
+- `python_model.pkl` é um pickle: só carregue artefatos de origem confiável. Ele
+  fica preso às versões de `requirements.txt` do modelo exportado e referencia
+  `app.services.forecaster`, então renomear essa classe exige retreinar.
+
+## CI (GitHub Actions)
+
+`.github/workflows/ml.yml` roda em PR/push que toca `backend/`: treina, aplica
+o gate, exporta, roda `pytest` e publica o modelo e o tracking como artefato.
+Para enviar os runs a um servidor MLflow do time, configure os secrets
+`MLFLOW_TRACKING_URI` (e, se houver autenticação, `MLFLOW_TRACKING_USERNAME`
+/ `MLFLOW_TRACKING_PASSWORD`). Sem eles, o tracking é local ao job.
+
+## Histórico SINAN por bairro × semana (2016–2025)
+
+Gera a série `app/data/sinan_bairro_se_2016_2025.csv` e o relatório
+`app/data/sinan_bairro_se_report.json` a partir dos CSVs anuais de dengue do
+CKAN. Os dados brutos baixados ficam em `app/data/cache/` e não são
+versionados.
+
+```bash
+cd backend
+python scripts/build_sinan_historico.py
+```
+
+Metodologia, colunas, filtros e limitações estão no
+[data card](app/data/sinan_bairro_se_data_card.md).
 
 ## Endpoints
 
 | Método | Rota | Conteúdo |
 |---|---|---|
-| GET | `/health` | Disponibilidade do modelo e lookup |
+| GET | `/health` | Status + `run_id` do modelo servido |
 | GET | `/bairros` | Bairros, distrito, RPA e ZEIS |
-| POST | `/prioridade` | Ranking, semanas disponíveis, fontes, data da coleta e avisos |
-| GET | `/prioridade/<bairro_id>` | Detalhe de bairro |
+| POST | `/prioridade` | Ranking, semanas disponíveis, fontes, data da coleta e avisos (`semana_id`, `horizonte`, `top_n`, `capacidade`) |
+| GET | `/prioridade/<bairro_id>` | Detalhe de bairro (`?semana_id=&horizonte=`) |
 | GET | `/mapa` | GeoJSON com o mesmo ranking |
-| POST | `/prioridade/explicacao` | Contribuições do modelo de contagem, em escala log(casos) |
+| POST | `/prioridade/explicacao` | Contribuições SHAP da previsão, em escala log(casos) (`bairro_id`, `semana_id`, `horizonte`) |
 
 Em `/prioridade`, omita `semana_id` para a última semana com dados suficientes.
 Informe `YYYY-Wnn` para consultar outra semana retornada em `semanas_disponiveis`.
@@ -48,3 +99,13 @@ valor exclusivo de cada bairro. O campo `udhs_compartilhadas` em cada entrada
 de `bairros` conta quantas das UDHs daquele bairro são compartilhadas dessa
 forma; vários bairros com esse campo > 0 vão exibir o mesmo IDH entre si
 (ex.: Santana, Poço e Casa Forte, que caem na mesma UDH).
+
+## Variáveis de ambiente
+
+```bash
+MLFLOW_TRACKING_URI=sqlite:///mlflow.db   # padrão: backend/mlflow.db
+MLFLOW_EXPERIMENT=pulso-forecast
+```
+
+Variáveis da coleta de dados (`AUTO_SYNC`, `DATA_REFRESH_SECONDS`, …) em
+[DADOS_APAC.md](DADOS_APAC.md).
