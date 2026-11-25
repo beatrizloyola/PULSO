@@ -105,45 +105,67 @@ def listar_udhs(session: requests.Session, token: str) -> List[dict]:
 
 
 def baixar_idhm(session: requests.Session, token: str, ids: List[int]) -> dict:
-    """IDHM 2010 e população total das UDHs informadas."""
-    payload = {
-        "territorialidades": {
-            "entidades": [{
-                "e": TIPO_GRID_UDH, "mun": [], "rm": [], "est": [], "udh": [], "l": ids,
-            }],
-        },
-        "indicadores": {
-            "cod_indicadores": [
-                {"id_indicador": INDICADOR_IDHM, "id_ano": ANO_2010_ID},
-                {"id_indicador": INDICADOR_POPULACAO, "id_ano": ANO_2010_ID},
-            ],
-            "data_desagregacoes": [],
-        },
-        "pagination": {"current_page": 1, "last_page": 0, "per_page": 1000,
-                       "total": 0, "from": 0, "to": 0},
-        "ordenation": {"default": "asc"},
-    }
-    return _post(session, token, "/api/dadosgrid", json=payload)
+    """IDHM 2010 e população total das UDHs informadas. Percorre todas as
+    páginas — não confia em per_page cobrir tudo numa página só."""
+    linhas: List[list] = []
+    colunas = None
+    pagina = 1
+    while True:
+        payload = {
+            "territorialidades": {
+                "entidades": [{
+                    "e": TIPO_GRID_UDH, "mun": [], "rm": [], "est": [], "udh": [], "l": ids,
+                }],
+            },
+            "indicadores": {
+                "cod_indicadores": [
+                    {"id_indicador": INDICADOR_IDHM, "id_ano": ANO_2010_ID},
+                    {"id_indicador": INDICADOR_POPULACAO, "id_ano": ANO_2010_ID},
+                ],
+                "data_desagregacoes": [],
+            },
+            "pagination": {"current_page": pagina, "last_page": 0, "per_page": 1000,
+                           "total": 0, "from": 0, "to": 0},
+            "ordenation": {"default": "asc"},
+        }
+        resp = _post(session, token, "/api/dadosgrid", json=payload)
+        if colunas is None:
+            colunas = resp["columns"]
+        linhas.extend(resp["data"])
+        last_page = resp.get("pagination", {}).get("last_page", 1)
+        if pagina >= last_page:
+            break
+        pagina += 1
+    return {"columns": colunas, "data": linhas}
 
 
 def mapear_bairros(nome_udh: str, nomes_bairro: List[str],
                    indice: Dict[str, str]) -> List[str]:
-    """Extrai os bairros citados no nome oficial da UDH."""
+    """Extrai os bairros citados no nome oficial da UDH, sem repetição.
+
+    O fallback casa por palavra inteira (\\b...\\b): substring simples faria
+    "TORRE" casar dentro de "TORREAO".
+    """
     base = nome_udh.split(" (Recife,")[0]
     base = base.split(" : ")[0]
     base = re.sub(r"\s*\([^)]*\)\s*$", "", base)
-    bairros = []
+    bairros: List[str] = []
     for parte in (p.strip() for p in base.split("/")):
         if not parte:
             continue
         chave = _normalize(parte)
         if chave in indice:
-            bairros.append(indice[chave])
-            continue
-        candidatos = [b for b in nomes_bairro if _normalize(b) in chave]
-        if not candidatos:
-            raise ValueError(f"UDH sem bairro correspondente: {nome_udh!r} ({parte!r})")
-        bairros.append(max(candidatos, key=len))
+            bairro = indice[chave]
+        else:
+            candidatos = [
+                b for b in nomes_bairro
+                if re.search(rf"\b{re.escape(_normalize(b))}\b", chave)
+            ]
+            if not candidatos:
+                raise ValueError(f"UDH sem bairro correspondente: {nome_udh!r} ({parte!r})")
+            bairro = max(candidatos, key=len)
+        if bairro not in bairros:
+            bairros.append(bairro)
     return bairros
 
 
@@ -152,6 +174,7 @@ def agregar(udhs: List[dict], nomes_bairro: List[str]) -> Tuple[Dict[str, dict],
     soma = {b: 0.0 for b in nomes_bairro}
     peso = {b: 0.0 for b in nomes_bairro}
     contagem = {b: 0 for b in nomes_bairro}
+    compartilhadas = {b: 0 for b in nomes_bairro}  # UDHs que dividem a população com outro bairro
 
     registros = []
     for udh in udhs:
@@ -163,18 +186,27 @@ def agregar(udhs: List[dict], nomes_bairro: List[str]) -> Tuple[Dict[str, dict],
             "idhm": udh["idhm"],
             "populacao": udh["populacao"],
         })
+        compartilhada = len(bairros) > 1
         cota = udh["populacao"] / len(bairros)
         for bairro in bairros:
             soma[bairro] += udh["idhm"] * cota
             peso[bairro] += cota
             contagem[bairro] += 1
+            if compartilhada:
+                compartilhadas[bairro] += 1
 
     faltando = [b for b in nomes_bairro if peso[b] == 0]
     if faltando:
         raise ValueError(f"bairros sem UDH associada: {faltando}")
 
     bairros = {
-        b: {"idh": round(soma[b] / peso[b], 4), "udhs": contagem[b]}
+        b: {
+            "idh": round(soma[b] / peso[b], 4),
+            "udhs": contagem[b],
+            # >0 quando alguma UDH deste bairro também cobre outro(s) bairro(s):
+            # o IDH é diluído/repetido entre eles, não é exclusivo deste bairro.
+            "udhs_compartilhadas": compartilhadas[b],
+        }
         for b in sorted(nomes_bairro)
     }
     return bairros, registros
@@ -195,29 +227,39 @@ def main() -> None:
     print(f"  UDHs na RM Recife: {len(udhs_rm)}")
 
     grid = baixar_idhm(session, token, [u["id"] for u in udhs_rm])
-    linhas = grid["data"][1:]  # primeira linha é o Brasil
+    # Sem suposição de posição: o filtro por "(Recife," abaixo já descarta
+    # a linha de totais do Brasil (e qualquer outra linha fora do município).
     colunas = {c["id"]: i for i, c in enumerate(grid["columns"])}
     col_idhm = colunas[f"{INDICADOR_IDHM}_{ANO_2010_ID}"]
     col_pop = colunas[f"{INDICADOR_POPULACAO}_{ANO_2010_ID}"]
 
     udhs = []
-    for linha in linhas:
-        nome = linha[0]
-        if f"({MUNICIPIO_RECIFE}," not in nome:
+    for linha in grid["data"]:
+        nome_completo = linha[0]
+        if f"({MUNICIPIO_RECIFE}," not in nome_completo:
             continue
         udhs.append({
             "id": None,
-            "nome": nome.split(f" ({MUNICIPIO_RECIFE},")[0],
+            # listar_udhs() (abaixo) nunca inclui o sufixo "(Município, UF)",
+            # então o nome precisa ser cortado aqui para casar com ele.
+            "nome": nome_completo.split(f" ({MUNICIPIO_RECIFE},")[0],
             "idhm": _parse_numero(linha[col_idhm]),
             "populacao": _parse_populacao(linha[col_pop]),
         })
 
-    # Recupera o id de cada UDH do Recife a partir do nome completo retornado.
-    por_nome = {u["nome"].split(f" ({MUNICIPIO_RECIFE},")[0]: u["id"] for u in udhs_rm}
+    # Recupera o id de cada UDH do Recife pelo nome. Falha alto em vez de
+    # sobrescrever silenciosamente se duas UDHs da RM tiverem o mesmo nome.
+    por_nome: Dict[str, int] = {}
+    for u in udhs_rm:
+        if u["nome"] in por_nome:
+            raise RuntimeError(f"UDH duplicada na listagem do Atlas: {u['nome']!r}")
+        por_nome[u["nome"]] = u["id"]
+
     for udh in udhs:
         udh["id"] = por_nome.get(udh["nome"])
-    if any(u["id"] is None for u in udhs):
-        raise RuntimeError("não foi possível casar ids das UDHs do Recife")
+    sem_id = [u["nome"] for u in udhs if u["id"] is None]
+    if sem_id:
+        raise RuntimeError(f"não foi possível casar ids das UDHs do Recife: {sem_id}")
 
     bairros, registros = agregar(udhs, nomes_bairro)
 

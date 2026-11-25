@@ -28,6 +28,7 @@ def test_todos_os_bairros_do_lookup_tem_idh_de_2010():
     for nome, item in dados["bairros"].items():
         assert 0 < item["idh"] <= 1, nome
         assert item["udhs"] >= 1, nome
+        assert 0 <= item["udhs_compartilhadas"] <= item["udhs"], nome
 
 
 def test_udhs_estao_mapeadas_para_bairros_existentes():

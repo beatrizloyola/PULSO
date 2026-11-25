@@ -12,379 +12,473 @@
   "bairros": {
     "AFLITOS": {
       "idh": 0.952,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "AFOGADOS": {
       "idh": 0.7175,
-      "udhs": 8
+      "udhs": 8,
+      "udhs_compartilhadas": 2
     },
     "AGUA FRIA": {
       "idh": 0.6899,
-      "udhs": 5
+      "udhs": 5,
+      "udhs_compartilhadas": 5
     },
     "ALTO DO MANDU": {
       "idh": 0.76,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "ALTO JOSE BONIFACIO": {
       "idh": 0.659,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "ALTO JOSE DO PINHO": {
       "idh": 0.6656,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 1
     },
     "ALTO SANTA TEREZINHA": {
       "idh": 0.664,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "APIPUCOS": {
       "idh": 0.7825,
-      "udhs": 3
+      "udhs": 3,
+      "udhs_compartilhadas": 2
     },
     "AREIAS": {
       "idh": 0.7517,
-      "udhs": 4
+      "udhs": 4,
+      "udhs_compartilhadas": 2
     },
     "ARRUDA": {
       "idh": 0.7328,
-      "udhs": 5
+      "udhs": 5,
+      "udhs_compartilhadas": 3
     },
     "BARRO": {
       "idh": 0.695,
-      "udhs": 4
+      "udhs": 4,
+      "udhs_compartilhadas": 3
     },
     "BEBERIBE": {
       "idh": 0.664,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "BOA VIAGEM": {
       "idh": 0.8982,
-      "udhs": 14
+      "udhs": 14,
+      "udhs_compartilhadas": 3
     },
     "BOA VISTA": {
       "idh": 0.88,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 2
     },
     "BOMBA DO HEMETERIO": {
       "idh": 0.6524,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 2
     },
     "BONGI": {
       "idh": 0.7299,
-      "udhs": 4
+      "udhs": 4,
+      "udhs_compartilhadas": 3
     },
     "BRASILIA TEIMOSA": {
       "idh": 0.69,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 0
     },
     "BREJO DA GUABIRABA": {
       "idh": 0.632,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "BREJO DE BEBERIBE": {
       "idh": 0.632,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "CABANGA": {
       "idh": 0.6424,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 1
     },
     "CACOTE": {
       "idh": 0.64,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "CAJUEIRO": {
       "idh": 0.8237,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 2
     },
     "CAMPINA DO BARRETO": {
       "idh": 0.6743,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 2
     },
     "CAMPO GRANDE": {
       "idh": 0.7391,
-      "udhs": 7
+      "udhs": 7,
+      "udhs_compartilhadas": 2
     },
     "CASA AMARELA": {
       "idh": 0.8135,
-      "udhs": 4
+      "udhs": 4,
+      "udhs_compartilhadas": 3
     },
     "CASA FORTE": {
       "idh": 0.941,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "CAXANGA": {
       "idh": 0.7069,
-      "udhs": 3
+      "udhs": 3,
+      "udhs_compartilhadas": 1
     },
     "CIDADE UNIVERSITARIA": {
       "idh": 0.777,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "COELHOS": {
       "idh": 0.6558,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 2
     },
     "COHAB": {
       "idh": 0.6794,
-      "udhs": 8
+      "udhs": 8,
+      "udhs_compartilhadas": 0
     },
     "COQUEIRAL": {
       "idh": 0.674,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "CORDEIRO": {
       "idh": 0.7554,
-      "udhs": 9
+      "udhs": 9,
+      "udhs_compartilhadas": 5
     },
     "CORREGO DO JENIPAPO": {
       "idh": 0.654,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "CURADO": {
       "idh": 0.6852,
-      "udhs": 4
+      "udhs": 4,
+      "udhs_compartilhadas": 1
     },
     "DERBY": {
       "idh": 0.919,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 0
     },
     "DOIS IRMAOS": {
       "idh": 0.6932,
-      "udhs": 3
+      "udhs": 3,
+      "udhs_compartilhadas": 3
     },
     "DOIS UNIDOS": {
       "idh": 0.648,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 0
     },
     "ENCRUZILHADA": {
       "idh": 0.9039,
-      "udhs": 4
+      "udhs": 4,
+      "udhs_compartilhadas": 4
     },
     "ENGENHO DO MEIO": {
       "idh": 0.7902,
-      "udhs": 4
+      "udhs": 4,
+      "udhs_compartilhadas": 1
     },
     "ESPINHEIRO": {
       "idh": 0.9407,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 0
     },
     "ESTANCIA": {
       "idh": 0.7162,
-      "udhs": 4
+      "udhs": 4,
+      "udhs_compartilhadas": 3
     },
     "FUNDAO": {
       "idh": 0.7325,
-      "udhs": 3
+      "udhs": 3,
+      "udhs_compartilhadas": 3
     },
     "GRACAS": {
       "idh": 0.952,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "GUABIRABA": {
       "idh": 0.6375,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 2
     },
     "HIPODROMO": {
       "idh": 0.893,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "IBURA": {
       "idh": 0.6987,
-      "udhs": 7
+      "udhs": 7,
+      "udhs_compartilhadas": 4
     },
     "ILHA DO LEITE": {
       "idh": 0.88,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 2
     },
     "ILHA DO RETIRO": {
       "idh": 0.8649,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 1
     },
     "ILHA JOANA BEZERRA": {
       "idh": 0.622,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "IMBIRIBEIRA": {
       "idh": 0.7589,
-      "udhs": 11
+      "udhs": 11,
+      "udhs_compartilhadas": 5
     },
     "IPSEP": {
       "idh": 0.7524,
-      "udhs": 5
+      "udhs": 5,
+      "udhs_compartilhadas": 3
     },
     "IPUTINGA": {
       "idh": 0.7497,
-      "udhs": 10
+      "udhs": 10,
+      "udhs_compartilhadas": 1
     },
     "JAQUEIRA": {
       "idh": 0.9497,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 2
     },
     "JARDIM SAO PAULO": {
       "idh": 0.7581,
-      "udhs": 8
+      "udhs": 8,
+      "udhs_compartilhadas": 2
     },
     "JIQUIA": {
       "idh": 0.7187,
-      "udhs": 3
+      "udhs": 3,
+      "udhs_compartilhadas": 2
     },
     "JORDAO": {
       "idh": 0.6578,
-      "udhs": 4
+      "udhs": 4,
+      "udhs_compartilhadas": 3
     },
     "LINHA DO TIRO": {
       "idh": 0.664,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "MACAXEIRA": {
       "idh": 0.6822,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 2
     },
     "MADALENA": {
       "idh": 0.8467,
-      "udhs": 5
+      "udhs": 5,
+      "udhs_compartilhadas": 2
     },
     "MANGABEIRA": {
       "idh": 0.6811,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 1
     },
     "MANGUEIRA": {
       "idh": 0.674,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 1
     },
     "MONTEIRO": {
       "idh": 0.8533,
-      "udhs": 4
+      "udhs": 4,
+      "udhs_compartilhadas": 2
     },
     "MORRO DA CONCEICAO": {
       "idh": 0.659,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "MUSTARDINHA": {
       "idh": 0.726,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 2
     },
     "NOVA DESCOBERTA": {
       "idh": 0.643,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 0
     },
     "PAISSANDU": {
       "idh": 0.893,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "PARNAMIRIM": {
       "idh": 0.9157,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 1
     },
     "PASSARINHO": {
       "idh": 0.632,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "PAU FERRO": {
       "idh": 0.798,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "PEIXINHOS": {
       "idh": 0.615,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "PINA": {
       "idh": 0.8026,
-      "udhs": 9
+      "udhs": 9,
+      "udhs_compartilhadas": 2
     },
     "POCO": {
       "idh": 0.941,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "PONTO DE PARADA": {
       "idh": 0.8643,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 2
     },
     "PORTO DA MADEIRA": {
       "idh": 0.7625,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 2
     },
     "PRADO": {
       "idh": 0.8269,
-      "udhs": 6
+      "udhs": 6,
+      "udhs_compartilhadas": 3
     },
     "RECIFE": {
       "idh": 0.796,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "ROSARINHO": {
       "idh": 0.9118,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 2
     },
     "SAN MARTIN": {
       "idh": 0.7503,
-      "udhs": 6
+      "udhs": 6,
+      "udhs_compartilhadas": 4
     },
     "SANCHO": {
       "idh": 0.7051,
-      "udhs": 3
+      "udhs": 3,
+      "udhs_compartilhadas": 2
     },
     "SANTANA": {
       "idh": 0.941,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "SANTO AMARO": {
       "idh": 0.6844,
-      "udhs": 4
+      "udhs": 4,
+      "udhs_compartilhadas": 2
     },
     "SANTO ANTONIO": {
       "idh": 0.841,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "SAO JOSE": {
       "idh": 0.6541,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 1
     },
     "SITIO DOS PINTOS": {
       "idh": 0.7277,
-      "udhs": 3
+      "udhs": 3,
+      "udhs_compartilhadas": 2
     },
     "SOLEDADE": {
       "idh": 0.893,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "TAMARINEIRA": {
       "idh": 0.9222,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 2
     },
     "TEJIPIO": {
       "idh": 0.7533,
-      "udhs": 4
+      "udhs": 4,
+      "udhs_compartilhadas": 3
     },
     "TORRE": {
       "idh": 0.8351,
-      "udhs": 4
+      "udhs": 4,
+      "udhs_compartilhadas": 2
     },
     "TORREAO": {
       "idh": 0.893,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "TORROES": {
       "idh": 0.7058,
-      "udhs": 3
+      "udhs": 3,
+      "udhs_compartilhadas": 2
     },
     "TOTO": {
       "idh": 0.674,
-      "udhs": 1
+      "udhs": 1,
+      "udhs_compartilhadas": 1
     },
     "VARZEA": {
       "idh": 0.7554,
-      "udhs": 14
+      "udhs": 14,
+      "udhs_compartilhadas": 2
     },
     "VASCO DA GAMA": {
       "idh": 0.6676,
-      "udhs": 2
+      "udhs": 2,
+      "udhs_compartilhadas": 1
     },
     "ZUMBI": {
       "idh": 0.8038,
-      "udhs": 3
+      "udhs": 3,
+      "udhs_compartilhadas": 3
     }
   },
   "udhs": [
