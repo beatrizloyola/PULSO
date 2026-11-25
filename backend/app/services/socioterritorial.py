@@ -7,13 +7,17 @@ publica o IDHM no nível de Unidade de Desenvolvimento Humano (UDH). O arquivo
 socioeconômico — não é variável do modelo de previsão.
 """
 import json
+import logging
 import unicodedata
 
 from app import config
 
+log = logging.getLogger(__name__)
+
 IDH_FILE = config.DATA_DIR / "idh_atlas_2010.json"
 
 _cache = {"assinatura": None, "dados": None}
+_avisou_ausencia = False
 
 
 def _norm(valor) -> str:
@@ -23,7 +27,12 @@ def _norm(valor) -> str:
 
 
 def _carregar() -> dict:
+    global _avisou_ausencia
     if not IDH_FILE.exists():
+        if not _avisou_ausencia:
+            log.warning("%s não encontrado — idh virá null em todas as respostas. "
+                        "Gere com: python -m scripts.build_idh_atlas", IDH_FILE)
+            _avisou_ausencia = True
         return {}
     assinatura = IDH_FILE.stat().st_mtime_ns
     if _cache["dados"] is None or _cache["assinatura"] != assinatura:
@@ -31,6 +40,11 @@ def _carregar() -> dict:
             _cache["dados"] = json.load(f)
         _cache["assinatura"] = assinatura
     return _cache["dados"]
+
+
+def disponivel() -> bool:
+    """Para o /health: o arquivo de IDH existe e tem bairros carregados."""
+    return bool(_carregar().get("bairros"))
 
 
 def referencia() -> dict:

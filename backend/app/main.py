@@ -56,6 +56,7 @@ def health():
         "status": "ok" if (model_ok and lookup_ok) else "degraded",
         "modelo_carregado": model_ok,
         "bairros_lookup": lookup_ok,
+        "idh_disponivel": socioterritorial.disponivel(),
     })
 
 @app.route("/bairros")

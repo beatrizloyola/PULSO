@@ -1,9 +1,23 @@
 import json
+import time
+
+import pytest
 
 from app import config
 from app.services import socioterritorial
 
 IDH_FILE = config.DATA_DIR / "idh_atlas_2010.json"
+
+
+@pytest.fixture(autouse=True)
+def _limpar_cache_idh():
+    """Isola o cache em memória de socioterritorial entre testes."""
+    socioterritorial._cache["dados"] = None
+    socioterritorial._cache["assinatura"] = None
+    socioterritorial._avisou_ausencia = False
+    yield
+    socioterritorial._cache["dados"] = None
+    socioterritorial._cache["assinatura"] = None
 
 
 def _dados():
@@ -74,3 +88,34 @@ def test_api_de_prioridade_expoe_idh_por_bairro():
     bairros = client.get("/bairros").get_json()
     assert bairros["idh_referencia"]["ano"] == 2010
     assert all(0 < b["idh"] <= 1 for b in bairros["bairros"])
+
+
+def test_arquivo_ausente_nao_quebra_e_avisa_uma_vez(tmp_path, monkeypatch, caplog):
+    monkeypatch.setattr(socioterritorial, "IDH_FILE", tmp_path / "nao_existe.json")
+    assert socioterritorial.por_bairro("Boa Vista") is None
+    assert socioterritorial.referencia() == {}
+    assert socioterritorial.disponivel() is False
+    with caplog.at_level("WARNING"):
+        socioterritorial.por_bairro("Boa Vista")
+    avisos = [r for r in caplog.records if "idh virá null" in r.message]
+    assert len(avisos) == 1  # loga uma vez, não a cada chamada
+
+
+def test_normalizacao_de_nomes_e_recarga_de_cache(tmp_path, monkeypatch):
+    arquivo = tmp_path / "idh.json"
+    conteudo = {
+        "ano_referencia": 2010, "fonte": "Atlas do Desenvolvimento Humano no Brasil",
+        "bairros": {"AGUA FRIA": {"idh": 0.7, "udhs": 1, "udhs_compartilhadas": 0}},
+        "cobertura": {"udhs": 1, "bairros": 1, "populacao_udhs": 100},
+    }
+    arquivo.write_text(json.dumps(conteudo), encoding="utf-8")
+    monkeypatch.setattr(socioterritorial, "IDH_FILE", arquivo)
+
+    assert socioterritorial.por_bairro("Água Fria")["idh"] == 0.7
+    assert socioterritorial.por_bairro("água fria")["idh"] == 0.7
+    assert socioterritorial.disponivel() is True
+
+    conteudo["bairros"]["AGUA FRIA"]["idh"] = 0.9
+    time.sleep(0.01)  # garante mtime_ns diferente, mesmo em filesystems de baixa resolução
+    arquivo.write_text(json.dumps(conteudo), encoding="utf-8")
+    assert socioterritorial.por_bairro("Água Fria")["idh"] == 0.9  # recarrega pelo mtime

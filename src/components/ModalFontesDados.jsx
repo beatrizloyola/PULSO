@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { usePulso } from "../context/PulsoContext";
 
-const FONTES = [
+const FONTES_FIXAS = [
   {
     nome: "CKAN - Portal de Dados Abertos do Recife",
     url: "https://dados.recife.pe.gov.br",
@@ -42,20 +43,6 @@ const FONTES = [
     variaveis: ["vulnerabilidade_territorial", "historico"],
   },
   {
-    nome: "Atlas Brasil - IDHM por UDH",
-    url: "https://www.atlasbrasil.org.br/consulta/planilha",
-    tipo: "Dados socioterritoriais",
-    descricao:
-      "IDHM de 2010 das 194 Unidades de Desenvolvimento Humano (UDHs) do Recife, agregado para os 94 bairros por média ponderada pela população. O IDH é contexto socioeconômico para testar associação com a incidência; não é variável do modelo de previsão.",
-    atualizacao: "Censo 2010 - base estática",
-    registros: "194 UDHs mapeadas para 94 bairros",
-    defasagem:
-      `dados de 2010 (Censo 2010). Em ${new Date().getFullYear()} a defasagem é de ` +
-      `${new Date().getFullYear() - 2010} anos: leia como contexto histórico, não como condição atual do bairro.`,
-    variaveisLabel: "Referência (não usada no modelo):",
-    variaveis: ["idh"],
-  },
-  {
     nome: "Modelos de previsão e validação temporal",
     url: "Local",
     tipo: "Dataset de treinamento",
@@ -70,8 +57,43 @@ const FONTES = [
   },
 ];
 
+function construirFonteIdh(idhReferencia) {
+  const ano = idhReferencia?.ano ?? 2010;
+  const cobertura = idhReferencia?.cobertura ?? {};
+  const udhs = cobertura.udhs ?? 194;
+  const bairros = cobertura.bairros ?? 94;
+  const anoAtual = new Date().getFullYear();
+  return {
+    nome: "Atlas Brasil - IDHM por UDH",
+    url: idhReferencia?.url ?? "https://www.atlasbrasil.org.br/consulta/planilha",
+    tipo: "Dados socioterritoriais",
+    descricao:
+      `IDHM de ${ano} das ${udhs} Unidades de Desenvolvimento Humano (UDHs) do Recife, ` +
+      `agregado para os ${bairros} bairros por média ponderada pela população. Quando uma ` +
+      "UDH abrange mais de um bairro, sua população é dividida igualmente entre eles — " +
+      "o IDH mostrado é repetido entre esses bairros, não é exclusivo de cada um. O IDH é " +
+      "contexto socioeconômico para testar associação com a incidência; não é variável do " +
+      "modelo de previsão.",
+    atualizacao: `Censo ${ano} - base estática`,
+    registros: `${udhs} UDHs mapeadas para ${bairros} bairros`,
+    defasagem:
+      `dados de ${ano} (Censo ${ano}). Em ${anoAtual} a defasagem é de ` +
+      `${anoAtual - ano} anos: leia como contexto histórico, não como condição atual do bairro.`,
+    variaveisLabel: "Referência (não usada no modelo):",
+    variaveis: ["idh"],
+  };
+}
+
 export default function ModalFontesDados({ isOpen, onClose }) {
+  const { idhReferencia } = usePulso();
   const [fonteExpandida, setFonteExpandida] = useState(null);
+
+  const fontes = useMemo(() => {
+    // Mantém o IDH na posição 5 (índice 4) entre as fontes fixas: 4 fixas antes, 1 depois.
+    const antes = FONTES_FIXAS.slice(0, 4);
+    const depois = FONTES_FIXAS.slice(4);
+    return [...antes, construirFonteIdh(idhReferencia), ...depois];
+  }, [idhReferencia]);
 
   useEffect(() => {
     if (isOpen) {
@@ -103,7 +125,7 @@ export default function ModalFontesDados({ isOpen, onClose }) {
           </p>
 
           <div className="fontes-lista">
-            {FONTES.map((fonte, i) => {
+            {fontes.map((fonte, i) => {
               const expandida = fonteExpandida === i;
               return (
                 <div
