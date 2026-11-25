@@ -4,7 +4,11 @@ Falhas preservam o snapshot anterior. Nenhuma chuva ausente é imputada como zer
 """
 from datetime import date, datetime, timedelta
 from io import StringIO
-import fcntl
+try:
+    import fcntl
+except ImportError:
+    fcntl = None
+    import msvcrt
 import hashlib
 import json
 import logging
@@ -145,10 +149,16 @@ def discover_resources(package):
 def sync_data(force=False):
     config.SYNC_DIR.mkdir(parents=True, exist_ok=True)
     with (config.SYNC_DIR / "sync.lock").open("w") as lock:
-        try:
-            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except BlockingIOError:
-            return {"status": "em_andamento"}
+        if fcntl is not None:
+            try:
+                fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except BlockingIOError:
+                return {"status": "em_andamento"}
+        else:
+            try:
+                msvcrt.locking(lock.fileno(), msvcrt.LK_NBLCK, 1)
+            except OSError:
+                return {"status": "em_andamento"}
         current = read_json(config.SYNC_DIR / "current.json")
         now = datetime.now(TZ)
         if current and not force:
