@@ -1,3 +1,4 @@
+import pandas as pd
 import pytest
 
 from app.shared.territorio import normalizar_nome_bairro, todos_territorios
@@ -10,6 +11,19 @@ IMPACTOS_VALIDOS = {"positivo", "neutro", "negativo"}
 def client():
     from app.main import app
     return app.test_client()
+
+
+def test_derivar_fatores_ds_marca_piora_como_negativo():
+    """Chuva/tendência/vulnerabilidade/histórico altos = risco piorando = negativo."""
+    from app.main import _derivar_fatores_ds
+
+    grupo = pd.DataFrame({
+        "condicoes_climaticas": [90],  # chuva alta -> risco pior
+        "vulnerabilidade_territorial": [10],  # vulnerabilidade baixa -> risco melhor
+    })
+    fatores = {f["fator"]: f["impacto"] for f in _derivar_fatores_ds(grupo)}
+    assert fatores["chuva_semanal"] == "negativo"
+    assert fatores["vulnerabilidade_territorial"] == "positivo"
 
 
 def test_risco_distritos_contrato_padrao(client):

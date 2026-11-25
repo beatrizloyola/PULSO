@@ -81,12 +81,15 @@ def _derivar_fatores_ds(grupo) -> list[dict]:
             if col not in grupo.columns:
                 continue
             media = float(grupo[col].mean())
+            # Nos 4 componentes, valor alto = piora do risco (mais chuva, tendência
+            # de alta, mais vulnerabilidade, histórico ruim) — "impacto" reflete o
+            # efeito no risco do distrito, não se o valor em si é bom ou ruim.
             if media >= 50:
-                impacto = "positivo"
+                impacto = "negativo"
             elif media >= 25:
                 impacto = "neutro"
             else:
-                impacto = "negativo"
+                impacto = "positivo"
             fatores.append((media, {
                 "fator": fator,
                 "descricao": descricao,
