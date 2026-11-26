@@ -98,3 +98,22 @@ O CSV/GeoJSON trazem `cluster` (sem BH) e `cluster_bh` (BH 5%). O mapa usa a ver
 - Tabela por bairro: [`sp4_lisa_2024.csv`](../../backend/notebooks/saidas/sp4_lisa_2024.csv)
 - Contagem com BH: [`sp4_contagem_lisa_bh.csv`](../../backend/notebooks/saidas/sp4_contagem_lisa_bh.csv)
 - Resumo do Moran: [`sp4_moran_global.csv`](../../backend/notebooks/saidas/sp4_moran_global.csv)
+
+## Atualização US20 (26/11/2026)
+
+A [US20](US20-hotspots-por-temporada.md) operacionalizou este método para
+2016–2025 usando a série **US04** (casos não descartados), não o painel de
+notificações deste spike. Por isso os números de 2024 mudam:
+
+| 2024 | SP-4 (painel) | US20 (US04) |
+|---|---:|---:|
+| Casos | 9.716 | 2.604 |
+| Moran's I | 0,274 | 0,141 |
+| HH sem BH | 10 | 5 |
+| HH com BH | 5 | 0 |
+
+O painel inclui notificações descartadas; a US04 não. A US20 também usa o **DS
+canônico** de `distritos_sanitarios_*.csv` (Ibura e Jordão = DS 7), enquanto este
+spike usou `CDISTSANTPSAD` do GeoJSON (DS 8). O método (Queen, 999 permutações)
+permanece; a base e o campo de DS mudaram. A US20 também documenta a
+sensibilidade a KNN k=4: em 2024 o Moran deixa de ser significativo (p = 0,059).
