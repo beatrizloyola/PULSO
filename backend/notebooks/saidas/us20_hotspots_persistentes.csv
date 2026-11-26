@@ -1,0 +1,95 @@
+bairro_id,key,bairro,ds,n_temporadas,n_temporadas_hh,temporadas_hh,n_temporadas_hh_bh,temporadas_hh_bh,casos_total
+bairro_047,IBURA,Ibura,7,10,10,2016 2017 2018 2019 2020 2021 2022 2023 2024 2025,7,2018 2019 2020 2021 2022 2023 2025,2213
+bairro_051,IMBIRIBEIRA,Imbiribeira,6,10,10,2016 2017 2018 2019 2020 2021 2022 2023 2024 2025,6,2018 2020 2021 2022 2023 2025,1929
+bairro_057,JORDAO,Jordao,7,10,9,2016 2017 2018 2019 2020 2021 2022 2023 2025,7,2018 2019 2020 2021 2022 2023 2025,696
+bairro_014,BOA VIAGEM,Boa Viagem,6,10,8,2017 2018 2019 2020 2021 2022 2023 2025,5,2020 2021 2022 2023 2025,2005
+bairro_052,IPSEP,Ipsep,6,10,7,2018 2019 2020 2021 2022 2023 2025,3,2020 2021 2023,861
+bairro_072,PINA,Pina,6,10,7,2017 2018 2021 2022 2023 2024 2025,0,-,983
+bairro_031,COHAB,Cohab,7,10,5,2019 2020 2021 2023 2025,0,-,2297
+bairro_009,AREIAS,Areias,5,10,4,2019 2020 2021 2023,1,2021,1128
+bairro_012,BARRO,Barro,5,10,2,2016 2025,0,-,437
+bairro_028,CAXANGA,Caxanga,4,10,2,2016 2024,0,-,342
+bairro_013,BEBERIBE,Beberibe,2,10,1,2019,0,-,264
+bairro_053,IPUTINGA,Iputinga,4,10,1,2024,0,-,1563
+bairro_094,VASCO DA GAMA,Vasco Da Gama,8,10,1,2018,0,-,778
+bairro_001,AFLITOS,Aflitos,3,10,0,-,0,-,46
+bairro_002,AFOGADOS,Afogados,5,10,0,-,0,-,1089
+bairro_003,AGUA FRIA,Agua Fria,2,10,0,-,0,-,1383
+bairro_004,ALTO DO MANDU,Alto Do Mandu,3,10,0,-,0,-,271
+bairro_005,ALTO JOSE BONIFACIO,Alto Jose Bonifacio,8,10,0,-,0,-,370
+bairro_006,ALTO JOSE DO PINHO,Alto Jose Do Pinho,8,10,0,-,0,-,289
+bairro_007,ALTO SANTA TEREZINHA,Alto Santa Terezinha,2,10,0,-,0,-,122
+bairro_008,APIPUCOS,Apipucos,3,10,0,-,0,-,91
+bairro_010,ARRUDA,Arruda,2,10,0,-,0,-,435
+bairro_015,BOA VISTA,Boa Vista,1,10,0,-,0,-,275
+bairro_016,BOMBA DO HEMETERIO,Bomba Do Hemeterio,2,10,0,-,0,-,369
+bairro_017,BONGI,Bongi,5,10,0,-,0,-,257
+bairro_018,BRASILIA TEIMOSA,Brasilia Teimosa,6,10,0,-,0,-,450
+bairro_019,BREJO DA GUABIRABA,Brejo Da Guabiraba,8,10,0,-,0,-,178
+bairro_020,BREJO DE BEBERIBE,Brejo De Beberibe,7,10,0,-,0,-,125
+bairro_021,CABANGA,Cabanga,1,10,0,-,0,-,41
+bairro_022,CACOTE,Cacote,5,10,0,-,0,-,90
+bairro_023,CAJUEIRO,Cajueiro,2,10,0,-,0,-,148
+bairro_024,CAMPINA DO BARRETO,Campina Do Barreto,2,10,0,-,0,-,657
+bairro_025,CAMPO GRANDE,Campo Grande,2,10,0,-,0,-,805
+bairro_026,CASA AMARELA,Casa Amarela,3,10,0,-,0,-,994
+bairro_027,CASA FORTE,Casa Forte,3,10,0,-,0,-,113
+bairro_029,CIDADE UNIVERSITARIA,Cidade Universitaria,4,10,0,-,0,-,52
+bairro_030,COELHOS,Coelhos,1,10,0,-,0,-,198
+bairro_032,COQUEIRAL,Coqueiral,5,10,0,-,0,-,153
+bairro_033,CORDEIRO,Cordeiro,4,10,0,-,0,-,832
+bairro_034,CORREGO DO JENIPAPO,Corrego Do Jenipapo,8,10,0,-,0,-,157
+bairro_035,CURADO,Curado,5,10,0,-,0,-,135
+bairro_036,DERBY,Derby,3,10,0,-,0,-,31
+bairro_037,DOIS IRMAOS,Dois Irmaos,3,10,0,-,0,-,193
+bairro_038,DOIS UNIDOS,Dois Unidos,2,10,0,-,0,-,948
+bairro_039,ENCRUZILHADA,Encruzilhada,2,10,0,-,0,-,127
+bairro_040,ENGENHO DO MEIO,Engenho Do Meio,4,10,0,-,0,-,213
+bairro_041,ESPINHEIRO,Espinheiro,3,10,0,-,0,-,128
+bairro_042,ESTANCIA,Estancia,5,10,0,-,0,-,314
+bairro_043,FUNDAO,Fundao,2,10,0,-,0,-,194
+bairro_044,GRACAS,Gracas,3,10,0,-,0,-,192
+bairro_045,GUABIRABA,Guabiraba,8,10,0,-,0,-,210
+bairro_046,HIPODROMO,Hipodromo,2,10,0,-,0,-,19
+bairro_048,ILHA DO LEITE,Ilha Do Leite,1,10,0,-,0,-,19
+bairro_049,ILHA DO RETIRO,Ilha Do Retiro,4,10,0,-,0,-,58
+bairro_050,ILHA JOANA BEZERRA,Ilha Joana Bezerra,1,10,0,-,0,-,355
+bairro_054,JAQUEIRA,Jaqueira,3,10,0,-,0,-,20
+bairro_055,JARDIM SAO PAULO,Jardim Sao Paulo,5,10,0,-,0,-,760
+bairro_056,JIQUIA,Jiquia,5,10,0,-,0,-,186
+bairro_058,LINHA DO TIRO,Linha Do Tiro,2,10,0,-,0,-,483
+bairro_059,MACAXEIRA,Macaxeira,8,10,0,-,0,-,499
+bairro_060,MADALENA,Madalena,4,10,0,-,0,-,338
+bairro_061,MANGABEIRA,Mangabeira,8,10,0,-,0,-,128
+bairro_062,MANGUEIRA,Mangueira,5,10,0,-,0,-,240
+bairro_063,MONTEIRO,Monteiro,3,10,0,-,0,-,78
+bairro_064,MORRO DA CONCEICAO,Morro Da Conceicao,8,10,0,-,0,-,352
+bairro_065,MUSTARDINHA,Mustardinha,5,10,0,-,0,-,230
+bairro_066,NOVA DESCOBERTA,Nova Descoberta,8,10,0,-,0,-,1036
+bairro_067,PAISSANDU,Paissandu,1,10,0,-,0,-,19
+bairro_068,PARNAMIRIM,Parnamirim,3,10,0,-,0,-,89
+bairro_069,PASSARINHO,Passarinho,8,10,0,-,0,-,399
+bairro_070,PAU FERRO,Pau Ferro,8,10,0,-,0,-,0
+bairro_071,PEIXINHOS,Peixinhos,2,10,0,-,0,-,101
+bairro_073,POCO,Poco,3,10,0,-,0,-,69
+bairro_074,PONTO DE PARADA,Ponto De Parada,2,10,0,-,0,-,47
+bairro_075,PORTO DA MADEIRA,Porto Da Madeira,2,10,0,-,0,-,159
+bairro_076,PRADO,Prado,4,10,0,-,0,-,160
+bairro_077,RECIFE,Recife,1,10,0,-,0,-,60
+bairro_078,ROSARINHO,Rosarinho,2,10,0,-,0,-,72
+bairro_079,SAN MARTIN,San Martin,5,10,0,-,0,-,764
+bairro_080,SANCHO,Sancho,5,10,0,-,0,-,114
+bairro_081,SANTANA,Santana,3,10,0,-,0,-,53
+bairro_082,SANTO AMARO,Santo Amaro,1,10,0,-,0,-,807
+bairro_083,SANTO ANTONIO,Santo Antonio,1,10,0,-,0,-,32
+bairro_084,SAO JOSE,Sao Jose,1,10,0,-,0,-,202
+bairro_085,SITIO DOS PINTOS,Sitio Dos Pintos,3,10,0,-,0,-,215
+bairro_086,SOLEDADE,Soledade,1,10,0,-,0,-,30
+bairro_087,TAMARINEIRA,Tamarineira,3,10,0,-,0,-,278
+bairro_088,TEJIPIO,Tejipio,5,10,0,-,0,-,235
+bairro_089,TORRE,Torre,4,10,0,-,0,-,270
+bairro_090,TORREAO,Torreao,2,10,0,-,0,-,14
+bairro_091,TORROES,Torroes,4,10,0,-,0,-,763
+bairro_092,TOTO,Toto,5,10,0,-,0,-,102
+bairro_093,VARZEA,Varzea,4,10,0,-,0,-,2192
+bairro_095,ZUMBI,Zumbi,4,10,0,-,0,-,102

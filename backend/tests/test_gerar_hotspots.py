@@ -85,6 +85,35 @@ def test_gerar_hotspots_uma_temporada(tmp_path):
     assert int(ds["hh_sem_bh"].sum()) == hh
     assert int(ds["hh_com_bh"].sum()) == hh_bh
 
+    persistencia = pd.read_csv(tmp_path / "us20_hotspots_persistentes.csv")
+    assert len(persistencia) == 94
+    assert persistencia["key"].is_unique
+    assert set(persistencia["key"]) == set(lisa["key"])
+    assert int(persistencia["n_temporadas"].max()) == 1
+    assert int(persistencia["n_temporadas_hh"].sum()) == int(lisa["hotspot"].sum())
+    assert int(persistencia["n_temporadas_hh_bh"].sum()) == int(lisa["hotspot_bh"].sum())
+
+    pesos = pd.read_csv(tmp_path / "us20_sensibilidade_pesos.csv")
+    assert set(pesos["temporada"]) == {2024}
+    assert set(pesos["esquema_solicitado"]) == {"queen", "knn"}
+    assert {"I", "p_perm", "HH", "HH_bh", "LL", "LL_bh"} <= set(pesos.columns)
+    assert pesos["HH"].ge(0).all()
+
+    for nome in [
+        "us20_moran_por_temporada.png",
+        "us20_mapa_lisa_temporadas.png",
+        "us20_mapa_persistencia.png",
+    ]:
+        caminho_figura = tmp_path / nome
+        assert caminho_figura.exists()
+        assert caminho_figura.stat().st_size > 10_000
+
+    if PAINEL.exists():
+        fonte = pd.read_csv(tmp_path / "us20_sensibilidade_fonte.csv")
+        assert set(fonte["temporada"]) == {2024}
+        assert set(fonte["fonte"]) == {"historico", "painel"}
+        assert int(fonte["casos_total"].nunique()) == 2
+
     meta = json.loads((tmp_path / "us20_meta.json").read_text(encoding="utf-8"))
     assert meta["fonte"] == "historico"
     assert "US04" in meta["fonte_descricao"]
@@ -97,6 +126,16 @@ def test_gerar_hotspots_uma_temporada(tmp_path):
     assert meta["cobertura"]["casos_por_temporada"]["2024"] > 0
     assert "bibliotecas" in meta
     assert "us20_meta.json" in meta["saidas"]
+    for nome in [
+        "us20_sensibilidade_pesos.csv",
+        "us20_hotspots_persistentes.csv",
+        "us20_moran_por_temporada.png",
+        "us20_mapa_lisa_temporadas.png",
+        "us20_mapa_persistencia.png",
+    ]:
+        assert nome in meta["saidas"]
+    if PAINEL.exists():
+        assert "us20_sensibilidade_fonte.csv" in meta["saidas"]
 
 
 @pytest.mark.skipif(not PAINEL.exists(), reason="painel US14 não gerado neste ambiente")
@@ -114,3 +153,7 @@ def test_gerar_hotspots_fonte_painel(tmp_path):
     assert "US14" in meta["fonte_descricao"]
     assert meta["temporadas"] == [2024]
     assert (tmp_path / "us20_lisa_2024.geojson").exists()
+
+    fonte = pd.read_csv(tmp_path / "us20_sensibilidade_fonte.csv")
+    assert set(fonte["fonte"]) == {"historico", "painel"}
+    assert set(fonte["temporada"]) == {2024}

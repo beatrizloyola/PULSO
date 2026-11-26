@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -218,6 +219,294 @@ def _linhas_hh_por_ds(saida: pd.DataFrame, temporada: int) -> list[dict]:
     ]
 
 
+def _linha_pesos(resumo: dict, temporada: int, esquema_solicitado: str) -> dict:
+    pesos = resumo["pesos"]
+    return {
+        "temporada": int(temporada),
+        "esquema_solicitado": esquema_solicitado,
+        "esquema_usado": pesos["esquema_usado"],
+        "k": pesos["k"] if pesos["k"] is not None else "-",
+        "I": resumo["moran"]["I"],
+        "p_perm": resumo["moran"]["p_perm"],
+        "HH": resumo["contagem"]["HH"],
+        "HH_bh": resumo["contagem_bh"]["HH"],
+        "LL": resumo["contagem"]["LL"],
+        "LL_bh": resumo["contagem_bh"]["LL"],
+        "casos_total": resumo["casos_total"],
+        "fallback_por_ilhas": pesos["fallback_por_ilhas"],
+    }
+
+
+def _sensibilidade_pesos(
+    geo,
+    casos: pd.DataFrame,
+    temporadas: list[int],
+    resumos: dict[int, dict],
+    args: argparse.Namespace,
+) -> pd.DataFrame:
+    """Compara o esquema principal com o outro (Queen ↔ KNN k=4)."""
+    esquema_alternativo = "knn" if args.esquema == "queen" else "queen"
+    k_alternativo = 4 if esquema_alternativo == "knn" else args.k
+
+    linhas = [_linha_pesos(resumos[t], t, args.esquema) for t in temporadas]
+    for temporada in temporadas:
+        casos_t = casos.loc[casos["temporada"] == temporada, ["key", "casos"]]
+        _, resumo = hotspots.calcular_temporada(
+            geo,
+            casos_t,
+            esquema=esquema_alternativo,
+            k=k_alternativo,
+            permutacoes=args.permutacoes,
+            seed=args.seed,
+            alpha=args.alpha,
+        )
+        linhas.append(_linha_pesos(resumo, temporada, esquema_alternativo))
+
+    return pd.DataFrame(linhas).sort_values(
+        ["temporada", "esquema_solicitado"]
+    ).reset_index(drop=True)
+
+
+def _sensibilidade_fonte(
+    geo,
+    casos_atual: pd.DataFrame,
+    fonte_atual: str,
+    casos_outra: pd.DataFrame,
+    fonte_outra: str,
+    temporadas: list[int],
+    args: argparse.Namespace,
+) -> pd.DataFrame:
+    """Compara as fontes (US04 × painel) nas temporadas em que ambas existem."""
+    sobrepostas = sorted(
+        set(temporadas) & set(int(t) for t in casos_outra["temporada"].unique())
+    )
+    if not sobrepostas:
+        return pd.DataFrame()
+
+    linhas = []
+    for temporada in sobrepostas:
+        for fonte, casos in [(fonte_atual, casos_atual), (fonte_outra, casos_outra)]:
+            casos_t = casos.loc[casos["temporada"] == temporada, ["key", "casos"]]
+            _, resumo = hotspots.calcular_temporada(
+                geo,
+                casos_t,
+                esquema=args.esquema,
+                k=args.k,
+                permutacoes=args.permutacoes,
+                seed=args.seed,
+                alpha=args.alpha,
+            )
+            linhas.append({
+                "temporada": int(temporada),
+                "fonte": fonte,
+                "esquema": resumo["pesos"]["esquema_usado"],
+                "casos_total": resumo["casos_total"],
+                "I": resumo["moran"]["I"],
+                "p_perm": resumo["moran"]["p_perm"],
+                "HH": resumo["contagem"]["HH"],
+                "HH_bh": resumo["contagem_bh"]["HH"],
+                "LL": resumo["contagem"]["LL"],
+                "LL_bh": resumo["contagem_bh"]["LL"],
+            })
+    return pd.DataFrame(linhas).sort_values(["temporada", "fonte"]).reset_index(drop=True)
+
+
+def _tabela_persistencia(lisa_df: pd.DataFrame) -> pd.DataFrame:
+    """Conta em quantas temporadas cada bairro foi HH (sem e com BH)."""
+    persistencia = (
+        lisa_df.groupby(["bairro_id", "key", "bairro", "ds"], as_index=False)
+        .agg(
+            n_temporadas=("temporada", "nunique"),
+            n_temporadas_hh=("hotspot", "sum"),
+            n_temporadas_hh_bh=("hotspot_bh", "sum"),
+            casos_total=("casos", "sum"),
+        )
+    )
+    persistencia["n_temporadas_hh"] = persistencia["n_temporadas_hh"].astype(int)
+    persistencia["n_temporadas_hh_bh"] = persistencia["n_temporadas_hh_bh"].astype(int)
+
+    def _anos_em_que(df: pd.DataFrame, coluna: str, nome: str) -> pd.Series:
+        return (
+            df.loc[df[coluna], ["key", "temporada"]]
+            .drop_duplicates()
+            .sort_values(["key", "temporada"])
+            .groupby("key")["temporada"]
+            .apply(lambda s: " ".join(str(int(t)) for t in s))
+            .rename(nome)
+        )
+
+    hh = _anos_em_que(lisa_df, "hotspot", "temporadas_hh")
+    hh_bh = _anos_em_que(lisa_df, "hotspot_bh", "temporadas_hh_bh")
+    persistencia = persistencia.merge(hh, on="key", how="left")
+    persistencia = persistencia.merge(hh_bh, on="key", how="left")
+    persistencia["temporadas_hh"] = persistencia["temporadas_hh"].fillna("-")
+    persistencia["temporadas_hh_bh"] = persistencia["temporadas_hh_bh"].fillna("-")
+
+    colunas = [
+        "bairro_id", "key", "bairro", "ds", "n_temporadas",
+        "n_temporadas_hh", "temporadas_hh",
+        "n_temporadas_hh_bh", "temporadas_hh_bh", "casos_total",
+    ]
+    return (
+        persistencia[colunas]
+        .sort_values(
+            ["n_temporadas_hh", "n_temporadas_hh_bh", "bairro"],
+            ascending=[False, False, True],
+        )
+        .reset_index(drop=True)
+    )
+
+
+def _plot_moran_por_temporada(
+    moran_df: pd.DataFrame,
+    contagem_df: pd.DataFrame,
+    caminho: Path,
+) -> None:
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    temporadas = moran_df["temporada"].astype(int).tolist()
+    hh = (
+        contagem_df.loc[contagem_df["categoria"] == "HH"]
+        .set_index("temporada")
+        .reindex(temporadas)
+    )
+
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 7), sharex=True)
+    ax1.plot(temporadas, moran_df["I"], marker="o", color="#c0392b")
+    ax1.axhline(0, color="gray", linewidth=0.8)
+    ax1.axhline(
+        float(moran_df["EI"].iloc[0]), color="black", linestyle="--",
+        linewidth=1, label="Esperado (EI)",
+    )
+    for temporada, valor, p in zip(temporadas, moran_df["I"], moran_df["p_perm"]):
+        ax1.annotate(
+            f"p={p:.3f}", (temporada, valor), textcoords="offset points",
+            xytext=(0, 8), ha="center", fontsize=7,
+        )
+    ax1.set_ylabel("Moran's I")
+    ax1.set_title("US20 · Moran global por temporada")
+    ax1.legend(fontsize=8)
+    ax1.grid(alpha=0.2)
+
+    ax2.bar(
+        [t - 0.2 for t in temporadas], hh["sem_bh"],
+        width=0.4, label="HH (p_sim < alpha)", color="#d73027",
+    )
+    ax2.bar(
+        [t + 0.2 for t in temporadas], hh["com_bh"],
+        width=0.4, label="HH (BH 5%)", color="#f46d43",
+    )
+    ax2.set_ylabel("Nº de bairros HH")
+    ax2.set_xlabel("Temporada")
+    ax2.set_xticks(temporadas)
+    ax2.legend(fontsize=8)
+    ax2.grid(axis="y", alpha=0.2)
+
+    fig.tight_layout()
+    fig.savefig(caminho, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+
+
+def _plot_mapas_temporadas(
+    saidas_geo: dict[int, pd.DataFrame],
+    resumos: dict[int, dict],
+    caminho: Path,
+) -> None:
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Patch
+
+    temporadas = sorted(saidas_geo)
+    n = len(temporadas)
+    ncols = min(5, n)
+    nrows = math.ceil(n / ncols)
+    fig, axes = plt.subplots(nrows, ncols, figsize=(4 * ncols, 4 * nrows), squeeze=False)
+    distritos = _comum.carregar_distritos().to_crs(4326)
+
+    for ax, temporada in zip(axes.ravel(), temporadas):
+        geo = saidas_geo[temporada]
+        for categoria in ["ns", "HL", "LH", "LL", "HH"]:
+            parte = geo[geo["cluster"] == categoria]
+            if not parte.empty:
+                parte.plot(
+                    ax=ax, color=_comum.CORES_LISA[categoria],
+                    edgecolor="white", linewidth=0.2,
+                )
+        distritos.boundary.plot(ax=ax, color="black", linewidth=0.6)
+        resumo = resumos[temporada]
+        ax.set_title(
+            f"{temporada} · I={resumo['moran']['I']:.3f} · "
+            f"p={resumo['moran']['p_perm']:.3f} · HH={resumo['contagem']['HH']}",
+            fontsize=9,
+        )
+        ax.axis("off")
+
+    for ax in axes.ravel()[n:]:
+        ax.axis("off")
+
+    handles = [
+        Patch(facecolor=_comum.CORES_LISA[c], label=_comum.ROTULOS_LISA[c])
+        for c in ["HH", "LL", "LH", "HL", "ns"]
+    ]
+    fig.legend(handles=handles, loc="lower center", ncol=5, fontsize=8, frameon=False)
+    fig.suptitle(
+        "US20 · LISA por temporada (classificação primária, p_sim < alpha)",
+        fontsize=12,
+    )
+    fig.tight_layout(rect=(0, 0.04, 1, 0.96))
+    fig.savefig(caminho, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+
+
+def _plot_persistencia(geo, persistencia: pd.DataFrame, caminho: Path) -> None:
+    import geopandas as gpd
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    mapa = geo.copy()
+    mapa = mapa.merge(
+        persistencia[["key", "n_temporadas_hh", "n_temporadas_hh_bh"]],
+        on="key",
+        how="left",
+    )
+    for coluna in ["n_temporadas_hh", "n_temporadas_hh_bh"]:
+        mapa[coluna] = mapa[coluna].fillna(0).astype(int)
+    mapa = gpd.GeoDataFrame(mapa, geometry="geometry", crs=geo.crs)
+    distritos = _comum.carregar_distritos().to_crs(4326)
+    vmax = max(1, int(mapa["n_temporadas_hh"].max()), int(mapa["n_temporadas_hh_bh"].max()))
+
+    fig, axes = plt.subplots(1, 2, figsize=(16, 7))
+    paineis = [
+        ("n_temporadas_hh", "HH (p_sim < alpha)"),
+        ("n_temporadas_hh_bh", "HH (BH 5%)"),
+    ]
+    for ax, (coluna, titulo) in zip(axes, paineis):
+        mapa.plot(
+            column=coluna,
+            ax=ax,
+            cmap="Reds",
+            vmin=0,
+            vmax=vmax,
+            edgecolor="white",
+            linewidth=0.2,
+            legend=True,
+            legend_kwds={"label": "nº de temporadas", "shrink": 0.6},
+            missing_kwds={"color": "#eeeeee"},
+        )
+        distritos.boundary.plot(ax=ax, color="black", linewidth=0.6)
+        ax.set_title(titulo)
+        ax.axis("off")
+
+    fig.suptitle("US20 · Persistência de hotspots", fontsize=12)
+    fig.tight_layout()
+    fig.savefig(caminho, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+
+
 def _caminho_fonte(caminho: Path) -> str:
     try:
         return str(caminho.relative_to(BACKEND_DIR))
@@ -358,6 +647,8 @@ def main(argv: list[str] | None = None) -> int:
     moran_rows: list[dict] = []
     contagem_rows: list[dict] = []
     ds_rows: list[dict] = []
+    resumos: dict[int, dict] = {}
+    saidas_geo: dict[int, pd.DataFrame] = {}
     pesos_usados: dict | None = None
 
     for temporada in temporadas:
@@ -378,6 +669,8 @@ def main(argv: list[str] | None = None) -> int:
         moran_rows.append(_linha_moran(resumo, temporada, args.fonte))
         contagem_rows.extend(_linhas_contagem(resumo, temporada))
         ds_rows.extend(_linhas_hh_por_ds(saida, temporada))
+        resumos[temporada] = resumo
+        saidas_geo[temporada] = saida
         pesos_usados = pesos_usados or resumo["pesos"]
 
         print(
@@ -396,6 +689,44 @@ def main(argv: list[str] | None = None) -> int:
     moran_df.to_csv(saida_dir / "us20_moran_global.csv", index=False)
     contagem_df.to_csv(saida_dir / "us20_contagem_lisa.csv", index=False)
     ds_df.to_csv(saida_dir / "us20_hh_por_ds.csv", index=False)
+
+    persistencia = _tabela_persistencia(lisa_df)
+    persistencia.to_csv(saida_dir / "us20_hotspots_persistentes.csv", index=False)
+
+    pesos_df = _sensibilidade_pesos(geo, casos, temporadas, resumos, args)
+    pesos_df.to_csv(saida_dir / "us20_sensibilidade_pesos.csv", index=False)
+
+    outra_fonte = "painel" if args.fonte == "historico" else "historico"
+    try:
+        casos_outra, _, _ = _carregar_casos(outra_fonte)
+    except FileNotFoundError as exc:
+        print(f"[aviso] sensibilidade de fonte pulada: {exc}")
+        casos_outra = None
+
+    if casos_outra is not None:
+        fonte_df = _sensibilidade_fonte(
+            geo,
+            casos,
+            args.fonte,
+            casos_outra,
+            outra_fonte,
+            temporadas,
+            args,
+        )
+        if not fonte_df.empty:
+            fonte_df.to_csv(saida_dir / "us20_sensibilidade_fonte.csv", index=False)
+        else:
+            print("[aviso] sem temporadas sobrepostas para sensibilidade de fonte")
+
+    _plot_moran_por_temporada(
+        moran_df, contagem_df, saida_dir / "us20_moran_por_temporada.png"
+    )
+    _plot_mapas_temporadas(
+        saidas_geo, resumos, saida_dir / "us20_mapa_lisa_temporadas.png"
+    )
+    _plot_persistencia(
+        geo, persistencia, saida_dir / "us20_mapa_persistencia.png"
+    )
 
     meta = _montar_meta(
         fonte=args.fonte,
