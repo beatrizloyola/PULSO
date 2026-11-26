@@ -6,6 +6,7 @@ testes espaciais ficam no arquivo do pipeline, com ``pytest.importorskip``.
 import sys
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import pytest
 
@@ -144,3 +145,203 @@ def test_painel_filtra_anos():
 
     assert set(casos["temporada"].unique()) == {2024}
     assert casos["key"].nunique() == 94
+
+
+# ---------------------------------------------------------------------------
+# Estatística espacial
+# ---------------------------------------------------------------------------
+
+
+def test_classificar_quadrantes_mapeia_as_categorias():
+    p = np.array([0.01, 0.01, 0.01, 0.01, 0.50])
+    q = np.array([1, 2, 3, 4, 1])
+
+    assert list(hotspots.classificar_quadrantes(p, q)) == ["HH", "LH", "LL", "HL", "ns"]
+
+
+def test_classificar_quadrantes_respeita_o_limiar():
+    assert hotspots.classificar_quadrantes([0.049], [1])[0] == "HH"
+    assert hotspots.classificar_quadrantes([0.050], [1])[0] == "ns"
+
+
+def test_classificar_quadrantes_rejeita_entradas_invalidas():
+    with pytest.raises(ValueError):
+        hotspots.classificar_quadrantes([0.01], [5])
+    with pytest.raises(ValueError):
+        hotspots.classificar_quadrantes([1.1], [1])
+    with pytest.raises(ValueError):
+        hotspots.classificar_quadrantes([0.01, 0.02], [1])
+
+
+def test_bh_nunca_rejeita_mais_que_o_p_bruto():
+    p = np.array([0.001, 0.010, 0.020, 0.040, 0.500, 0.900])
+    p_bh = hotspots.corrigir_bh(p)
+
+    assert np.all(p_bh >= p - 1e-12)
+    assert np.all(p_bh <= 1)
+    assert np.all((p_bh <= 0.05) <= (p <= 0.05))
+
+
+def test_bh_exemplo_conhecido():
+    # BH sobre [0,01..0,05] ajusta todos para 0,05.
+    assert np.allclose(hotspots.corrigir_bh([0.01, 0.02, 0.03, 0.04, 0.05]), 0.05)
+
+
+def test_bh_bate_com_statsmodels_quando_disponivel():
+    sm = pytest.importorskip("statsmodels.stats.multitest")
+    p = np.array([0.001, 0.004, 0.012, 0.03, 0.08, 0.21, 0.55, 0.90])
+
+    esperado = sm.multipletests(p, method="fdr_bh")[1]
+    assert np.allclose(hotspots.corrigir_bh(p), esperado)
+
+
+@pytest.fixture
+def grade_geo():
+    """Grade 3x3 de polígonos contíguos, independente do GeoJSON real."""
+    gpd = pytest.importorskip("geopandas")
+    from shapely.geometry import box
+
+    geometrias = [box(x, y, x + 1, y + 1) for y in range(3) for x in range(3)]
+    return gpd.GeoDataFrame(
+        {
+            "key": [f"B{i:02d}" for i in range(9)],
+            "casos": [0, 0, 0, 0, 10, 20, 0, 30, 40],
+        },
+        geometry=geometrias,
+        crs="EPSG:4326",
+    )
+
+
+def test_construir_pesos_queen_linha_padronizada(grade_geo):
+    w, meta = hotspots.construir_pesos(grade_geo)
+
+    assert w.n == 9
+    assert meta["esquema_usado"] == "queen"
+    assert meta["ilhas"] == []
+    assert meta["fallback_por_ilhas"] is False
+    somas = np.asarray(w.sparse.sum(axis=1)).ravel()
+    assert np.allclose(somas, 1.0)
+
+
+def test_construir_pesos_knn(grade_geo):
+    w, meta = hotspots.construir_pesos(grade_geo, esquema="knn", k=2)
+
+    assert w.n == 9
+    assert meta["esquema_usado"] == "knn"
+    assert set(w.cardinalities.values()) == {2}
+
+
+def test_construir_pesos_rejeita_esquema_invalido(grade_geo):
+    with pytest.raises(ValueError, match="esquema"):
+        hotspots.construir_pesos(grade_geo, esquema="voronoi")
+    with pytest.raises(ValueError, match="k="):
+        hotspots.construir_pesos(grade_geo, esquema="knn", k=9)
+
+
+def test_construir_pesos_cai_para_knn_quando_ha_ilhas():
+    gpd = pytest.importorskip("geopandas")
+    from shapely.geometry import box
+
+    geo = gpd.GeoDataFrame(
+        {"key": ["A", "B"]},
+        geometry=[box(0, 0, 1, 1), box(10, 10, 11, 11)],
+        crs="EPSG:4326",
+    )
+
+    w, meta = hotspots.construir_pesos(geo, esquema="queen", k=1)
+
+    assert meta["esquema_usado"] == "knn"
+    assert meta["fallback_por_ilhas"] is True
+    assert meta["ilhas"] == [0, 1]
+    assert w.n == 2
+
+
+def test_moran_e_lisa_deterministicos_com_seed(grade_geo):
+    w, _ = hotspots.construir_pesos(grade_geo)
+
+    moran_1 = hotspots.moran_global(grade_geo["casos"], w, permutacoes=99, seed=42)
+    lisa_1 = hotspots.lisa_local(grade_geo["casos"], w, permutacoes=99, seed=42)
+    moran_2 = hotspots.moran_global(grade_geo["casos"], w, permutacoes=99, seed=42)
+    lisa_2 = hotspots.lisa_local(grade_geo["casos"], w, permutacoes=99, seed=42)
+
+    assert moran_1["I"] == pytest.approx(moran_2["I"])
+    assert lisa_1["p_sim"].tolist() == lisa_2["p_sim"].tolist()
+    assert lisa_1["I_local"].tolist() == lisa_2["I_local"].tolist()
+    assert set(lisa_1["q"]) <= {1, 2, 3, 4}
+    assert 0 <= moran_1["p_perm"] <= 1
+
+
+def test_calcular_temporada_retorna_contrato(grade_geo):
+    resultado, resumo = hotspots.calcular_temporada(
+        grade_geo,
+        grade_geo[["key", "casos"]],
+        permutacoes=99,
+        seed=42,
+    )
+
+    assert len(resultado) == 9
+    colunas = {
+        "casos", "valor", "p_sim", "p_bh", "quadrante", "I_local",
+        "cluster", "cluster_bh", "hotspot", "hotspot_bh",
+    }
+    assert colunas <= set(resultado.columns)
+    assert resultado["cluster"].isin(["HH", "LH", "LL", "HL", "ns"]).all()
+    assert resultado["cluster_bh"].isin(["HH", "LH", "LL", "HL", "ns"]).all()
+    assert resultado["hotspot"].dtype == bool
+    assert resultado["hotspot_bh"].dtype == bool
+    assert (resultado["p_bh"] >= resultado["p_sim"] - 1e-12).all()
+    assert (resultado["hotspot_bh"] <= resultado["hotspot"]).all()
+
+    assert resumo["n_bairros"] == 9
+    assert resumo["casos_total"] == 100
+    assert resumo["moran"]["permutacoes"] == 99
+    assert resumo["pesos"]["esquema_usado"] == "queen"
+    assert sum(resumo["contagem"].values()) == 9
+    assert sum(resumo["contagem_bh"].values()) == 9
+
+    # A função não deve mutar a entrada.
+    assert "cluster" not in grade_geo.columns
+
+
+def test_calcular_temporada_nao_guarda_estado_entre_temporadas(grade_geo):
+    casos_2024 = grade_geo[["key", "casos"]].copy()
+    casos_2025 = casos_2024.copy()
+    casos_2025.loc[8, "casos"] = 999
+
+    out_2024_a, _ = hotspots.calcular_temporada(grade_geo, casos_2024, permutacoes=99, seed=42)
+    out_2025, _ = hotspots.calcular_temporada(grade_geo, casos_2025, permutacoes=99, seed=42)
+    out_2024_b, _ = hotspots.calcular_temporada(grade_geo, casos_2024, permutacoes=99, seed=42)
+
+    assert out_2024_a["p_sim"].tolist() == out_2024_b["p_sim"].tolist()
+    assert out_2024_a["cluster"].tolist() == out_2024_b["cluster"].tolist()
+    assert out_2024_a["casos"].sum() != out_2025["casos"].sum()
+
+
+def test_calcular_temporada_exige_todos_os_bairros(grade_geo):
+    with pytest.raises(ValueError, match="faltam bairros"):
+        hotspots.calcular_temporada(
+            grade_geo,
+            grade_geo[["key", "casos"]].iloc[:-1],
+            permutacoes=99,
+        )
+
+
+def test_calcular_temporada_rejeita_contagem_nao_inteira(grade_geo):
+    casos = grade_geo[["key", "casos"]].copy()
+    casos["casos"] = casos["casos"].astype(float)
+    casos.loc[0, "casos"] = 1.5
+
+    with pytest.raises(ValueError, match="inteiras"):
+        hotspots.calcular_temporada(grade_geo, casos, permutacoes=99)
+
+
+def test_calcular_temporada_ignora_bairros_fora_da_geometria(grade_geo):
+    casos = pd.concat([
+        grade_geo[["key", "casos"]],
+        pd.DataFrame({"key": ["EXTRA"], "casos": [99]}),
+    ], ignore_index=True)
+
+    resultado, resumo = hotspots.calcular_temporada(grade_geo, casos, permutacoes=99)
+
+    assert resumo["bairros_extra_ignorados"] == ["EXTRA"]
+    assert resultado["casos"].sum() == 100
