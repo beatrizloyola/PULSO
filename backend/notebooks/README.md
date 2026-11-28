@@ -86,7 +86,8 @@ python scripts/gerar_hotspots.py --temporadas 2024,2025 --permutacoes 999
 
 O padrão é 2016–2025, Queen linha-padronizada, 999 permutações e seed 42. A
 sensibilidade de fonte roda US04 × painel em 2024–2025 e só é gerada se o painel
-existir. Resumo e decisões em
+existir. O workflow opcional `.github/workflows/analysis.yml` roda os testes
+espaciais com `requirements-analysis.txt`. Resumo e decisões em
 [`docs/spikes/US20-hotspots-por-temporada.md`](../../docs/spikes/US20-hotspots-por-temporada.md).
 
 ## População (opção A)

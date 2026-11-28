@@ -31,8 +31,8 @@ abaixo, na seção “2024: por que o número mudou”.
   Pau Ferro não tem caso em nenhuma temporada e entra como zero; 93 bairros têm
   pelo menos um caso.
 - **Perda de join:** 36 casos (0,09%) ficam fora do lookup canônico por grafia
-  não mapeada (ex.: `CENTRO`, `VASCO`, `JIQU]`). O total é registrado no
-  `us20_meta.json`.
+  não mapeada (ex.: `CENTRO`, `VASCO`, `JIQU]`). O `us20_meta.json` separa
+  `casos_no_periodo` de `casos_na_fonte_completa`.
 - **Geometrias:** `bairros_esig.geojson`; peso calculado na geometria completa;
   a exportação usa EPSG:4326 e simplificação de 10 m em EPSG:31985 apenas para
   reduzir o tamanho dos arquivos.
@@ -46,8 +46,9 @@ abaixo, na seção “2024: por que o número mudou”.
   - `cluster`: LISA com `p_sim < 0,05`;
   - `cluster_bh`: Benjamini-Hochberg 5% sobre os 94 p-valores;
   - `hotspot` e `hotspot_bh`: indicadores de HH nas duas camadas.
-- **Unidade:** contagem de casos, não incidência. A população (US08) ainda é
-  placeholder; a leitura favorece bairros populosos.
+- **Unidade:** contagem de casos, não incidência. A população (US08) ainda não
+  está disponível; o LISA usa a contagem bruta e a leitura favorece bairros
+  populosos.
 
 > **Por que a contagem serve para o LISA:** o Moran's I é invariante a uma
 > multiplicação positiva constante dos valores. Com um denominador constante,
@@ -55,6 +56,8 @@ abaixo, na seção “2024: por que o número mudou”.
 > O que muda é a interpretação: bairros populosos tendem a ter mais casos.
 
 ## Resultado
+
+Todos os números desta seção usam a especificação primária (Queen).
 
 ### Moran global
 
@@ -93,7 +96,9 @@ sem correção fica entre 5 e 8; com BH, entre 0 e 6.
 > Os nomes aparecem com acentuação editorial. No CSV/GeoJSON, `key` é a forma
 > canônica sem acento (ex.: `JORDAO`, `CAXANGA`); use `key` ou `bairro_id` no join.
 
-### Persistência dos hotspots
+### Persistência dos hotspots (Queen)
+
+Todos os números desta tabela usam a especificação primária (Queen).
 
 | Bairro | DS | Temporadas HH | Temporadas HH com BH | Casos no período |
 |---|---:|---:|---:|---:|
@@ -108,11 +113,13 @@ sem correção fica entre 5 e 8; com BH, entre 0 e 6.
 | Barro | 5 | 2/10 | 0 | 437 |
 | Caxangá | 4 | 2/10 | 0 | 342 |
 
-**Leitura:** o núcleo persistente está no sul/sudoeste, em **Ibura, Imbiribeira
-e Jordão**. Boa Viagem entra em 8 das 10 temporadas e sobrevive ao BH em 5.
-**Pina** é HH em 7 temporadas, mas **nunca** sobrevive ao BH; é um caso em que a
-vizinhança puxa a classificação, mas a evidência não é robusta após correção.
-**Cohab** tem muitos casos (2.297), mas só 5 temporadas como HH e nenhuma com BH.
+**Leitura (Queen):** o núcleo persistente está no sul/sudoeste, em **Ibura,
+Imbiribeira e Jordão**. Boa Viagem entra em 8 das 10 temporadas e sobrevive ao BH
+em 5. **Pina** é HH em 7 temporadas, mas **nunca** sobrevive ao BH; é um caso em
+que a vizinhança puxa a classificação, mas a evidência não é robusta após
+correção. **Cohab** tem muitos casos (2.297), mas só 5 temporadas como HH e
+nenhuma com BH. A sensibilidade a pesos muda essa ordem; ver a seção
+“Pesos: Queen × KNN k=4” abaixo.
 
 ### Distribuição por DS
 
@@ -175,12 +182,27 @@ incorpore o filtro de descartados (ou uma coluna `casos_confirmados`).
 
 Em **2024**, o KNN k=4 deixa o Moran global **não significativo** a 5% e zera os
 HH. Em **2025**, o KNN mantém o agrupamento global, mas os HH caem para
-**Boa Viagem, Ibura, Ipsep e Jordão**, sem nenhum sobrevivente ao BH. A
-persistência de **Imbiribeira** é sensível à matriz de pesos; **Ibura e Jordão**
-são o núcleo mais robusto entre Queen e KNN.
+**Boa Viagem, Ibura, Ipsep e Jordão**, sem nenhum sobrevivente ao BH.
 
-A tabela completa está em
-[`us20_sensibilidade_pesos.csv`](../../backend/notebooks/saidas/us20_sensibilidade_pesos.csv).
+Na persistência sob KNN k=4 em 10 temporadas, a ordem muda:
+
+| Bairro | Queen HH | KNN HH | KNN HH com BH |
+|---|---:|---:|---:|
+| **Jordão** | 9/10 | **9/10** | 4 |
+| **Boa Viagem** | 8/10 | **8/10** | 4 |
+| **Ipsep** | 7/10 | **7/10** | 3 |
+| **Ibura** | 10/10 | 6/10 | 1 |
+| **Imbiribeira** | 10/10 | 1/10 | 0 |
+| Pina | 7/10 | 0/10 | 0 |
+
+**Jordão** é o mais estável sob KNN; **Boa Viagem** e **Ipsep** vêm em seguida;
+**Ibura** e **Imbiribeira** são sensíveis à matriz de pesos. O núcleo
+**Ibura/Imbiribeira/Jordão** é resultado da especificação Queen.
+
+A tabela resumida está em
+[`us20_sensibilidade_pesos.csv`](../../backend/notebooks/saidas/us20_sensibilidade_pesos.csv);
+a classificação por bairro e temporada, nos dois esquemas, está em
+[`us20_sensibilidade_pesos_bairro.csv`](../../backend/notebooks/saidas/us20_sensibilidade_pesos_bairro.csv).
 
 ### BH 5%
 
@@ -231,17 +253,19 @@ propriedades:
 
 ## Limitações
 
-- **Contagem, não incidência:** a população (US08) ainda é placeholder; bairros
-  populosos são favorecidos. O Moran é invariante a denominador constante, mas
-  a leitura de risco por bairro não é.
+- **Contagem, não incidência:** a população (US08) ainda não está disponível; o
+  LISA usa a contagem bruta e bairros populosos são favorecidos. O Moran é
+  invariante a denominador constante, mas a leitura de risco por bairro não é.
 - **SE de notificação:** a US04 usa `SEM_NOT`/semana de notificação; a decisão
   US01 (`DT_SIN_PRI` × `DT_NOTIFIC`) está pendente.
 - **Temporada = ano civil:** a fronteira epidêmica do SP-3 não foi aplicada.
 - **BH conservador:** em 2016, 2017 e 2024 ele zera todos os HH; publicar as
   duas camadas evita esconder o sinal, mas não transforma `cluster` em evidência
   confirmatória.
-- **Sensibilidade a pesos:** em 2024 o KNN k=4 não é significativo; em 2025,
-  Imbiribeira sai do HH. O núcleo robusto é Ibura/Jordão.
+- **Sensibilidade a pesos:** em 2024 o KNN k=4 não é significativo; sob KNN,
+  Jordão é o mais estável (9/10), seguido de Boa Viagem (8/10) e Ipsep (7/10);
+  Ibura (6/10) e Imbiribeira (1/10) são sensíveis. O núcleo
+  Ibura/Imbiribeira/Jordão é resultado Queen.
 - **Zero-inflação:** em anos de baixa (2017 e 2024, 76 bairros com casos), LL
   pode refletir ausência de casos, não um coldspot verdadeiro.
 - **Fonte por nome:** a US04 é keyed by name; 36 casos (0,09%) foram descartados
@@ -264,6 +288,13 @@ A sensibilidade de fonte precisa do painel; se ele não existir, rode antes:
 python scripts/gerar_painel.py
 ```
 
+O CI opcional `.github/workflows/analysis.yml` roda os testes espaciais com
+`requirements-analysis.txt`:
+
+```bash
+pytest --noconftest tests/test_hotspots.py tests/test_gerar_hotspots.py
+```
+
 Saídas em `backend/notebooks/saidas/`:
 
 - GeoJSONs: [`us20_lisa_2016.geojson`](../../backend/notebooks/saidas/us20_lisa_2016.geojson) …
@@ -273,7 +304,8 @@ Saídas em `backend/notebooks/saidas/`:
 - Contagem LISA: [`us20_contagem_lisa.csv`](../../backend/notebooks/saidas/us20_contagem_lisa.csv)
 - HH por DS: [`us20_hh_por_ds.csv`](../../backend/notebooks/saidas/us20_hh_por_ds.csv)
 - Persistência: [`us20_hotspots_persistentes.csv`](../../backend/notebooks/saidas/us20_hotspots_persistentes.csv)
-- Sensibilidade de pesos: [`us20_sensibilidade_pesos.csv`](../../backend/notebooks/saidas/us20_sensibilidade_pesos.csv)
+- Sensibilidade de pesos (resumo): [`us20_sensibilidade_pesos.csv`](../../backend/notebooks/saidas/us20_sensibilidade_pesos.csv)
+- Sensibilidade de pesos por bairro: [`us20_sensibilidade_pesos_bairro.csv`](../../backend/notebooks/saidas/us20_sensibilidade_pesos_bairro.csv)
 - Sensibilidade de fonte: [`us20_sensibilidade_fonte.csv`](../../backend/notebooks/saidas/us20_sensibilidade_fonte.csv)
 - Mapa das temporadas: [`us20_mapa_lisa_temporadas.png`](../../backend/notebooks/saidas/us20_mapa_lisa_temporadas.png)
 - Mapa de persistência: [`us20_mapa_persistencia.png`](../../backend/notebooks/saidas/us20_mapa_persistencia.png)
@@ -293,13 +325,14 @@ Código:
    apenas quais bairros têm mais casos.
 2. Usamos 10 temporadas da US04 (casos não descartados), 94 bairros, Queen e 999
    permutações; o Moran global é significativo em todas.
-3. O núcleo persistente é **Ibura, Imbiribeira e Jordão**; Boa Viagem entra em
-   8 de 10 e sobrevive ao BH em 5.
+3. Na especificação Queen, o núcleo persistente é **Ibura, Imbiribeira e
+   Jordão**; Boa Viagem entra em 8 de 10 e sobrevive ao BH em 5.
 4. O BH é conservador: em 2016, 2017 e 2024 ele zera os HH. Por isso publicamos
    as duas camadas.
 5. A fonte importa: em 2024, o painel (com descartados) dá 10 HH/5 BH; a US04
    dá 5 HH/0 BH. Não misturar as séries.
-6. O KNN k=4 mostra que 2024 é frágil e que Imbiribeira é sensível à matriz de
-   pesos; Ibura e Jordão são o núcleo robusto.
+6. O KNN k=4 mostra que 2024 é frágil e que a estabilidade muda: Jordão 9/10,
+   Boa Viagem 8/10, Ipsep 7/10, Ibura 6/10 e Imbiribeira 1/10; o núcleo
+   Ibura/Imbiribeira/Jordão é resultado Queen.
 7. O próximo passo é reexecutar com população (US08) e levar o GeoJSON para a
    US30.

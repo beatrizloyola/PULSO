@@ -17,6 +17,10 @@ import hotspots
 
 HISTORICO = Path(__file__).resolve().parents[1] / "app" / "data" / "sinan_bairro_se_2016_2025.csv"
 PAINEL = Path(__file__).resolve().parents[1] / "app" / "data" / "painel" / "painel_bairro_se.csv"
+PESOS_BAIRRO = (
+    Path(__file__).resolve().parents[1]
+    / "notebooks" / "saidas" / "us20_sensibilidade_pesos_bairro.csv"
+)
 
 
 @pytest.mark.parametrize(
@@ -345,3 +349,39 @@ def test_calcular_temporada_ignora_bairros_fora_da_geometria(grade_geo):
 
     assert resumo["bairros_extra_ignorados"] == ["EXTRA"]
     assert resultado["casos"].sum() == 100
+
+
+def test_sensibilidade_pesos_bairro_bate_com_doc():
+    """Artefato commitado precisa sustentar os números citados no doc da US20."""
+    df = pd.read_csv(PESOS_BAIRRO)
+
+    assert len(df) == 10 * 94 * 2
+    assert set(df["esquema_solicitado"]) == {"queen", "knn"}
+    assert (
+        df.groupby(["temporada", "esquema_solicitado"])["key"]
+        .nunique()
+        .eq(94)
+        .all()
+    )
+
+    knn = df[(df["esquema_solicitado"] == "knn") & df["hotspot"]]
+    hh_knn = knn.groupby("key")["temporada"].nunique()
+    assert hh_knn["JORDAO"] == 9
+    assert hh_knn["BOA VIAGEM"] == 8
+    assert hh_knn["IPSEP"] == 7
+    assert hh_knn["IBURA"] == 6
+    assert hh_knn["IMBIRIBEIRA"] == 1
+
+    knn_bh = df[(df["esquema_solicitado"] == "knn") & df["hotspot_bh"]]
+    hh_knn_bh = knn_bh.groupby("key")["temporada"].nunique()
+    assert hh_knn_bh["JORDAO"] == 4
+    assert hh_knn_bh["BOA VIAGEM"] == 4
+    assert hh_knn_bh["IPSEP"] == 3
+    assert hh_knn_bh["IBURA"] == 1
+    assert hh_knn_bh.get("IMBIRIBEIRA", 0) == 0
+
+    queen = df[(df["esquema_solicitado"] == "queen") & df["hotspot"]]
+    hh_queen = queen.groupby("key")["temporada"].nunique()
+    assert hh_queen["IBURA"] == 10
+    assert hh_queen["IMBIRIBEIRA"] == 10
+    assert hh_queen["JORDAO"] == 9

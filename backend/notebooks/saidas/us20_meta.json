@@ -1,12 +1,25 @@
 {
-  "gerado_em": "2026-11-26T16:39:11.913497+00:00",
-  "git_sha": "3deaa7e",
+  "gerado_em": "2026-11-28T02:34:41.101739+00:00",
+  "git_sha": "d733b46",
   "fonte": "historico",
   "fonte_descricao": "US04 SINAN 2016-2025 (casos não descartados)",
   "arquivo_fonte": "app/data/sinan_bairro_se_2016_2025.csv",
   "fonte_bruta": {
+    "casos_no_periodo": 40320,
+    "casos_na_fonte_completa": 40356,
+    "temporadas_no_periodo": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
     "registros_brutos": 12648,
-    "casos_brutos": 40356,
     "registros_fora_lookup": 36,
     "casos_fora_lookup": 36,
     "bairros_fora_lookup": [
@@ -59,7 +72,7 @@
   ],
   "n_bairros": 94,
   "variavel": "casos notificados por bairro (contagem; US08 pendente)",
-  "populacao": "placeholder 1 habitante/bairro (US08 pendente)",
+  "populacao": "não usada; LISA em contagem de casos (US08 pendente)",
   "pesos": {
     "esquema_solicitado": "queen",
     "esquema_usado": "queen",
@@ -127,7 +140,7 @@
     "esda": "2.6.0"
   },
   "limitacoes": [
-    "Contagem de casos, não incidência: a população (US08) ainda é placeholder.",
+    "Contagem de casos, não incidência: a população (US08) ainda não está disponível.",
     "Temporada = ano civil da SE; a fronteira epidêmica do SP-3 fica pendente.",
     "A série US04 usa a semana de notificação; a decisão US01 (DT_SIN_PRI × DT_NOTIFIC) está pendente.",
     "cluster usa p_sim < alpha; cluster_bh é a sensibilidade BH-FDR.",
@@ -150,10 +163,11 @@
     "us20_lisa_bairro_temporada.csv",
     "us20_mapa_lisa_temporadas.png",
     "us20_mapa_persistencia.png",
+    "us20_meta.json",
     "us20_moran_global.csv",
     "us20_moran_por_temporada.png",
     "us20_sensibilidade_fonte.csv",
     "us20_sensibilidade_pesos.csv",
-    "us20_meta.json"
+    "us20_sensibilidade_pesos_bairro.csv"
   ]
 }

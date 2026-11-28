@@ -41,7 +41,7 @@ essa tabela.
   interpretável; o Poisson não serve (dispersão 5,87).
 - **US20 (hotspots LISA):** Moran global + LISA (Queen, 999 permutações) por
   temporada, 2016–2025, com a US04 (casos não descartados); núcleo persistente
-  em Ibura, Imbiribeira e Jordão; BH conservador e sensível à fonte/pesos.
+  sob Queen em Ibura, Imbiribeira e Jordão; BH conservador e sensível à fonte/pesos.
 - **US21 (perfis territoriais):** Ward com k=3 é o único admissível com os
   proxies atuais; reexecutar com IDH, densidade, intermitência e LST.
 

@@ -42,6 +42,11 @@ COLUNAS_SAIDA = [
     "p_sim", "p_bh", "quadrante", "I_local", "cluster", "cluster_bh",
     "hotspot", "hotspot_bh",
 ]
+COLUNAS_SENSIBILIDADE_BAIRRO = [
+    "temporada", "esquema_solicitado", "esquema_usado", "k",
+    "bairro_id", "key", "bairro", "ds", "casos", "p_sim", "p_bh",
+    "quadrante", "I_local", "cluster", "cluster_bh", "hotspot", "hotspot_bh",
+]
 CATEGORIAS_LISA = ["HH", "LH", "LL", "HL", "ns"]
 
 
@@ -237,21 +242,54 @@ def _linha_pesos(resumo: dict, temporada: int, esquema_solicitado: str) -> dict:
     }
 
 
+def _linha_pesos_bairro(
+    resultado,
+    temporada: int,
+    esquema_solicitado: str,
+    resumo: dict,
+) -> pd.DataFrame:
+    """Classificação por bairro de um esquema, para auditoria da sensibilidade."""
+    saida = resultado.copy()
+    saida["temporada"] = int(temporada)
+    saida["esquema_solicitado"] = esquema_solicitado
+    saida["esquema_usado"] = resumo["pesos"]["esquema_usado"]
+    saida["k"] = resumo["pesos"]["k"] if resumo["pesos"]["k"] is not None else "-"
+    saida["bairro"] = saida["bairro"].astype(str).str.title()
+
+    faltando = [c for c in COLUNAS_SENSIBILIDADE_BAIRRO if c not in saida.columns]
+    if faltando:
+        raise ValueError(f"resultado de pesos sem colunas: {faltando}")
+    return saida[COLUNAS_SENSIBILIDADE_BAIRRO]
+
+
 def _sensibilidade_pesos(
     geo,
     casos: pd.DataFrame,
     temporadas: list[int],
     resumos: dict[int, dict],
+    saidas_geo: dict[int, pd.DataFrame],
     args: argparse.Namespace,
-) -> pd.DataFrame:
-    """Compara o esquema principal com o outro (Queen ↔ KNN k=4)."""
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Compara o esquema principal com o outro (Queen ↔ KNN k=4).
+
+    Devolve o resumo por temporada e a classificação por bairro, para que os
+    nomes citados no doc sejam auditáveis.
+    """
     esquema_alternativo = "knn" if args.esquema == "queen" else "queen"
     k_alternativo = 4 if esquema_alternativo == "knn" else args.k
 
-    linhas = [_linha_pesos(resumos[t], t, args.esquema) for t in temporadas]
+    linhas: list[dict] = []
+    bairros: list[pd.DataFrame] = []
     for temporada in temporadas:
+        linhas.append(_linha_pesos(resumos[temporada], temporada, args.esquema))
+        bairros.append(
+            _linha_pesos_bairro(
+                saidas_geo[temporada], temporada, args.esquema, resumos[temporada]
+            )
+        )
+
         casos_t = casos.loc[casos["temporada"] == temporada, ["key", "casos"]]
-        _, resumo = hotspots.calcular_temporada(
+        resultado, resumo = hotspots.calcular_temporada(
             geo,
             casos_t,
             esquema=esquema_alternativo,
@@ -261,10 +299,17 @@ def _sensibilidade_pesos(
             alpha=args.alpha,
         )
         linhas.append(_linha_pesos(resumo, temporada, esquema_alternativo))
+        bairros.append(
+            _linha_pesos_bairro(resultado, temporada, esquema_alternativo, resumo)
+        )
 
-    return pd.DataFrame(linhas).sort_values(
+    resumo_df = pd.DataFrame(linhas).sort_values(
         ["temporada", "esquema_solicitado"]
     ).reset_index(drop=True)
+    bairro_df = pd.concat(bairros, ignore_index=True).sort_values(
+        ["temporada", "esquema_solicitado", "key"]
+    ).reset_index(drop=True)
+    return resumo_df, bairro_df
 
 
 def _sensibilidade_fonte(
@@ -523,10 +568,25 @@ def _montar_meta(
     n_bairros: int,
     cobertura: dict,
     pesos: dict,
+    saidas: list[str],
     args: argparse.Namespace,
 ) -> dict:
+    fonte_bruta = {
+        "casos_no_periodo": sum(cobertura["casos_por_temporada"].values()),
+        "casos_na_fonte_completa": attrs.get("casos_brutos"),
+        "temporadas_no_periodo": temporadas,
+    }
+    for chave in [
+        "registros_brutos",
+        "registros_fora_lookup",
+        "casos_fora_lookup",
+        "bairros_fora_lookup",
+    ]:
+        if chave in attrs:
+            fonte_bruta[chave] = attrs[chave]
+
     limitacoes = [
-        "Contagem de casos, não incidência: a população (US08) ainda é placeholder.",
+        "Contagem de casos, não incidência: a população (US08) ainda não está disponível.",
         "Temporada = ano civil da SE; a fronteira epidêmica do SP-3 fica pendente.",
         "A série US04 usa a semana de notificação; a decisão US01 (DT_SIN_PRI × DT_NOTIFIC) está pendente.",
         "cluster usa p_sim < alpha; cluster_bh é a sensibilidade BH-FDR.",
@@ -545,11 +605,11 @@ def _montar_meta(
             hotspots.FONTE_HISTORICA if fonte == "historico" else hotspots.FONTE_PAINEL
         ),
         "arquivo_fonte": _caminho_fonte(arquivo_fonte),
-        "fonte_bruta": attrs,
+        "fonte_bruta": fonte_bruta,
         "temporadas": temporadas,
         "n_bairros": int(n_bairros),
         "variavel": "casos notificados por bairro (contagem; US08 pendente)",
-        "populacao": "placeholder 1 habitante/bairro (US08 pendente)",
+        "populacao": "não usada; LISA em contagem de casos (US08 pendente)",
         "pesos": pesos,
         "permutacoes": int(args.permutacoes),
         "seed": int(args.seed),
@@ -566,9 +626,7 @@ def _montar_meta(
             for pacote in ["pandas", "numpy", "geopandas", "libpysal", "esda"]
         },
         "limitacoes": limitacoes,
-        "saidas": sorted(
-            p.name for p in Path(args.saida).glob("us20_*") if p.name != "us20_meta.json"
-        ) + ["us20_meta.json"],
+        "saidas": sorted(set(saidas) | {"us20_meta.json"}),
     }
 
 
@@ -650,6 +708,7 @@ def main(argv: list[str] | None = None) -> int:
     resumos: dict[int, dict] = {}
     saidas_geo: dict[int, pd.DataFrame] = {}
     pesos_usados: dict | None = None
+    gerados: list[str] = []
 
     for temporada in temporadas:
         casos_t = casos.loc[casos["temporada"] == temporada, ["key", "casos"]]
@@ -664,6 +723,7 @@ def main(argv: list[str] | None = None) -> int:
         )
         saida = _preparar_saida(resultado, temporada)
         _exportar_geojson(saida, saida_dir / f"us20_lisa_{temporada}.geojson", args.simplificar)
+        gerados.append(f"us20_lisa_{temporada}.geojson")
 
         lisa_rows.append(saida.drop(columns="geometry"))
         moran_rows.append(_linha_moran(resumo, temporada, args.fonte))
@@ -689,12 +749,26 @@ def main(argv: list[str] | None = None) -> int:
     moran_df.to_csv(saida_dir / "us20_moran_global.csv", index=False)
     contagem_df.to_csv(saida_dir / "us20_contagem_lisa.csv", index=False)
     ds_df.to_csv(saida_dir / "us20_hh_por_ds.csv", index=False)
+    gerados.extend([
+        "us20_lisa_bairro_temporada.csv",
+        "us20_moran_global.csv",
+        "us20_contagem_lisa.csv",
+        "us20_hh_por_ds.csv",
+    ])
 
     persistencia = _tabela_persistencia(lisa_df)
     persistencia.to_csv(saida_dir / "us20_hotspots_persistentes.csv", index=False)
+    gerados.append("us20_hotspots_persistentes.csv")
 
-    pesos_df = _sensibilidade_pesos(geo, casos, temporadas, resumos, args)
+    pesos_df, pesos_bairro_df = _sensibilidade_pesos(
+        geo, casos, temporadas, resumos, saidas_geo, args
+    )
     pesos_df.to_csv(saida_dir / "us20_sensibilidade_pesos.csv", index=False)
+    gerados.append("us20_sensibilidade_pesos.csv")
+    pesos_bairro_df.to_csv(
+        saida_dir / "us20_sensibilidade_pesos_bairro.csv", index=False
+    )
+    gerados.append("us20_sensibilidade_pesos_bairro.csv")
 
     outra_fonte = "painel" if args.fonte == "historico" else "historico"
     try:
@@ -715,18 +789,22 @@ def main(argv: list[str] | None = None) -> int:
         )
         if not fonte_df.empty:
             fonte_df.to_csv(saida_dir / "us20_sensibilidade_fonte.csv", index=False)
+            gerados.append("us20_sensibilidade_fonte.csv")
         else:
             print("[aviso] sem temporadas sobrepostas para sensibilidade de fonte")
 
     _plot_moran_por_temporada(
         moran_df, contagem_df, saida_dir / "us20_moran_por_temporada.png"
     )
+    gerados.append("us20_moran_por_temporada.png")
     _plot_mapas_temporadas(
         saidas_geo, resumos, saida_dir / "us20_mapa_lisa_temporadas.png"
     )
+    gerados.append("us20_mapa_lisa_temporadas.png")
     _plot_persistencia(
         geo, persistencia, saida_dir / "us20_mapa_persistencia.png"
     )
+    gerados.append("us20_mapa_persistencia.png")
 
     meta = _montar_meta(
         fonte=args.fonte,
@@ -736,6 +814,7 @@ def main(argv: list[str] | None = None) -> int:
         n_bairros=len(geo),
         cobertura=hotspots.resumo_cobertura(casos),
         pesos=pesos_usados or {},
+        saidas=gerados,
         args=args,
     )
     (saida_dir / "us20_meta.json").write_text(

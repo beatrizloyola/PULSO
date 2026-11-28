@@ -29,6 +29,9 @@ def _primeiro_par(geometria: dict):
 
 
 def test_gerar_hotspots_uma_temporada(tmp_path):
+    # Arquivo de uma execução anterior não pode entrar em meta["saidas"].
+    (tmp_path / "us20_antigo.geojson").write_text("{}", encoding="utf-8")
+
     codigo = gerar_hotspots.main([
         "--temporadas", "2024",
         "--permutacoes", "99",
@@ -99,6 +102,16 @@ def test_gerar_hotspots_uma_temporada(tmp_path):
     assert {"I", "p_perm", "HH", "HH_bh", "LL", "LL_bh"} <= set(pesos.columns)
     assert pesos["HH"].ge(0).all()
 
+    pesos_bairro = pd.read_csv(tmp_path / "us20_sensibilidade_pesos_bairro.csv")
+    assert len(pesos_bairro) == 188
+    assert set(pesos_bairro["esquema_solicitado"]) == {"queen", "knn"}
+    assert pesos_bairro.groupby("esquema_solicitado")["key"].nunique().eq(94).all()
+    assert {
+        "bairro_id", "key", "bairro", "ds", "casos",
+        "p_sim", "p_bh", "quadrante", "I_local",
+        "cluster", "cluster_bh", "hotspot", "hotspot_bh",
+    } <= set(pesos_bairro.columns)
+
     for nome in [
         "us20_moran_por_temporada.png",
         "us20_mapa_lisa_temporadas.png",
@@ -126,8 +139,10 @@ def test_gerar_hotspots_uma_temporada(tmp_path):
     assert meta["cobertura"]["casos_por_temporada"]["2024"] > 0
     assert "bibliotecas" in meta
     assert "us20_meta.json" in meta["saidas"]
+    assert "us20_antigo.geojson" not in meta["saidas"]
     for nome in [
         "us20_sensibilidade_pesos.csv",
+        "us20_sensibilidade_pesos_bairro.csv",
         "us20_hotspots_persistentes.csv",
         "us20_moran_por_temporada.png",
         "us20_mapa_lisa_temporadas.png",
@@ -136,6 +151,13 @@ def test_gerar_hotspots_uma_temporada(tmp_path):
         assert nome in meta["saidas"]
     if PAINEL.exists():
         assert "us20_sensibilidade_fonte.csv" in meta["saidas"]
+
+    assert (
+        meta["fonte_bruta"]["casos_no_periodo"]
+        == meta["cobertura"]["casos_por_temporada"]["2024"]
+    )
+    assert meta["fonte_bruta"]["casos_na_fonte_completa"] == 40356
+    assert "não usada" in meta["populacao"]
 
 
 @pytest.mark.skipif(not PAINEL.exists(), reason="painel US14 não gerado neste ambiente")
@@ -153,6 +175,12 @@ def test_gerar_hotspots_fonte_painel(tmp_path):
     assert "US14" in meta["fonte_descricao"]
     assert meta["temporadas"] == [2024]
     assert (tmp_path / "us20_lisa_2024.geojson").exists()
+    assert (tmp_path / "us20_sensibilidade_pesos_bairro.csv").exists()
+    assert (
+        meta["fonte_bruta"]["casos_no_periodo"]
+        == meta["cobertura"]["casos_por_temporada"]["2024"]
+    )
+    assert "não usada" in meta["populacao"]
 
     fonte = pd.read_csv(tmp_path / "us20_sensibilidade_fonte.csv")
     assert set(fonte["fonte"]) == {"historico", "painel"}
