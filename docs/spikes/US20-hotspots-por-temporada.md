@@ -288,7 +288,7 @@ A sensibilidade de fonte precisa do painel; se ele não existir, rode antes:
 python scripts/gerar_painel.py
 ```
 
-O CI opcional `.github/workflows/analysis.yml` roda os testes espaciais com
+Um workflow opcional (follow-up) rodaria os testes espaciais com
 `requirements-analysis.txt`:
 
 ```bash
