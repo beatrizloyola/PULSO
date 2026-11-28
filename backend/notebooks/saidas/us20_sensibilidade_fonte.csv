@@ -1,0 +1,5 @@
+temporada,fonte,esquema,casos_total,I,p_perm,HH,HH_bh,LL,LL_bh
+2024,historico,queen,2604,0.14095890079779927,0.012,5,0,2,0
+2024,painel,queen,9716,0.273805310038697,0.001,10,5,2,0
+2025,historico,queen,5625,0.30615626173273386,0.001,8,4,2,0
+2025,painel,queen,8547,0.1846835350844932,0.003,6,0,5,0

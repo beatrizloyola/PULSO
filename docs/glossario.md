@@ -45,6 +45,19 @@ posteriores seguem o mesmo caminho.
 - **Não confundir:** semana civil ou ISO (segunda a domingo); *semana de notificação*.
 - **Status:** em uso; data de referência a migrar.
 
+### Temporada
+
+- **Definição:** no PULSO, o ano civil da semana epidemiológica (`YYYY // 100`),
+  usado para agregar os hotspots da US20. A temporada 2024, por exemplo, reúne as
+  SE de 202401 a 202452.
+- **Contexto:** Análise de Risco.
+- **No código:** `temporada_da_semana()` em `backend/notebooks/hotspots.py`;
+  coluna `temporada` nas saídas da US20.
+- **Não confundir:** **temporada epidêmica** (fronteira derivada do perfil de
+  casos, estudada no SP-3). A US20 usa ano civil; a fronteira epidêmica fica
+  para uma decisão posterior.
+- **Status:** definido e em uso (US20); fronteira epidêmica pendente.
+
 ### DS — Distrito Sanitário
 
 - **Definição:** região de gestão da Secretaria de Saúde do Recife. São 8 DS
@@ -68,8 +81,8 @@ posteriores seguem o mesmo caminho.
   modelos de contagem, a população entra como offset `log(população)` (SP-2/US24).
 - **Contexto:** Análise de Risco (consome casos de Vigilância e população de Socioterritorial).
 - **Não confundir:** **contagem de casos** (sem denominador). Enquanto a US08 não
-  chega, SP-4, SP-5 e o modelo atual usam contagem, que favorece bairros populosos.
-  Uma tela que mostre contagem não deve rotulá-la como incidência.
+  chega, SP-4, SP-5, US20 e o modelo atual usam contagem, que favorece bairros
+  populosos. Uma tela que mostre contagem não deve rotulá-la como incidência.
 - **Status:** definido, a implementar (US08).
 
 ### Canal endêmico
@@ -124,16 +137,24 @@ posteriores seguem o mesmo caminho.
 
 ### Hotspot
 
-- **Definição:** bairro classificado como **Alto-Alto (HH)** no LISA, com
-  significância `p_sim < 0,05`. O bairro tem valor alto e está cercado de vizinhos
-  também altos.
+- **Definição:** bairro classificado como **Alto-Alto (HH)** no LISA. Na camada
+  primária (`cluster`), a significância é `p_sim < 0,05`; na camada de confiança
+  (`cluster_bh`), o p-valor é corrigido por Benjamini-Hochberg 5%. O bairro tem
+  valor alto e está cercado de vizinhos também altos.
 - **Método:** Moran global + LISA, pesos Queen linha-padronizados, 999 permutações,
-  por temporada (SP-4 → US20). As outras classes LISA são coldspot (LL) e outliers (HL, LH).
+  seed 42, por temporada (SP-4 → US20). A US20 usa a série US04 2016–2025 (casos
+  não descartados), 94 bairros e temporada = ano civil. As outras classes LISA são
+  coldspot (LL) e outliers (HL, LH).
 - **Contexto:** Análise de Risco.
+- **No código:** `backend/notebooks/hotspots.py` e `backend/scripts/gerar_hotspots.py`;
+  saídas `us20_lisa_<temporada>.geojson` e `us20_lisa_bairro_temporada.csv`.
 - **Não confundir:** “bairro com mais casos” ou topo da fila: um bairro com muitos
   casos pode não ser hotspot e vice-versa (SP-4: Ipsep e Caxangá são HH sem estar no
-  topo absoluto). O resultado atual usa contagem, não incidência; é descritivo.
-- **Status:** definido, a implementar (US20).
+  topo absoluto). O resultado usa contagem, não incidência; é descritivo. O BH é
+  conservador: em 2016, 2017 e 2024 ele zera todos os HH; por isso as duas camadas
+  são publicadas.
+- **Status:** implementado (US20); ver
+  [US20-hotspots-por-temporada.md](spikes/US20-hotspots-por-temporada.md).
 
 ### Perfil territorial
 
